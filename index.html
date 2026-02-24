@@ -689,9 +689,10 @@
   <section aria-label="Recipe category filters">
     <div class="filters" id="filters" role="group" aria-label="Filter by cuisine or diet">
       <button class="filter-btn active" data-cat="all">🎲 Anything!</button>
-      	  <button class="filter-btn" data-cat="indian">🍛 Indian</button>
+      
+	  <button class="filter-btn" data-cat="indian">🍛 Indian</button>
       <button class="filter-btn" data-cat="asian">🥢 Asian</button>
-		<button class="filter-btn" data-cat="italian">🍝 Italian</button>
+	  <button class="filter-btn" data-cat="italian">🍝 Italian</button>
       <button class="filter-btn" data-cat="mexican">🌮 Mexican</button>
       <button class="filter-btn" data-cat="comfort">🧀 Comfort Food</button>
       <button class="filter-btn" data-cat="healthy">🥗 Healthy</button>
@@ -1886,6 +1887,358 @@ const RECIPES = [
     { type: "warn", icon: "⚠️", title: "Stir Often", text: "Milk can stick at the bottom if ignored." },
     { type: "pair", icon: "🍨", title: "Serve With", text: "A scoop of vanilla ice cream." },
     { type: "leftover", icon: "📦", title: "Leftovers?", text: "Roll into laddoo shapes and refrigerate." }
+  ]
+},
+{
+  id: 30,
+  emoji: "🍚",
+  title: "Lemon Rice",
+  time: "⏱ 20 min",
+  difficulty: "Easy",
+  servings: "3 servings",
+  category: "Indian",
+  categories: ["indian","quick","healthy"],
+  funny: "When life gives you lemons, South India makes lemon rice. Tangy, bright and dangerously addictive. 🍋",
+  ingredients: [
+    { name: "Cooked rice", amount: "3 cups", notes: "cooled" },
+    { name: "Lemon juice", amount: "2 tbsp", notes: "freshly squeezed" },
+    { name: "Mustard seeds", amount: "1 tsp", notes: "" },
+    { name: "Peanuts", amount: "2 tbsp", notes: "" },
+    { name: "Green chilli", amount: "1", notes: "slit" },
+    { name: "Turmeric", amount: "½ tsp", notes: "" },
+    { name: "Curry leaves", amount: "8–10", notes: "" },
+    { name: "Oil", amount: "2 tbsp", notes: "" }
+  ],
+  steps: [
+    "Heat oil and add mustard seeds. Let them pop.",
+    "Add peanuts and fry until golden.",
+    "Add chilli, curry leaves and turmeric.",
+    "Mix in rice and salt gently.",
+    "Turn off heat and stir in lemon juice.",
+    "Mix well and serve."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Extra Crunch", text: "Add roasted cashews along with peanuts." },
+    { type: "warn", icon: "⚠️", title: "Add Lemon Last", text: "Always add lemon after switching off heat to keep flavour fresh." },
+    { type: "pair", icon: "🥒", title: "Serve With", text: "Coconut chutney or plain yogurt." },
+    { type: "leftover", icon: "📦", title: "Lunchbox Hero", text: "Perfect travel rice. Stays good for hours." }
+  ]
+},
+{
+  id: 31,
+  emoji: "🥔",
+  title: "Aloo Paratha",
+  time: "⏱ 45 min",
+  difficulty: "Medium",
+  servings: "3 servings",
+  category: "Indian",
+  categories: ["indian","breakfast","comfort"],
+  funny: "Aloo paratha is basically a warm edible hug stuffed with spiced potatoes. North India approves. 🥰",
+  ingredients: [
+    { name: "Whole wheat flour", amount: "2 cups", notes: "" },
+    { name: "Boiled potatoes", amount: "3 medium", notes: "mashed" },
+    { name: "Green chilli", amount: "1", notes: "chopped" },
+    { name: "Cumin powder", amount: "½ tsp", notes: "" },
+    { name: "Coriander leaves", amount: "2 tbsp", notes: "chopped" },
+    { name: "Ghee or oil", amount: "3 tbsp", notes: "" }
+  ],
+  steps: [
+    "Make soft dough with flour, salt and water. Rest 15 minutes.",
+    "Mix mashed potatoes with chilli, cumin and coriander.",
+    "Divide dough and stuffing into balls.",
+    "Roll dough, place stuffing inside and seal.",
+    "Roll gently into thick circle.",
+    "Cook on hot tawa with ghee until golden both sides."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Extra Flavour", text: "Add grated paneer to potato mix." },
+    { type: "warn", icon: "⚠️", title: "Seal Properly", text: "Poor sealing causes stuffing to spill out." },
+    { type: "pair", icon: "🥣", title: "Classic Combo", text: "White butter and mango pickle." },
+    { type: "leftover", icon: "📦", title: "Next Day", text: "Tastes amazing reheated on a pan." }
+  ]
+},
+{
+  id: 32,
+  emoji: "🍲",
+  title: "Chole Masala",
+  time: "⏱ 50 min",
+  difficulty: "Medium",
+  servings: "4 servings",
+  category: "Indian",
+  categories: ["indian","vegetarian","hearty"],
+  funny: "Chole masala is bold, spicy and dramatic. Like a Bollywood climax but in gravy form. 🎬",
+  ingredients: [
+    { name: "Chickpeas", amount: "2 cups", notes: "boiled" },
+    { name: "Onion", amount: "1 large", notes: "chopped" },
+    { name: "Tomatoes", amount: "2", notes: "pureed" },
+    { name: "Ginger-garlic paste", amount: "1 tbsp", notes: "" },
+    { name: "Chole masala powder", amount: "2 tsp", notes: "" },
+    { name: "Cumin seeds", amount: "1 tsp", notes: "" },
+    { name: "Oil", amount: "3 tbsp", notes: "" }
+  ],
+  steps: [
+    "Heat oil, add cumin seeds.",
+    "Add onion and cook until golden.",
+    "Add ginger-garlic paste and cook 1 minute.",
+    "Add tomato puree and spices. Cook until thick.",
+    "Add chickpeas and 1 cup water.",
+    "Simmer 15 minutes. Garnish with coriander."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Dhaba Style", text: "Mash a few chickpeas to thicken gravy." },
+    { type: "warn", icon: "⚠️", title: "Cook Well", text: "Raw spice flavour means gravy needs more cooking." },
+    { type: "pair", icon: "🥖", title: "Best With", text: "Bhature or jeera rice." },
+    { type: "leftover", icon: "📦", title: "Better Tomorrow", text: "Flavour improves overnight." }
+  ]
+},
+{
+  id: 33,
+  emoji: "🥗",
+  title: "Kachumber Salad",
+  time: "⏱ 10 min",
+  difficulty: "Easy",
+  servings: "2 servings",
+  category: "Indian",
+  categories: ["indian","healthy","quick"],
+  funny: "Kachumber is that simple salad that quietly balances every spicy curry on your plate. The unsung hero. 🥒",
+  ingredients: [
+    { name: "Cucumber", amount: "1 large", notes: "diced" },
+    { name: "Tomato", amount: "1 medium", notes: "diced" },
+    { name: "Onion", amount: "1 small", notes: "finely chopped" },
+    { name: "Lemon juice", amount: "1 tbsp", notes: "" },
+    { name: "Chaat masala", amount: "½ tsp", notes: "" },
+    { name: "Salt", amount: "to taste", notes: "" }
+  ],
+  steps: [
+    "Mix all chopped vegetables in bowl.",
+    "Add salt, chaat masala and lemon juice.",
+    "Toss gently and serve immediately."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Extra Fresh", text: "Add chopped mint leaves." },
+    { type: "warn", icon: "⚠️", title: "Serve Fresh", text: "Salt draws water if kept too long." },
+    { type: "pair", icon: "🍛", title: "Goes With", text: "Almost any Indian meal." },
+    { type: "leftover", icon: "📦", title: "Not Ideal", text: "Best eaten fresh." }
+  ]
+},
+{
+  id: 34,
+  emoji: "🥥",
+  title: "Coconut Ladoo",
+  time: "⏱ 25 min",
+  difficulty: "Easy",
+  servings: "12 pieces",
+  category: "Indian",
+  categories: ["indian","dessert","festive"],
+  funny: "Three ingredients. Five minutes of rolling. Instant festive vibes. 🥥",
+  ingredients: [
+    { name: "Desiccated coconut", amount: "2 cups", notes: "" },
+    { name: "Condensed milk", amount: "1 cup", notes: "" },
+    { name: "Cardamom powder", amount: "½ tsp", notes: "" }
+  ],
+  steps: [
+    "Heat coconut and condensed milk in pan.",
+    "Cook until mixture thickens.",
+    "Add cardamom and mix.",
+    "Cool slightly and roll into balls.",
+    "Coat in extra coconut if desired."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Luxury Touch", text: "Add chopped pistachios." },
+    { type: "warn", icon: "⚠️", title: "Don't Overcook", text: "Mixture hardens quickly." },
+    { type: "pair", icon: "☕", title: "Serve With", text: "Tea or coffee." },
+    { type: "leftover", icon: "📦", title: "Store", text: "Keep refrigerated up to 5 days." }
+  ]
+},
+{
+  id: 35,
+  emoji: "🍜",
+  title: "Vegetable Upma",
+  time: "⏱ 25 min",
+  difficulty: "Easy",
+  servings: "3 servings",
+  category: "Indian",
+  categories: ["indian","breakfast","quick"],
+  funny: "Upma is comfort food that never tries too hard. Warm, soft and quietly satisfying. 🌾",
+  ingredients: [
+    { name: "Semolina (rava)", amount: "1 cup", notes: "" },
+    { name: "Mixed vegetables", amount: "1 cup", notes: "" },
+    { name: "Mustard seeds", amount: "1 tsp", notes: "" },
+    { name: "Curry leaves", amount: "8–10", notes: "" },
+    { name: "Green chilli", amount: "1", notes: "" },
+    { name: "Water", amount: "2.5 cups", notes: "" }
+  ],
+  steps: [
+    "Dry roast semolina until aromatic.",
+    "Heat oil, add mustard seeds and curry leaves.",
+    "Add vegetables and sauté.",
+    "Add water and salt. Bring to boil.",
+    "Slowly add semolina while stirring.",
+    "Cook until thick and fluffy."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "South Indian Touch", text: "Add grated coconut on top." },
+    { type: "warn", icon: "⚠️", title: "Stir Constantly", text: "Avoid lumps while adding semolina." },
+    { type: "pair", icon: "🥥", title: "Serve With", text: "Coconut chutney." },
+    { type: "leftover", icon: "📦", title: "Reheat", text: "Sprinkle water and steam again." }
+  ]
+},
+{
+  id: 36,
+  emoji: "🍅",
+  title: "Tomato Rasam",
+  time: "⏱ 25 min",
+  difficulty: "Easy",
+  servings: "3 servings",
+  category: "Indian",
+  categories: ["indian","healthy","soupy"],
+  funny: "Rasam is not soup. It is liquid energy with attitude. Spicy, tangy and unapologetic. 🔥",
+  ingredients: [
+    { name: "Tomatoes", amount: "2 large", notes: "crushed" },
+    { name: "Tamarind pulp", amount: "1 tbsp", notes: "" },
+    { name: "Rasam powder", amount: "2 tsp", notes: "" },
+    { name: "Garlic", amount: "3 cloves", notes: "crushed" },
+    { name: "Mustard seeds", amount: "1 tsp", notes: "" },
+    { name: "Curry leaves", amount: "6–8", notes: "" }
+  ],
+  steps: [
+    "Boil tomatoes with tamarind and rasam powder.",
+    "Add salt and simmer 10 minutes.",
+    "Heat oil, add mustard seeds, garlic and curry leaves.",
+    "Pour tempering into rasam.",
+    "Serve hot."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Add Dal Water", text: "Use leftover dal water for depth." },
+    { type: "warn", icon: "⚠️", title: "Do Not Overboil", text: "Rasam loses aroma if boiled too long." },
+    { type: "pair", icon: "🍚", title: "Best With", text: "Steamed rice." },
+    { type: "leftover", icon: "📦", title: "Next Day", text: "Tastes stronger and better." }
+  ]
+},
+{
+  id: 37,
+  emoji: "🧆",
+  title: "Medu Vada",
+  time: "⏱ 45 min",
+  difficulty: "Challenge",
+  servings: "10 pieces",
+  category: "Indian",
+  categories: ["indian","snack","fancy"],
+  funny: "Crispy outside, fluffy inside. The doughnut that chose spice over sugar. 😄",
+  ingredients: [
+    { name: "Urad dal", amount: "1 cup", notes: "soaked 4 hrs" },
+    { name: "Green chilli", amount: "1", notes: "chopped" },
+    { name: "Curry leaves", amount: "6–8", notes: "chopped" },
+    { name: "Salt", amount: "to taste", notes: "" },
+    { name: "Oil", amount: "for frying", notes: "" }
+  ],
+  steps: [
+    "Grind soaked dal into thick fluffy batter.",
+    "Add chilli, curry leaves and salt.",
+    "Shape into rings with wet hands.",
+    "Deep fry until golden and crisp.",
+    "Drain and serve."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Extra Crunch", text: "Add chopped onions to batter." },
+    { type: "warn", icon: "⚠️", title: "Batter Consistency", text: "Too thin batter makes flat vadas." },
+    { type: "pair", icon: "🥥", title: "Serve With", text: "Coconut chutney and sambar." },
+    { type: "leftover", icon: "📦", title: "Reheat", text: "Air fry for crispiness." }
+  ]
+},
+{
+  id: 38,
+  emoji: "🍆",
+  title: "Baingan Bharta",
+  time: "⏱ 40 min",
+  difficulty: "Medium",
+  servings: "3 servings",
+  category: "Indian",
+  categories: ["indian","smoky","vegetarian"],
+  funny: "When eggplant gets fire-roasted and mashed into smoky perfection. Rustic and bold. 🔥",
+  ingredients: [
+    { name: "Large eggplant", amount: "1", notes: "roasted and mashed" },
+    { name: "Onion", amount: "1", notes: "chopped" },
+    { name: "Tomato", amount: "1", notes: "chopped" },
+    { name: "Garlic", amount: "3 cloves", notes: "" },
+    { name: "Green chilli", amount: "1", notes: "" },
+    { name: "Oil", amount: "2 tbsp", notes: "" }
+  ],
+  steps: [
+    "Roast eggplant directly on flame until charred.",
+    "Peel skin and mash pulp.",
+    "Heat oil, sauté onion and garlic.",
+    "Add tomato and cook until soft.",
+    "Add mashed eggplant and salt.",
+    "Cook 8–10 minutes and garnish."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Extra Smoky", text: "Add charcoal smoke for authentic flavour." },
+    { type: "warn", icon: "⚠️", title: "Drain Water", text: "Remove excess water from eggplant." },
+    { type: "pair", icon: "🥖", title: "Serve With", text: "Roti or bajra roti." },
+    { type: "leftover", icon: "📦", title: "Next Day", text: "Use as sandwich filling." }
+  ]
+},
+{
+  id: 39,
+  emoji: "🥛",
+  title: "Mango Lassi",
+  time: "⏱ 5 min",
+  difficulty: "Easy",
+  servings: "2 glasses",
+  category: "Indian",
+  categories: ["indian","drink","summer"],
+  funny: "Summer in a glass. Sweet, creamy and unapologetically mango. 🥭",
+  ingredients: [
+    { name: "Ripe mango", amount: "1 cup", notes: "chopped" },
+    { name: "Yogurt", amount: "1 cup", notes: "" },
+    { name: "Sugar", amount: "1 tbsp", notes: "optional" },
+    { name: "Cardamom", amount: "a pinch", notes: "" },
+    { name: "Ice cubes", amount: "few", notes: "" }
+  ],
+  steps: [
+    "Blend mango, yogurt, sugar and cardamom.",
+    "Add ice and blend again.",
+    "Pour into glasses and serve chilled."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Royal Touch", text: "Add saffron strands." },
+    { type: "warn", icon: "⚠️", title: "Use Sweet Mango", text: "Avoid sour varieties." },
+    { type: "pair", icon: "🍛", title: "Perfect With", text: "Spicy Indian meals." },
+    { type: "leftover", icon: "📦", title: "Fresh Only", text: "Best consumed immediately." }
+  ]
+},
+{
+  id: 40,
+  emoji: "🍢",
+  title: "Paneer Tikka",
+  time: "⏱ 35 min",
+  difficulty: "Medium",
+  servings: "3 servings",
+  category: "Indian",
+  categories: ["indian","snack","fancy"],
+  funny: "Paneer on a stick, marinated and grilled until smoky. Vegetarian barbecue brilliance. 🔥",
+  ingredients: [
+    { name: "Paneer", amount: "250g", notes: "cubed" },
+    { name: "Yogurt", amount: "½ cup", notes: "thick" },
+    { name: "Red chilli powder", amount: "1 tsp", notes: "" },
+    { name: "Turmeric", amount: "½ tsp", notes: "" },
+    { name: "Garam masala", amount: "1 tsp", notes: "" },
+    { name: "Capsicum", amount: "1", notes: "cubed" },
+    { name: "Onion", amount: "1", notes: "cubed" }
+  ],
+  steps: [
+    "Mix yogurt and spices into marinade.",
+    "Add paneer and vegetables. Marinate 20 minutes.",
+    "Thread onto skewers.",
+    "Grill or bake at 200°C for 15 minutes.",
+    "Serve hot with mint chutney."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Char Effect", text: "Finish on high heat for slight charring." },
+    { type: "warn", icon: "⚠️", title: "Use Thick Yogurt", text: "Thin marinade will not coat properly." },
+    { type: "pair", icon: "🥗", title: "Serve With", text: "Onion rings and lemon wedges." },
+    { type: "leftover", icon: "📦", title: "Wrap It", text: "Use leftovers in a wrap next day." }
   ]
 }
 ];
