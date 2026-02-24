@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatTheFork 🍴 – Roll the Dice, Skip the Drama</title>
+  <meta name="description" content="WhatTheFork is the fun dinner decider for couples and families. Roll a dice, get a recipe, and end the 'what do we eat tonight?' argument forever. Free recipe generator with tips, tricks, and a lot of fork energy." />
+  <meta name="keywords" content="what to cook tonight, dinner idea generator, random recipe, couple dinner ideas, recipe dice roller, what to eat tonight, easy dinner ideas, recipe generator" />
+  <meta name="author" content="Prajit Datta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://prajitdatta.github.io/whatthefork/" />
+  <link rel="icon" type="image/jpeg" href="https://static.wixstatic.com/media/68ad1b_96c952149d584505bdfc30a3cbf36795~mv2.jpg" />
+  <link rel="apple-touch-icon" href="https://static.wixstatic.com/media/68ad1b_96c952149d584505bdfc30a3cbf36795~mv2.jpg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://prajitdatta.github.io/whatthefork/" />
+  <meta property="og:title" content="WhatTheFork 🍴 – Roll the Dice, Skip the Drama" />
+  <meta property="og:description" content="End the dinner debate once and for all. Roll a dice and get a full recipe with tips. Free, fun, and delicious." />
+  <meta property="og:image" content="https://whatthefork.app/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WhatTheFork 🍴 – Roll the Dice, Skip the Drama" />
+  <meta name="twitter:description" content="End the dinner debate once and for all. Roll a dice and get a full recipe with tips." />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "WhatTheFork",
+    "description": "A fun random recipe generator for couples and families who can never decide what to cook.",
+    "url": "https://whatthefork.app",
+    "applicationCategory": "FoodApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": ["Random recipe generator", "Dice roller", "Recipe tips", "Ingredient lists"],
+    "keywords": "recipe generator, dinner ideas, what to cook tonight"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --yolk: #FFD93D;
+      --tomato: #FF6B6B;
+      --basil: #6BCB77;
+      --sky: #4D96FF;
+      --cream: #FFF8F0;
+      --dark: #1A1A2E;
+      --card: #FFFFFF;
+      --shadow: rgba(26,26,46,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background blobs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,217,61,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float1 12s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -150px; right: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,107,107,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float2 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,40px)} }
+    @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,-60px)} }
+
+    /* HEADER */
+    header {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 48px 24px 20px;
+    }
+
+    .logo {
+      font-family: 'Boogaloo', cursive;
+      font-size: clamp(3rem, 9vw, 6rem);
+      color: var(--dark);
+      letter-spacing: -1px;
+      line-height: 1;
+      position: relative;
+      display: inline-block;
+    }
+    .logo span { color: var(--tomato); }
+    .logo .fork-icon {
+      display: inline-block;
+      animation: wiggle 3s ease-in-out infinite;
+    }
+    @keyframes wiggle { 0%,100%{transform:rotate(-8deg)} 50%{transform:rotate(8deg)} }
+
+    .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 700;
+      color: #888;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      position: relative;
+      z-index: 10;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* CATEGORY FILTERS */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 32px 0 24px;
+    }
+    .filter-btn {
+      border: 2.5px solid var(--dark);
+      background: white;
+      color: var(--dark);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: 3px 3px 0 var(--dark);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--dark);
+      color: white;
+      transform: translate(-2px,-2px);
+      box-shadow: 5px 5px 0 var(--tomato);
+    }
+
+    /* DICE AREA */
+    .dice-area {
+      text-align: center;
+      margin: 0 0 36px;
+    }
+
+    .dice-wrapper {
+      perspective: 600px;
+      display: inline-block;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .dice {
+      width: 110px; height: 110px;
+      background: white;
+      border: 3px solid var(--dark);
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem;
+      box-shadow: 6px 6px 0 var(--dark);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .dice::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 60%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .dice:hover { transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--dark); }
+    .dice:active { transform: translate(2px,2px); box-shadow: 3px 3px 0 var(--dark); }
+    .dice.rolling { animation: roll 0.6s ease forwards; }
+    @keyframes roll {
+      0%   { transform: rotateY(0deg) rotateX(0deg); }
+      25%  { transform: rotateY(180deg) rotateX(90deg); }
+      50%  { transform: rotateY(360deg) rotateX(180deg); }
+      75%  { transform: rotateY(540deg) rotateX(270deg); }
+      100% { transform: rotateY(720deg) rotateX(360deg); }
+    }
+
+    .roll-btn {
+      display: block;
+      margin: 0 auto;
+      background: var(--tomato);
+      color: white;
+      font-family: 'Boogaloo', cursive;
+      font-size: 1.5rem;
+      letter-spacing: 0.5px;
+      border: 3px solid var(--dark);
+      border-radius: 16px;
+      padding: 14px 48px;
+      cursor: pointer;
+      box-shadow: 5px 5px 0 var(--dark);
+      transition: all 0.15s ease;
+    }
+    .roll-btn:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--dark); }
+    .roll-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--dark); }
+    .roll-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .roll-hint {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #aaa;
+      font-weight: 600;
+    }
+
+    /* RECIPE CARD */
+    #recipe-card {
+      background: white;
+      border: 3px solid var(--dark);
+      border-radius: 24px;
+      box-shadow: 8px 8px 0 var(--dark);
+      padding: 36px;
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #recipe-card.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #recipe-card.entering { display: block; }
+
+    .recipe-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .recipe-emoji {
+      font-size: 4rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .recipe-title-group { flex: 1; min-width: 200px; }
+    .recipe-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .recipe-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 2px solid var(--dark);
+    }
+    .badge.time { background: var(--yolk); }
+    .badge.difficulty { background: var(--basil); }
+    .badge.servings { background: var(--sky); color: white; }
+    .badge.category { background: var(--tomato); color: white; }
+
+    .recipe-funny {
+      background: #FFF3E0;
+      border: 2px dashed #FFB347;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #c06000;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .section-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--dark);
+    }
+
+    /* Ingredients table */
+    .ingredients-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+    .ingredients-table th {
+      background: var(--dark);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .ingredients-table th:first-child { border-radius: 10px 0 0 0; }
+    .ingredients-table th:last-child { border-radius: 0 10px 0 0; }
+    .ingredients-table td {
+      padding: 10px 14px;
+      border-bottom: 1.5px solid #F0EDE8;
+    }
+    .ingredients-table tr:nth-child(even) td { background: #FAFAF8; }
+    .ingredients-table tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+    .ingredients-table tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+    .ingredients-table tr:hover td { background: #FFF8F0; }
+    .check-ingredient {
+      cursor: pointer;
+      width: 20px; height: 20px;
+      accent-color: var(--tomato);
+    }
+    .ingredient-row.checked td { text-decoration: line-through; color: #aaa; }
+
+    /* Steps */
+    .steps-list { list-style: none; counter-reset: steps; margin-bottom: 28px; }
+    .step-item {
+      counter-increment: steps;
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: var(--tomato);
+      color: white;
+      border-radius: 50%;
+      border: 2.5px solid var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+    .step-text { padding-top: 4px; line-height: 1.6; }
+
+    /* Tips */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .tip-card {
+      background: var(--cream);
+      border: 2px solid var(--dark);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 0.88rem;
+    }
+    .tip-card strong { display: block; font-family: 'Boogaloo',cursive; font-size: 1rem; margin-bottom: 4px; }
+    .tip-card.upgrade { border-color: var(--sky); background: #EEF5FF; }
+    .tip-card.warn { border-color: var(--tomato); background: #FFF0F0; }
+    .tip-card.wine { border-color: #9C5FBE; background: #F7EEFF; }
+    .tip-card.leftover { border-color: var(--basil); background: #EDFFF2; }
+
+    /* Action buttons */
+    .card-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      border-top: 2px dashed #e0ddd8;
+      padding-top: 20px;
+    }
+    .action-btn {
+      flex: 1;
+      min-width: 130px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 16px;
+      border: 2.5px solid var(--dark);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background: white;
+      box-shadow: 3px 3px 0 var(--dark);
+      text-align: center;
+    }
+    .action-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--dark); }
+    .action-btn.primary { background: var(--yolk); }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #bbb;
+    }
+    .empty-state .big-icon { font-size: 5rem; display: block; margin-bottom: 16px; animation: bounce 2s ease infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .empty-state p { font-size: 1.1rem; font-weight: 700; }
+
+    /* HISTORY */
+    #history-section { margin-top: 48px; }
+    .history-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+      gap: 12px;
+    }
+    .history-item {
+      background: white;
+      border: 2.5px solid var(--dark);
+      border-radius: 14px;
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 3px 3px 0 var(--dark);
+      text-align: center;
+    }
+    .history-item:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--tomato); }
+    .history-item .h-emoji { font-size: 2rem; display: block; margin-bottom: 6px; }
+    .history-item .h-name { font-weight: 700; font-size: 0.85rem; }
+    .history-item .h-date { font-size: 0.72rem; color: #aaa; margin-top: 3px; }
+
+    /* FAQ for SEO */
+    #faq {
+      margin-top: 64px;
+      border-top: 2px dashed #ddd;
+      padding-top: 40px;
+    }
+    .faq-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    details {
+      background: white;
+      border: 2.5px solid var(--dark);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 3px 3px 0 var(--dark);
+    }
+    summary {
+      font-weight: 700;
+      padding: 16px 20px;
+      cursor: pointer;
+      list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '▼'; font-size: 0.75rem; color: #aaa; transition: transform 0.2s; }
+    details[open] summary::after { transform: rotate(180deg); }
+    details p { padding: 0 20px 16px; line-height: 1.7; color: #555; }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 10;
+      text-align: center;
+      padding: 32px 20px;
+      border-top: 2px dashed #ddd;
+      font-size: 0.85rem;
+      color: #bbb;
+      font-weight: 600;
+    }
+    footer a { color: var(--tomato); text-decoration: none; }
+
+    /* Confetti canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 32px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--dark);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      z-index: 999;
+      transition: transform 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 560px) {
+      #recipe-card { padding: 20px; }
+      .tips-grid { grid-template-columns: 1fr; }
+    }
+
+    /* MODE TOGGLE */
+    .mode-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 0 0 28px;
+      background: white;
+      border: 2.5px solid var(--dark);
+      border-radius: 999px;
+      padding: 4px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 4px 4px 0 var(--dark);
+    }
+    .mode-btn {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 9px 22px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: #888;
+      transition: all 0.2s ease;
+    }
+    .mode-btn.active {
+      background: var(--dark);
+      color: white;
+    }
+
+    /* CUSTOM CHOICES PANEL */
+    #custom-panel {
+      background: white;
+      border: 3px solid var(--dark);
+      border-radius: 20px;
+      box-shadow: 6px 6px 0 var(--dark);
+      padding: 28px;
+      margin-bottom: 28px;
+      display: none;
+    }
+    #custom-panel.visible { display: block; }
+    .panel-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+    .panel-sub {
+      font-size: 0.88rem;
+      color: #999;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .choices-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .choice-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      animation: slideIn 0.2s ease;
+    }
+    @keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+    .choice-input {
+      flex: 1;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      border: 2.5px solid #ddd;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.15s;
+      background: var(--cream);
+    }
+    .choice-input:focus { border-color: var(--tomato); background: white; }
+    .choice-input::placeholder { color: #ccc; font-weight: 400; }
+    .remove-choice {
+      width: 34px; height: 34px;
+      border: 2px solid #ddd;
+      background: white;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s;
+      color: #bbb;
+    }
+    .remove-choice:hover { border-color: var(--tomato); color: var(--tomato); background: #FFF0F0; }
+    .add-choice-btn {
+      background: transparent;
+      border: 2.5px dashed #ccc;
+      color: #aaa;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 9px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      align-self: flex-start;
+    }
+    .add-choice-btn:hover { border-color: var(--basil); color: var(--basil); background: #EDFFF2; }
+    .choices-note {
+      font-size: 0.8rem;
+      color: #bbb;
+      font-weight: 600;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* Custom roll result banner */
+    .custom-result-banner {
+      display: none;
+      background: linear-gradient(135deg, var(--yolk), #ffb830);
+      border: 2.5px solid var(--dark);
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .custom-result-banner.show { display: block; animation: popIn 0.3s ease; }
+    @keyframes popIn { 0%{transform:scale(0.9);opacity:0} 100%{transform:scale(1);opacity:1} }
+
+    /* Branding footer */
+    .creator-credit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .creator-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--tomato);
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+<div class="toast" id="toast"></div>
+
+<header>
+  <h1 class="logo">
+    What<span>The</span><span class="fork-icon">🍴</span>Fork
+  </h1>
+  <p class="tagline">Roll the dice. End the argument. Eat something epic.</p>
+</header>
+
+<main>
+
+  <!-- Category Filters -->
+  <section aria-label="Recipe category filters">
+    <div class="filters" id="filters" role="group" aria-label="Filter by cuisine or diet">
+      <button class="filter-btn active" data-cat="all">🎲 Anything!</button>
+      <button class="filter-btn" data-cat="italian">🍝 Italian</button>
+      <button class="filter-btn" data-cat="asian">🥢 Asian</button>
+      <button class="filter-btn" data-cat="mexican">🌮 Mexican</button>
+      <button class="filter-btn" data-cat="comfort">🧀 Comfort Food</button>
+      <button class="filter-btn" data-cat="healthy">🥗 Healthy</button>
+      <button class="filter-btn" data-cat="quick">⚡ Quick (<30min)</button>
+      <button class="filter-btn" data-cat="fancy">✨ Impress Me</button>
+    </div>
+  </section>
+
+  <!-- Mode Toggle -->
+  <div class="mode-toggle" role="group" aria-label="Roll mode">
+    <button class="mode-btn active" id="mode-random" aria-pressed="true">🎲 Surprise Me</button>
+    <button class="mode-btn" id="mode-custom" aria-pressed="false">✍️ My Choices</button>
+  </div>
+
+  <!-- Custom Choices Panel -->
+  <div id="custom-panel" aria-label="Add your own meal choices">
+    <div class="panel-title">🍽️ What's on your shortlist?</div>
+    <p class="panel-sub">Type in the meals you're considering — the dice picks one for you. Add as many or as few as you like!</p>
+    <div class="choices-list" id="choices-list"></div>
+    <button class="add-choice-btn" id="add-choice-btn">➕ Add another option</button>
+    <p class="choices-note">💡 Leave all fields empty and the dice will go full chaos mode (random from our library)</p>
+  </div>
+
+  <!-- Dice Roll -->
+  <section class="dice-area" aria-label="Dice roller">
+    <div class="dice-wrapper" id="dice-wrapper" title="Click to roll!">
+      <div class="dice" id="dice" role="button" tabindex="0" aria-label="Roll the dice for a random recipe">🎲</div>
+    </div>
+    <button class="roll-btn" id="roll-btn" aria-label="Roll dice for a random recipe">
+      🎲 Roll the Fork!
+    </button>
+    <p class="roll-hint">Tap the dice or button — or switch to "My Choices" mode above ☝️</p>
+  </section>
+
+  <!-- Recipe Card -->
+  <section id="recipe-card" aria-label="Generated recipe" itemscope itemtype="https://schema.org/Recipe">
+    <div class="empty-state" id="empty-state">
+      <span class="big-icon">👆</span>
+      <p>Roll the dice to discover your dinner!</p>
+    </div>
+
+    <div class="custom-result-banner" id="custom-banner"></div>
+
+    <div id="recipe-content" style="display:none">
+      <div class="recipe-header">
+        <div class="recipe-emoji" id="r-emoji"></div>
+        <div class="recipe-title-group">
+          <h2 class="recipe-title" id="r-title" itemprop="name"></h2>
+          <div class="recipe-meta">
+            <span class="badge time" id="r-time" aria-label="Cook time"></span>
+            <span class="badge difficulty" id="r-diff"></span>
+            <span class="badge servings" id="r-serv"></span>
+            <span class="badge category" id="r-cat"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-funny" id="r-funny" role="note" aria-label="Funny tip"></div>
+
+      <h3 class="section-title">🛒 Ingredients</h3>
+      <table class="ingredients-table" id="r-table" itemprop="recipeIngredient" aria-label="Ingredients list">
+        <thead>
+          <tr>
+            <th>✓</th>
+            <th>Ingredient</th>
+            <th>Amount</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="r-ingredients"></tbody>
+      </table>
+
+      <h3 class="section-title">👨‍🍳 How to Make It</h3>
+      <ol class="steps-list" id="r-steps" itemprop="recipeInstructions"></ol>
+
+      <h3 class="section-title">💡 Make It Better</h3>
+      <div class="tips-grid" id="r-tips"></div>
+
+      <div class="card-actions">
+        <button class="action-btn primary" onclick="window.print()">🖨️ Print Recipe</button>
+        <button class="action-btn" id="share-btn">📤 Share with Partner</button>
+        <button class="action-btn" id="save-btn">❤️ Save to History</button>
+        <button class="action-btn" id="reroll-btn">🔄 Nope, Roll Again</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section id="history-section" style="display:none" aria-label="Recipe history">
+    <h2 class="history-title">📖 Your Recipe Roll History</h2>
+    <div class="history-grid" id="history-grid"></div>
+  </section>
+
+  <!-- FAQ for SEO -->
+  <section id="faq" aria-label="Frequently asked questions">
+    <h2 class="faq-title">🤔 Frequently Asked Questions</h2>
+
+    <details>
+      <summary>What is WhatTheFork?</summary>
+      <p>WhatTheFork is a free, fun random recipe generator designed for couples and families who spend more time arguing about what to eat than actually eating. Roll a virtual dice, get a full recipe with ingredients, step-by-step instructions, and pro tips. Dinner drama solved in one click.</p>
+    </details>
+    <details>
+      <summary>How do I use the recipe dice roller?</summary>
+      <p>Click the big "Roll the Fork!" button or tap the dice icon. You can also filter by cuisine (Italian, Asian, Mexican, etc.) or dietary preference (Healthy, Quick, Fancy) before rolling. The dice will spin dramatically and reveal your dinner destiny.</p>
+    </details>
+    <details>
+      <summary>Are the recipes beginner-friendly?</summary>
+      <p>Absolutely! Each recipe shows a difficulty badge (Easy, Medium, Challenge). Recipes also include time estimates so you know if tonight calls for 20-minute pasta or a weekend slow-cook adventure. Every recipe includes beginner-friendly notes and tips to level up.</p>
+    </details>
+    <details>
+      <summary>Can I save recipes I like?</summary>
+      <p>Yes! Hit the "Save to History" button to save any recipe locally in your browser. Your roll history appears below the generator, so you can revisit past dinners anytime. No account needed.</p>
+    </details>
+    <details>
+      <summary>Can I share recipes with my partner?</summary>
+      <p>Click "Share with Partner" to copy a link or use your device's native share sheet. Because texting "idk what do YOU want" is so 2019.</p>
+    </details>
+    <details>
+      <summary>Is WhatTheFork free?</summary>
+      <p>100% free, no ads, no account required, no email sign-up, no newsletter, no hidden forks. Just roll and eat.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <div class="creator-credit">
+    <img class="creator-avatar" src="https://static.wixstatic.com/media/68ad1b_96c952149d584505bdfc30a3cbf36795~mv2.jpg" alt="Prajit Datta" onerror="this.style.display='none'" />
+    <span>Made with ❤️ by <a href="https://prajitdatta.github.io/" target="_blank" rel="noopener">Prajit Datta</a></span>
+  </div>
+  <p><a href="https://github.com/prajitdatta" target="_blank" rel="noopener">⭐ GitHub @prajitdatta</a> &nbsp;|&nbsp; No forks were harmed in the making of this website.</p>
+</footer>
+
+<script>
+const RECIPES = [
+  {
+    id: 1,
+    emoji: "🍝",
+    title: "Spaghetti Carbonara",
+    time: "⏱ 25 min",
+    difficulty: "Medium",
+    servings: "2 servings",
+    category: "Italian",
+    categories: ["italian","comfort"],
+    funny: "No cream! Seriously, we'll find you. Real carbonara uses eggs & cheese only. The Roman nonna watching from above demands it. 🙅‍♀️🥛",
+    ingredients: [
+      { name: "Spaghetti", amount: "200g", notes: "or rigatoni" },
+      { name: "Guanciale (or pancetta)", amount: "100g", notes: "cubed, not thin slices" },
+      { name: "Eggs", amount: "2 whole + 2 yolks", notes: "room temperature" },
+      { name: "Pecorino Romano", amount: "60g", notes: "finely grated" },
+      { name: "Black pepper", amount: "generous amount", notes: "freshly cracked, key ingredient!" },
+      { name: "Salt", amount: "for pasta water", notes: "very salty like the sea" }
+    ],
+    steps: [
+      "Bring a huge pot of very salty water to a boil. This is not the time to be shy with salt.",
+      "Fry the guanciale cubes in a dry pan over medium heat until crispy and golden. Remove from heat and let cool slightly.",
+      "In a bowl, whisk eggs + yolks with grated pecorino and a LOT of black pepper until smooth. This is your sauce.",
+      "Cook pasta 1 minute LESS than package says. Reserve 1 full cup of pasta water — liquid gold!",
+      "Off heat, add hot drained pasta to the guanciale pan. Add egg mixture and toss furiously, adding splashes of pasta water to create a silky, creamy sauce. Work fast!",
+      "Plate immediately, top with more pecorino and a final crack of black pepper. Eat before it gets cold. Don't you dare add cream."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a splash of white wine when frying the guanciale. Scrape up the browned bits for extra flavour." },
+      { type: "warn", icon: "⚠️", title: "Don't Scramble!", text: "Make sure the pan is OFF the heat before adding the egg mix. Too hot = sad scrambled pasta." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "A crisp Frascati or Pinot Grigio. Cold, light white wines cut through the richness beautifully." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Carbonara doesn't keep well. Be greedy. Eat it all. This is your excuse." }
+    ]
+  },
+  {
+    id: 2,
+    emoji: "🍜",
+    title: "Thai Green Curry",
+    time: "⏱ 35 min",
+    difficulty: "Easy",
+    servings: "3–4 servings",
+    category: "Asian",
+    categories: ["asian","healthy"],
+    funny: "Thai green curry is basically a vegetable bath in coconut milk and it is absolutely acceptable to eat this 3 days in a row. No judgment. 🥥🌿",
+    ingredients: [
+      { name: "Thai green curry paste", amount: "3 tbsp", notes: "Mae Ploy brand recommended" },
+      { name: "Coconut milk", amount: "400ml", notes: "full fat, don't even think about lite" },
+      { name: "Chicken thighs (or tofu)", amount: "400g", notes: "boneless, cut into chunks" },
+      { name: "Thai basil", amount: "large handful", notes: "added at the end" },
+      { name: "Fish sauce", amount: "2 tbsp", notes: "skip for vegan, use soy sauce" },
+      { name: "Lime", amount: "1", notes: "juice only" },
+      { name: "Sugar", amount: "1 tsp", notes: "palm sugar ideal, white is fine" },
+      { name: "Zucchini or eggplant", amount: "1 medium", notes: "chopped" },
+      { name: "Jasmine rice", amount: "300g", notes: "to serve" }
+    ],
+    steps: [
+      "Start your jasmine rice — it takes about 15 min and you'll want it ready. Cook according to packet or use a rice cooker.",
+      "Heat 1 tbsp of the thick top of the coconut milk in a wok over medium-high heat until it sizzles. Add curry paste and fry for 2 minutes until fragrant. Your kitchen will smell incredible.",
+      "Add the chicken (or tofu) and stir to coat in the paste. Cook 3–4 minutes until sealed.",
+      "Pour in the rest of the coconut milk + ½ cup water. Bring to a gentle simmer.",
+      "Add the vegetables and simmer 10 minutes until tender. Season with fish sauce, sugar, and lime juice. Taste and adjust.",
+      "Turn off heat, stir in Thai basil. Serve over jasmine rice. Put your face near the bowl and inhale happiness."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add kaffir lime leaves and lemongrass at step 2 for a truly restaurant-quality depth of flavour." },
+      { type: "warn", icon: "⚠️", title: "Don't Boil Hard", text: "Coconut milk breaks if you boil it aggressively. Gentle simmer is key to a smooth, rich curry." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold Thai beer (Singha, Chang) or a slightly sweet Riesling. Refreshing contrast to the heat." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Gets better on day 2! Store separately from rice and it'll last 3 days in the fridge." }
+    ]
+  },
+  {
+    id: 3,
+    emoji: "🌮",
+    title: "Street Tacos al Pastor",
+    time: "⏱ 40 min",
+    difficulty: "Medium",
+    servings: "2–3 servings",
+    category: "Mexican",
+    categories: ["mexican"],
+    funny: "These are technically street tacos. You could serve them on fine china and they'd still taste like you're standing on a Mexican street corner at midnight. 🌙🌮",
+    ingredients: [
+      { name: "Pork shoulder (thin sliced)", amount: "400g", notes: "ask butcher or slice thin yourself" },
+      { name: "Achiote paste", amount: "2 tbsp", notes: "the orange magic block" },
+      { name: "Pineapple", amount: "½ fresh", notes: "half for marinade, half for topping" },
+      { name: "White corn tortillas", amount: "8–10 small", notes: "charred in dry pan" },
+      { name: "White onion", amount: "½", notes: "finely diced" },
+      { name: "Fresh cilantro", amount: "big bunch", notes: "chopped" },
+      { name: "Lime", amount: "3", notes: "one for marinade, rest for serving" },
+      { name: "Garlic", amount: "3 cloves", notes: "minced" },
+      { name: "Guajillo chiles", amount: "2", notes: "soaked in hot water 10 min" }
+    ],
+    steps: [
+      "Blend achiote paste, soaked guajillo chiles, garlic, juice of 1 lime, and ¼ of the pineapple into a thick marinade.",
+      "Coat pork slices in marinade. Marinate at least 20 mins (overnight is a game changer).",
+      "Grill or pan-fry pork on high heat in batches, 2–3 minutes per side until charred edges appear. Resist moving it too much — let it sear!",
+      "Char your tortillas directly over a gas flame or in a dry cast-iron pan. 30 seconds each side.",
+      "Chop pork and pile onto tortillas. Top with diced onion, fresh pineapple chunks, cilantro, and a squeeze of lime.",
+      "Eat immediately standing up for full street-food authenticity. Salsa verde on the side highly encouraged."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Marinate overnight and cook on a charcoal grill. The smoke and char edges are what make al pastor special." },
+      { type: "warn", icon: "⚠️", title: "Small Tortillas Only", text: "Corn tortillas should be small (4–5\"). Big flour tortillas = burrito. Totally different vibe." },
+      { type: "wine", icon: "🍹", title: "Pair With", text: "Michelada or a spicy paloma (tequila + grapefruit + chili salt rim). Non-alcoholic: hibiscus agua fresca." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make a taco hash for breakfast: fry leftover pork with eggs. You're welcome." }
+    ]
+  },
+  {
+    id: 4,
+    emoji: "🍔",
+    title: "Smash Burgers with Secret Sauce",
+    time: "⏱ 20 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Comfort",
+    categories: ["comfort","quick"],
+    funny: "Smash burgers are the reason flat-top griddles were invented. Don't let anyone tell you a thick burger is better. Smash the patriarchy. Smash the beef. 🔨",
+    ingredients: [
+      { name: "80/20 beef mince", amount: "250g", notes: "fat content matters here!" },
+      { name: "American cheese slices", amount: "4 slices", notes: "it has to be American. Science." },
+      { name: "Brioche burger buns", amount: "2", notes: "toasted in butter" },
+      { name: "White onion", amount: "½", notes: "thinly sliced" },
+      { name: "Pickles", amount: "good handful", notes: "dill, thinly sliced" },
+      { name: "Mayonnaise", amount: "3 tbsp", notes: "for sauce" },
+      { name: "Ketchup", amount: "1 tbsp", notes: "for sauce" },
+      { name: "Hot sauce", amount: "1 tsp", notes: "for sauce, adjust to taste" },
+      { name: "Garlic powder", amount: "pinch", notes: "for sauce" }
+    ],
+    steps: [
+      "Mix mayo, ketchup, hot sauce, and garlic powder. Refrigerate the secret sauce — it gets better as it sits.",
+      "Divide beef into 2 equal balls. Season with salt and pepper, but only JUST before cooking.",
+      "Heat a cast iron pan or griddle on HIGH until screaming hot (this is key). Add a tiny bit of oil.",
+      "Place beef ball on the griddle and immediately SMASH with a heavy spatula or burger press. Press hard, hold 10 seconds. The patty should be thin and wide.",
+      "Cook 90 seconds until the edges are brown and lacy-crispy. Add onion slices on top, then flip. Immediately add 2 cheese slices per patty. Cook 45 more seconds.",
+      "Toast buns in butter in same pan. Build: sauce on both buns, pickles, double smash patties, sauce again. Eat while crying tears of joy."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Double smash! Make 4 thin patties instead of 2 and stack them. Double-stack smash burgers are elite." },
+      { type: "warn", icon: "⚠️", title: "HOT Pan Only", text: "If the pan isn't screaming hot, you get a steamed burger, not a smash burger. Wait for the smoke." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold lager. This is non-negotiable. A crispy fries + lager combo with a smash burger is peak happiness." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "There are no leftovers. That's not something that happens with smash burgers." }
+    ]
+  },
+  {
+    id: 5,
+    emoji: "🥗",
+    title: "Niçoise Salad",
+    time: "⏱ 25 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Healthy",
+    categories: ["healthy","quick","fancy"],
+    funny: "Eating a Niçoise salad makes you feel like you're on the Côte d'Azur in a linen shirt. Even if you're in your pyjamas. The vibes are real. 🇫🇷🌊",
+    ingredients: [
+      { name: "Tuna steaks (or canned)", amount: "200g", notes: "fresh seared is ✨, canned in olive oil is great too" },
+      { name: "Eggs", amount: "4", notes: "soft-boiled 7 minutes exactly" },
+      { name: "Green beans", amount: "150g", notes: "blanched until just tender" },
+      { name: "Cherry tomatoes", amount: "200g", notes: "halved" },
+      { name: "Black olives", amount: "80g", notes: "Niçoise or Kalamata" },
+      { name: "Anchovies", amount: "8 fillets", notes: "optional but HIGHLY recommended" },
+      { name: "Dijon mustard", amount: "1 tsp", notes: "for vinaigrette" },
+      { name: "Red wine vinegar", amount: "1 tbsp", notes: "for vinaigrette" },
+      { name: "Extra virgin olive oil", amount: "4 tbsp", notes: "good quality!" }
+    ],
+    steps: [
+      "Boil eggs for exactly 7 minutes (soft but not runny). Plunge into cold water to stop cooking. Peel carefully.",
+      "Blanch green beans in the same boiling water for 3 minutes. Cold water bath again to keep them vibrantly green.",
+      "Make vinaigrette: whisk mustard, vinegar, salt, pepper, then slowly drizzle in olive oil until emulsified.",
+      "If using fresh tuna: season steaks, sear 90 seconds each side in a hot pan. Rest 2 minutes. Slice.",
+      "Arrange everything on a large plate or platter — don't toss it, Niçoise is composed! Tomatoes, beans, eggs halved, olives, anchovies, tuna on top.",
+      "Drizzle generously with vinaigrette. Tear some crusty bread to serve alongside. Pretend you're in Nice."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add blanched thin sliced potato and a strip of roasted red pepper. More components = more Niçoise energy." },
+      { type: "warn", icon: "⚠️", title: "Don't Toss It!", text: "A proper Niçoise is composed (arranged). Tossed salads are for peasants, apparently. The French take this seriously." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Provençal rosé. Cold. In a big glass. This is mandatory. Non-negotiable. The wine IS the recipe." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Keep vinaigrette separate and it'll last 2 days. The composed plate doesn't survive — eat it fresh!" }
+    ]
+  },
+  {
+    id: 6,
+    emoji: "🍛",
+    title: "Chicken Tikka Masala",
+    time: "⏱ 50 min",
+    difficulty: "Medium",
+    servings: "4 servings",
+    category: "Asian",
+    categories: ["asian","comfort","fancy"],
+    funny: "Technically, tikka masala may have been invented in Glasgow, Scotland, not India. Either way it is the greatest thing humanity has achieved. Sorry, moon landing. 🌙",
+    ingredients: [
+      { name: "Chicken thighs", amount: "600g", notes: "boneless, cubed" },
+      { name: "Greek yoghurt", amount: "150ml", notes: "for marinade" },
+      { name: "Garam masala", amount: "2 tsp", notes: "divided" },
+      { name: "Crushed tomatoes", amount: "400g tin", notes: "passata also works" },
+      { name: "Heavy cream", amount: "150ml", notes: "the important part" },
+      { name: "Onion", amount: "1 large", notes: "finely diced" },
+      { name: "Garlic", amount: "5 cloves", notes: "minced" },
+      { name: "Fresh ginger", amount: "2cm piece", notes: "grated" },
+      { name: "Kashmiri chili powder", amount: "1 tsp", notes: "for that red colour!" },
+      { name: "Butter", amount: "2 tbsp", notes: "for the sauce base" },
+      { name: "Naan or basmati rice", amount: "to serve", notes: "both, ideally" }
+    ],
+    steps: [
+      "Marinate chicken in yoghurt, 1 tsp garam masala, kashmiri chili, salt for at least 20 minutes (overnight = perfection).",
+      "Grill or pan-fry marinated chicken on high heat until charred in spots. Set aside — it finishes in the sauce.",
+      "In a large pan, melt butter. Fry onion 8–10 minutes until golden and soft. Add garlic and ginger, cook 2 more minutes.",
+      "Add remaining garam masala and stir into onions for 1 minute. Add crushed tomatoes. Simmer 10 minutes until thick.",
+      "Pour in cream, stir through. Add chicken pieces. Simmer gently 10 more minutes.",
+      "Adjust seasoning. Serve with naan (for scooping!) and rice (for soaking up that gorgeous sauce). Sob with happiness."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Char your chicken in a screaming hot pan in batches. The charred bits are key — they're called 'char' for good reason!" },
+      { type: "warn", icon: "⚠️", title: "No Skipping Marinade", text: "The yoghurt marinade tenderizes the chicken and adds flavour. 20 minutes is the minimum. Don't skip this step." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "IPA beer! The hoppy bitterness contrasts the creamy, spiced sauce beautifully. Or mango lassi for non-alcoholic." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Genuinely better next day. Makes incredible leftover lunch with fresh naan. One of the best meal preps ever." }
+    ]
+  },
+  {
+    id: 7,
+    emoji: "🥘",
+    title: "One-Pan Lemon Herb Salmon",
+    time: "⏱ 22 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Healthy",
+    categories: ["healthy","quick","fancy"],
+    funny: "This recipe makes you look like a competent adult human who definitely has their life together. Save this one for when the in-laws visit. 🐟✨",
+    ingredients: [
+      { name: "Salmon fillets", amount: "2 × 180g", notes: "skin on, room temperature" },
+      { name: "Asparagus", amount: "200g", notes: "woody ends snapped off" },
+      { name: "Cherry tomatoes", amount: "150g", notes: "whole or halved" },
+      { name: "Lemon", amount: "1", notes: "zest + slices" },
+      { name: "Garlic", amount: "3 cloves", notes: "smashed" },
+      { name: "Butter", amount: "30g", notes: "cold, cubed" },
+      { name: "Fresh dill or parsley", amount: "small bunch", notes: "chopped" },
+      { name: "Capers", amount: "1 tbsp", notes: "optional but excellent" },
+      { name: "Olive oil", amount: "2 tbsp", notes: "" }
+    ],
+    steps: [
+      "Preheat oven to 200°C. Lay asparagus and tomatoes in a roasting pan. Drizzle with olive oil, season well.",
+      "Roast vegetables 8 minutes. Remove from oven.",
+      "Push vegetables to edges. Place salmon skin-side down in centre. Top with lemon slices, garlic, capers.",
+      "Return to oven for 10–12 minutes until salmon flakes easily at the thickest point but is still slightly translucent in the middle.",
+      "Remove from oven. Add cold butter cubes to pan — they'll melt into an instant sauce. Spoon over fish.",
+      "Top with lemon zest and fresh herbs. Serve directly from the pan (fewer dishes = more romance)."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Sear the salmon skin-side down in a hot oven-safe pan before roasting for a crispy, restaurant-quality skin." },
+      { type: "warn", icon: "⚠️", title: "Don't Overcook!", text: "Salmon should be slightly translucent in the very centre when you remove it. It'll finish cooking from residual heat." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Chablis or unoaked Chardonnay. Clean, mineral wines that don't overpower the delicate fish. Heavenly." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Flake cold leftover salmon over a salad with capers and a lemon vinaigrette. Great cold lunch the next day." }
+    ]
+  },
+  {
+    id: 8,
+    emoji: "🍕",
+    title: "Neapolitan Pizza Bianca",
+    time: "⏱ 25 min + dough",
+    difficulty: "Challenge",
+    servings: "2 pizzas",
+    category: "Italian",
+    categories: ["italian","fancy","comfort"],
+    funny: "Real Neapolitan pizza is cooked at 485°C for 90 seconds. Your oven does 250°C. Welcome to the amateur zone. It's still incredible. 🍕🔥",
+    ingredients: [
+      { name: "00 flour", amount: "300g", notes: "or bread flour, not plain flour" },
+      { name: "Instant yeast", amount: "½ tsp", notes: "cold ferment = more flavour" },
+      { name: "Salt", amount: "7g", notes: "weigh it!" },
+      { name: "Water", amount: "200ml", notes: "lukewarm" },
+      { name: "Fresh mozzarella", amount: "250g", notes: "torn, not shredded" },
+      { name: "Ricotta", amount: "150g", notes: "white pizza base" },
+      { name: "Garlic", amount: "3 cloves", notes: "sliced thin" },
+      { name: "Fresh rosemary", amount: "small bunch", notes: "" },
+      { name: "Extra virgin olive oil", amount: "3 tbsp", notes: "good quality" },
+      { name: "Black pepper", amount: "generous", notes: "freshly cracked" }
+    ],
+    steps: [
+      "Mix flour, yeast, salt. Add water and mix into a shaggy dough. Knead 8–10 minutes until smooth and elastic. Oil the bowl, cover, cold ferment in fridge 24–48 hours (or 2 hours at room temp).",
+      "Remove dough 1 hour before cooking to come to room temperature. Divide in half.",
+      "Preheat oven to absolute max (250°C+) with a pizza stone or heavy baking sheet inside for at least 45 minutes.",
+      "Stretch dough gently by hand (never rolling pin) into a thin round. Imperfect = authentic.",
+      "Spread thin layer of ricotta. Add torn mozzarella, sliced garlic, rosemary. Drizzle with olive oil and crack pepper.",
+      "Bake 7–10 minutes until crust is blistered and cheese is bubbling. Rest 2 minutes, then eat immediately. The crust should make a hollow sound when you tap it."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Cold ferment the dough for 48–72 hours. The slow yeast develops incredible flavour and a perfectly chewy crust." },
+      { type: "warn", icon: "⚠️", title: "Pre-heat That Stone!", text: "The stone MUST be scorching hot before the pizza goes in. 45 minutes minimum. This is how you get the bottom crisp." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Lambrusco (a lightly sparkling red) or a cold Peroni beer. Both cut through the richness perfectly." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Cold pizza the next morning is a life choice and we respect it. Reheat in a dry pan for crispy base revival." }
+    ]
+  }
+];
+
+let currentRecipe = null;
+let history = JSON.parse(localStorage.getItem('wtf-history') || '[]');
+let activeCategory = 'all';
+let rollMode = 'random'; // 'random' | 'custom'
+
+// ─── MODE TOGGLE ───────────────────────────────────────────────────
+const modeRandom = document.getElementById('mode-random');
+const modeCustom = document.getElementById('mode-custom');
+const customPanel = document.getElementById('custom-panel');
+
+modeRandom.addEventListener('click', () => {
+  rollMode = 'random';
+  modeRandom.classList.add('active'); modeRandom.setAttribute('aria-pressed','true');
+  modeCustom.classList.remove('active'); modeCustom.setAttribute('aria-pressed','false');
+  customPanel.classList.remove('visible');
+});
+modeCustom.addEventListener('click', () => {
+  rollMode = 'custom';
+  modeCustom.classList.add('active'); modeCustom.setAttribute('aria-pressed','true');
+  modeRandom.classList.remove('active'); modeRandom.setAttribute('aria-pressed','false');
+  customPanel.classList.add('visible');
+  if (document.querySelectorAll('.choice-input').length === 0) {
+    addChoiceRow(''); addChoiceRow(''); addChoiceRow('');
+  }
+});
+
+// ─── CUSTOM CHOICES ────────────────────────────────────────────────
+function addChoiceRow(value = '') {
+  const list = document.getElementById('choices-list');
+  const row = document.createElement('div');
+  row.className = 'choice-row';
+  row.innerHTML = `
+    <input type="text" class="choice-input" placeholder="e.g. Pasta, Stir fry, Tacos..." value="${value}" maxlength="60" aria-label="Meal option" />
+    <button class="remove-choice" title="Remove" aria-label="Remove this option">✕</button>
+  `;
+  row.querySelector('.remove-choice').addEventListener('click', () => {
+    row.style.opacity = '0';
+    row.style.transform = 'translateX(10px)';
+    row.style.transition = 'all 0.15s ease';
+    setTimeout(() => row.remove(), 150);
+  });
+  list.appendChild(row);
+  row.querySelector('.choice-input').focus();
+}
+
+document.getElementById('add-choice-btn').addEventListener('click', () => addChoiceRow());
+
+function getCustomChoices() {
+  return Array.from(document.querySelectorAll('.choice-input'))
+    .map(i => i.value.trim())
+    .filter(v => v.length > 0);
+}
+
+// Filters
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.dataset.cat;
+  });
+});
+
+// Dice click
+document.getElementById('dice').addEventListener('click', rollDice);
+document.getElementById('dice').addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') rollDice(); });
+document.getElementById('roll-btn').addEventListener('click', rollDice);
+document.getElementById('reroll-btn')?.addEventListener('click', rollDice);
+
+function rollDice() {
+  const btn = document.getElementById('roll-btn');
+  const dice = document.getElementById('dice');
+  btn.disabled = true;
+
+  // Animate dice faces
+  const faces = ['⚀','⚁','⚂','⚃','⚄','⚅','🎲'];
+  dice.classList.add('rolling');
+  let i = 0;
+  const interval = setInterval(() => {
+    dice.textContent = faces[i % faces.length]; i++;
+  }, 80);
+
+  setTimeout(() => {
+    clearInterval(interval);
+    dice.classList.remove('rolling');
+    dice.textContent = faces[Math.floor(Math.random()*6)];
+
+    // ── CUSTOM MODE ──
+    if (rollMode === 'custom') {
+      const choices = getCustomChoices();
+      if (choices.length > 0) {
+        const picked = choices[Math.floor(Math.random() * choices.length)];
+        showCustomResult(picked, choices);
+        btn.disabled = false;
+        launchConfetti();
+        return;
+      }
+      // Fall through to random if no choices entered
+      showToast('No choices entered — going full random! 🎲');
+    }
+
+    // ── RANDOM MODE ──
+    const filtered = activeCategory === 'all' ? RECIPES : RECIPES.filter(r => r.categories.includes(activeCategory));
+    if (!filtered.length) { showToast("No recipes in that category yet! 😅"); btn.disabled=false; return; }
+    const pick = filtered[Math.floor(Math.random() * filtered.length)];
+    showRecipe(pick);
+    btn.disabled = false;
+    launchConfetti();
+  }, 700);
+}
+
+function showCustomResult(picked, allChoices) {
+  // Hide the preset recipe card content, show a custom result card
+  const card = document.getElementById('recipe-card');
+  const content = document.getElementById('recipe-content');
+  const empty = document.getElementById('empty-state');
+  const banner = document.getElementById('custom-banner');
+
+  // Clear any previous custom styling
+  card.style.display = 'block';
+  empty.style.display = 'none';
+  content.style.display = 'none'; // hide the recipe detail
+  banner.classList.remove('show');
+
+  // Build the custom winner display
+  banner.innerHTML = `
+    🎲 The dice have spoken! Tonight you're making:<br>
+    <span style="font-size:1.5rem; font-family:'Boogaloo',cursive;">${picked}</span>
+    <br><span style="font-size:0.8rem; font-weight:600; opacity:0.7; margin-top:4px; display:block;">
+      Rolled from ${allChoices.length} option${allChoices.length>1?'s':''}: ${allChoices.join(', ')}
+    </span>
+    <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button onclick="rollDice()" style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;padding:8px 18px;border:2.5px solid var(--dark);border-radius:10px;background:white;cursor:pointer;box-shadow:3px 3px 0 var(--dark);transition:all 0.15s">🔄 Roll Again</button>
+      <button onclick="searchForRecipe('${picked.replace(/'/g,"\\'")}', this)" style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;padding:8px 18px;border:2.5px solid var(--dark);border-radius:10px;background:white;cursor:pointer;box-shadow:3px 3px 0 var(--dark);transition:all 0.15s">🔍 Find a Recipe for This</button>
+    </div>
+  `;
+
+  requestAnimationFrame(() => { banner.classList.add('show'); });
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function searchForRecipe(dish, btn) {
+  // Check if we have a matching recipe in our library (case-insensitive partial match)
+  const match = RECIPES.find(r => r.title.toLowerCase().includes(dish.toLowerCase()) || dish.toLowerCase().includes(r.title.toLowerCase().split(' ')[0]));
+  if (match) {
+    document.getElementById('recipe-content').style.display = 'block';
+    showRecipe(match);
+    showToast(`🎉 Found "${match.title}" in our library!`);
+  } else {
+    // Open YouTube search for the recipe
+    window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(dish + ' recipe')}`, '_blank');
+  }
+}
+
+function showRecipe(recipe) {
+  currentRecipe = recipe;
+  const card = document.getElementById('recipe-card');
+  const content = document.getElementById('recipe-content');
+  const empty = document.getElementById('empty-state');
+
+  card.style.display = 'block';
+  empty.style.display = 'none';
+  content.style.display = 'block';
+
+  document.getElementById('r-emoji').textContent = recipe.emoji;
+  document.getElementById('r-title').textContent = recipe.title;
+  document.getElementById('r-time').textContent = recipe.time;
+  document.getElementById('r-diff').textContent = '📊 ' + recipe.difficulty;
+  document.getElementById('r-serv').textContent = '👥 ' + recipe.servings;
+  document.getElementById('r-cat').textContent = recipe.category;
+  document.getElementById('r-funny').textContent = recipe.funny;
+
+  // Ingredients table
+  const tbody = document.getElementById('r-ingredients');
+  tbody.innerHTML = '';
+  recipe.ingredients.forEach((ing, idx) => {
+    const tr = document.createElement('tr');
+    tr.className = 'ingredient-row';
+    tr.dataset.idx = idx;
+    tr.innerHTML = `<td><input type="checkbox" class="check-ingredient" aria-label="Check off ${ing.name}"></td><td>${ing.name}</td><td><strong>${ing.amount}</strong></td><td style="color:#999;font-size:0.85em">${ing.notes||''}</td>`;
+    tbody.appendChild(tr);
+    tr.querySelector('.check-ingredient').addEventListener('change', function() {
+      tr.classList.toggle('checked', this.checked);
+    });
+  });
+
+  // Steps
+  const stepsList = document.getElementById('r-steps');
+  stepsList.innerHTML = '';
+  recipe.steps.forEach(step => {
+    const li = document.createElement('li');
+    li.className = 'step-item';
+    li.innerHTML = `<span class="step-num"></span><span class="step-text">${step}</span>`;
+    stepsList.appendChild(li);
+  });
+
+  // Tips
+  const tipsGrid = document.getElementById('r-tips');
+  tipsGrid.innerHTML = '';
+  recipe.tips.forEach(tip => {
+    const div = document.createElement('div');
+    div.className = `tip-card ${tip.type}`;
+    div.innerHTML = `<strong>${tip.icon} ${tip.title}</strong>${tip.text}`;
+    tipsGrid.appendChild(div);
+  });
+
+  // Animate in
+  card.classList.remove('visible');
+  requestAnimationFrame(() => {
+    card.classList.add('entering');
+    requestAnimationFrame(() => {
+      card.classList.add('visible');
+    });
+  });
+
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Save
+document.getElementById('save-btn')?.addEventListener('click', () => {
+  if (!currentRecipe) return;
+  const existing = history.find(h => h.id === currentRecipe.id);
+  if (!existing) {
+    history.unshift({ id: currentRecipe.id, title: currentRecipe.title, emoji: currentRecipe.emoji, date: new Date().toLocaleDateString() });
+    if (history.length > 12) history = history.slice(0, 12);
+    localStorage.setItem('wtf-history', JSON.stringify(history));
+    renderHistory();
+    showToast('❤️ Saved to your roll history!');
+  } else {
+    showToast('Already saved! You loved this one 😄');
+  }
+});
+
+// Share
+document.getElementById('share-btn')?.addEventListener('click', async () => {
+  if (!currentRecipe) return;
+  const text = `🍴 WhatTheFork says we're cooking: ${currentRecipe.emoji} ${currentRecipe.title}! Roll yours at whatthefork.app`;
+  if (navigator.share) {
+    try { await navigator.share({ title: 'WhatTheFork', text, url: 'https://whatthefork.app' }); }
+    catch(e) {}
+  } else {
+    await navigator.clipboard.writeText(text);
+    showToast('📋 Copied to clipboard! Send it to your partner 😄');
+  }
+});
+
+// History
+function renderHistory() {
+  const sec = document.getElementById('history-section');
+  const grid = document.getElementById('history-grid');
+  if (!history.length) { sec.style.display = 'none'; return; }
+  sec.style.display = 'block';
+  grid.innerHTML = '';
+  history.forEach(h => {
+    const div = document.createElement('div');
+    div.className = 'history-item';
+    div.innerHTML = `<span class="h-emoji">${h.emoji}</span><div class="h-name">${h.title}</div><div class="h-date">${h.date}</div>`;
+    div.addEventListener('click', () => {
+      const recipe = RECIPES.find(r => r.id === h.id);
+      if (recipe) showRecipe(recipe);
+    });
+    grid.appendChild(div);
+  });
+}
+renderHistory();
+
+// Toast
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Confetti
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const pieces = Array.from({length:80}, () => ({
+    x: Math.random()*canvas.width,
+    y: -20,
+    r: Math.random()*6+3,
+    d: Math.random()*80+40,
+    color: ['#FFD93D','#FF6B6B','#6BCB77','#4D96FF','#ff9a3c','#c77dff'][Math.floor(Math.random()*6)],
+    tilt: Math.random()*10-10,
+    tiltAngle: 0,
+    tiltSpeed: Math.random()*0.1+0.05
+  }));
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      p.tiltAngle += p.tiltSpeed;
+      p.y += (Math.cos(frame/100+p.d)+1.5);
+      p.x += Math.sin(frame/80);
+      p.tilt = Math.sin(p.tiltAngle)*15;
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/2, p.y);
+      ctx.lineTo(p.x+p.tilt, p.y+p.tilt+p.r/2);
+      ctx.stroke();
+    });
+    frame++;
+    if(frame < 120) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+</script>
+</body>
+</html>
