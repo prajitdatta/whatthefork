@@ -53,9 +53,24 @@
       --dark: #1A1A2E;
       --card: #FFFFFF;
       --shadow: rgba(26,26,46,0.12);
+
+      /* Spacing scale */
+      --space-xs: 8px;
+      --space-sm: 12px;
+      --space-md: 20px;
+      --space-lg: 32px;
+      --space-xl: 48px;
+
+      /* Font sizes – fluid */
+      --fs-sm: clamp(0.75rem, 1.8vw, 0.85rem);
+      --fs-base: clamp(0.875rem, 2vw, 1rem);
+      --fs-lg: clamp(1rem, 2.5vw, 1.2rem);
+      --fs-xl: clamp(1.2rem, 3vw, 1.5rem);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Nunito', sans-serif;
@@ -63,6 +78,7 @@
       color: var(--dark);
       min-height: 100vh;
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
     /* Animated background blobs */
@@ -92,17 +108,19 @@
     @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,40px)} }
     @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,-60px)} }
 
-    /* HEADER */
+    /* ═══════════════════════════════
+       HEADER
+    ═══════════════════════════════ */
     header {
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 48px 24px 20px;
+      padding: clamp(28px, 6vw, 48px) clamp(16px, 4vw, 24px) clamp(12px, 3vw, 20px);
     }
 
     .logo {
       font-family: 'Boogaloo', cursive;
-      font-size: clamp(3rem, 9vw, 6rem);
+      font-size: clamp(2.4rem, 9vw, 6rem);
       color: var(--dark);
       letter-spacing: -1px;
       line-height: 1;
@@ -117,42 +135,53 @@
     @keyframes wiggle { 0%,100%{transform:rotate(-8deg)} 50%{transform:rotate(8deg)} }
 
     .tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-size: clamp(0.85rem, 2.5vw, 1.25rem);
       font-weight: 700;
       color: #888;
       margin-top: 8px;
       letter-spacing: 0.5px;
+      padding: 0 8px;
     }
 
-    /* MAIN LAYOUT */
+    /* ═══════════════════════════════
+       MAIN LAYOUT
+    ═══════════════════════════════ */
     main {
       position: relative;
       z-index: 10;
       max-width: 860px;
       margin: 0 auto;
-      padding: 0 20px 60px;
+      padding: 0 clamp(12px, 4vw, 20px) clamp(40px, 8vw, 60px);
     }
 
-    /* CATEGORY FILTERS */
+    /* ═══════════════════════════════
+       CATEGORY FILTERS
+    ═══════════════════════════════ */
     .filters {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: clamp(6px, 2vw, 10px);
       justify-content: center;
-      margin: 32px 0 24px;
+      margin: clamp(20px, 5vw, 32px) 0 clamp(16px, 4vw, 24px);
     }
+
     .filter-btn {
       border: 2.5px solid var(--dark);
       background: white;
       color: var(--dark);
       font-family: 'Nunito', sans-serif;
-      font-size: 0.9rem;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
       font-weight: 700;
-      padding: 8px 18px;
+      padding: clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 18px);
       border-radius: 999px;
       cursor: pointer;
       transition: all 0.18s ease;
       box-shadow: 3px 3px 0 var(--dark);
+      white-space: nowrap;
+      /* Tap target minimum 44px on mobile */
+      min-height: 36px;
+      display: flex;
+      align-items: center;
     }
     .filter-btn:hover, .filter-btn.active {
       background: var(--dark);
@@ -160,26 +189,172 @@
       transform: translate(-2px,-2px);
       box-shadow: 5px 5px 0 var(--tomato);
     }
+    /* Touch device: bigger tap areas */
+    @media (hover: none) {
+      .filter-btn:active {
+        background: var(--dark);
+        color: white;
+        transform: translate(-2px,-2px);
+        box-shadow: 5px 5px 0 var(--tomato);
+      }
+    }
 
-    /* DICE AREA */
+    /* ═══════════════════════════════
+       MODE TOGGLE
+    ═══════════════════════════════ */
+    .mode-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 0 0 clamp(18px, 4vw, 28px);
+      background: white;
+      border: 2.5px solid var(--dark);
+      border-radius: 999px;
+      padding: 4px;
+      width: fit-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 4px 4px 0 var(--dark);
+    }
+    .mode-btn {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+      padding: clamp(8px, 2vw, 9px) clamp(14px, 4vw, 22px);
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: #888;
+      transition: all 0.2s ease;
+      min-height: 40px;
+      white-space: nowrap;
+    }
+    .mode-btn.active {
+      background: var(--dark);
+      color: white;
+    }
+
+    /* ═══════════════════════════════
+       CUSTOM CHOICES PANEL
+    ═══════════════════════════════ */
+    #custom-panel {
+      background: white;
+      border: 3px solid var(--dark);
+      border-radius: 20px;
+      box-shadow: 6px 6px 0 var(--dark);
+      padding: clamp(16px, 4vw, 28px);
+      margin-bottom: clamp(18px, 4vw, 28px);
+      display: none;
+    }
+    #custom-panel.visible { display: block; }
+
+    .panel-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      margin-bottom: 6px;
+    }
+    .panel-sub {
+      font-size: var(--fs-sm);
+      color: #999;
+      font-weight: 600;
+      margin-bottom: clamp(14px, 3vw, 20px);
+      line-height: 1.5;
+    }
+    .choices-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 2vw, 10px);
+      margin-bottom: clamp(12px, 3vw, 16px);
+    }
+    .choice-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      animation: slideIn 0.2s ease;
+    }
+    @keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+    .choice-input {
+      flex: 1;
+      font-family: 'Nunito', sans-serif;
+      font-size: var(--fs-base);
+      font-weight: 600;
+      padding: clamp(9px, 2vw, 10px) clamp(12px, 3vw, 14px);
+      border: 2.5px solid #ddd;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.15s;
+      background: var(--cream);
+      min-height: 44px;
+    }
+    .choice-input:focus { border-color: var(--tomato); background: white; }
+    .choice-input::placeholder { color: #ccc; font-weight: 400; }
+
+    .remove-choice {
+      width: 40px; height: 40px;
+      min-width: 40px;
+      border: 2px solid #ddd;
+      background: white;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s;
+      color: #bbb;
+    }
+    .remove-choice:hover { border-color: var(--tomato); color: var(--tomato); background: #FFF0F0; }
+
+    .add-choice-btn {
+      background: transparent;
+      border: 2.5px dashed #ccc;
+      color: #aaa;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: var(--fs-sm);
+      padding: clamp(8px, 2vw, 9px) clamp(14px, 3vw, 18px);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      align-self: flex-start;
+      min-height: 40px;
+    }
+    .add-choice-btn:hover { border-color: var(--basil); color: var(--basil); background: #EDFFF2; }
+
+    .choices-note {
+      font-size: var(--fs-sm);
+      color: #bbb;
+      font-weight: 600;
+      margin-top: 12px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════
+       DICE AREA
+    ═══════════════════════════════ */
     .dice-area {
       text-align: center;
-      margin: 0 0 36px;
+      margin: 0 0 clamp(24px, 5vw, 36px);
     }
 
     .dice-wrapper {
       perspective: 600px;
       display: inline-block;
       cursor: pointer;
-      margin-bottom: 20px;
+      margin-bottom: clamp(14px, 3vw, 20px);
     }
     .dice {
-      width: 110px; height: 110px;
+      width: clamp(80px, 18vw, 110px);
+      height: clamp(80px, 18vw, 110px);
       background: white;
       border: 3px solid var(--dark);
-      border-radius: 20px;
+      border-radius: clamp(14px, 4vw, 20px);
       display: flex; align-items: center; justify-content: center;
-      font-size: 3.2rem;
+      font-size: clamp(2rem, 6vw, 3.2rem);
       box-shadow: 6px 6px 0 var(--dark);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
       user-select: none;
@@ -207,18 +382,21 @@
 
     .roll-btn {
       display: block;
+      width: clamp(200px, 70%, 320px);
       margin: 0 auto;
       background: var(--tomato);
       color: white;
       font-family: 'Boogaloo', cursive;
-      font-size: 1.5rem;
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
       letter-spacing: 0.5px;
       border: 3px solid var(--dark);
       border-radius: 16px;
-      padding: 14px 48px;
+      padding: clamp(12px, 3vw, 14px) clamp(24px, 6vw, 48px);
       cursor: pointer;
       box-shadow: 5px 5px 0 var(--dark);
       transition: all 0.15s ease;
+      /* iOS tap highlight fix */
+      -webkit-tap-highlight-color: transparent;
     }
     .roll-btn:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--dark); }
     .roll-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--dark); }
@@ -226,18 +404,21 @@
 
     .roll-hint {
       margin-top: 10px;
-      font-size: 0.85rem;
+      font-size: var(--fs-sm);
       color: #aaa;
       font-weight: 600;
+      padding: 0 16px;
     }
 
-    /* RECIPE CARD */
+    /* ═══════════════════════════════
+       RECIPE CARD
+    ═══════════════════════════════ */
     #recipe-card {
       background: white;
       border: 3px solid var(--dark);
-      border-radius: 24px;
+      border-radius: clamp(16px, 4vw, 24px);
       box-shadow: 8px 8px 0 var(--dark);
-      padding: 36px;
+      padding: clamp(18px, 5vw, 36px);
       display: none;
       opacity: 0;
       transform: translateY(20px);
@@ -250,37 +431,39 @@
     }
     #recipe-card.entering { display: block; }
 
+    /* Recipe header — stacks on small screens */
     .recipe-header {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 28px;
+      gap: clamp(10px, 3vw, 16px);
+      margin-bottom: clamp(18px, 4vw, 28px);
       flex-wrap: wrap;
     }
     .recipe-emoji {
-      font-size: 4rem;
+      font-size: clamp(2.4rem, 8vw, 4rem);
       line-height: 1;
       flex-shrink: 0;
     }
-    .recipe-title-group { flex: 1; min-width: 200px; }
+    .recipe-title-group { flex: 1; min-width: 180px; }
     .recipe-title {
       font-family: 'Boogaloo', cursive;
-      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
       color: var(--dark);
       line-height: 1.1;
     }
     .recipe-meta {
       display: flex;
-      gap: 12px;
+      gap: clamp(6px, 2vw, 12px);
       flex-wrap: wrap;
       margin-top: 8px;
     }
     .badge {
-      font-size: 0.78rem;
+      font-size: clamp(0.68rem, 1.8vw, 0.78rem);
       font-weight: 700;
-      padding: 4px 12px;
+      padding: clamp(3px, 1vw, 4px) clamp(8px, 2.5vw, 12px);
       border-radius: 999px;
       border: 2px solid var(--dark);
+      white-space: nowrap;
     }
     .badge.time { background: var(--yolk); }
     .badge.difficulty { background: var(--basil); }
@@ -291,113 +474,155 @@
       background: #FFF3E0;
       border: 2px dashed #FFB347;
       border-radius: 12px;
-      padding: 14px 18px;
-      font-size: 0.95rem;
+      padding: clamp(10px, 3vw, 14px) clamp(12px, 3vw, 18px);
+      font-size: clamp(0.82rem, 2.2vw, 0.95rem);
       font-weight: 600;
       color: #c06000;
-      margin-bottom: 24px;
+      margin-bottom: clamp(16px, 4vw, 24px);
       font-style: italic;
+      line-height: 1.5;
     }
 
     .section-title {
       font-family: 'Boogaloo', cursive;
-      font-size: 1.4rem;
-      margin-bottom: 14px;
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      margin-bottom: clamp(10px, 2.5vw, 14px);
       display: flex;
       align-items: center;
       gap: 8px;
       color: var(--dark);
     }
 
-    /* Ingredients table */
+    /* ═══════════════════════════════
+       INGREDIENTS TABLE — responsive
+    ═══════════════════════════════ */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+      margin-bottom: clamp(18px, 4vw, 28px);
+    }
+    /* Hint scrollbar on mobile */
+    .table-wrapper::-webkit-scrollbar { height: 4px; }
+    .table-wrapper::-webkit-scrollbar-track { background: #f0ede8; }
+    .table-wrapper::-webkit-scrollbar-thumb { background: var(--tomato); border-radius: 4px; }
+
     .ingredients-table {
       width: 100%;
+      min-width: 400px; /* keeps columns from collapsing */
       border-collapse: collapse;
-      margin-bottom: 28px;
-      font-size: 0.95rem;
+      font-size: clamp(0.8rem, 2.2vw, 0.95rem);
     }
     .ingredients-table th {
       background: var(--dark);
       color: white;
-      padding: 10px 14px;
+      padding: clamp(8px, 2vw, 10px) clamp(10px, 2.5vw, 14px);
       text-align: left;
       font-weight: 700;
     }
     .ingredients-table th:first-child { border-radius: 10px 0 0 0; }
     .ingredients-table th:last-child { border-radius: 0 10px 0 0; }
     .ingredients-table td {
-      padding: 10px 14px;
+      padding: clamp(8px, 2vw, 10px) clamp(10px, 2.5vw, 14px);
       border-bottom: 1.5px solid #F0EDE8;
     }
     .ingredients-table tr:nth-child(even) td { background: #FAFAF8; }
     .ingredients-table tr:last-child td:first-child { border-radius: 0 0 0 10px; }
     .ingredients-table tr:last-child td:last-child { border-radius: 0 0 10px 0; }
     .ingredients-table tr:hover td { background: #FFF8F0; }
+
     .check-ingredient {
       cursor: pointer;
       width: 20px; height: 20px;
+      min-width: 20px;
       accent-color: var(--tomato);
+    }
+    /* bigger tap target on touch */
+    @media (hover: none) {
+      .check-ingredient { width: 24px; height: 24px; }
     }
     .ingredient-row.checked td { text-decoration: line-through; color: #aaa; }
 
-    /* Steps */
-    .steps-list { list-style: none; counter-reset: steps; margin-bottom: 28px; }
+    /* ═══════════════════════════════
+       STEPS
+    ═══════════════════════════════ */
+    .steps-list {
+      list-style: none;
+      counter-reset: steps;
+      margin-bottom: clamp(18px, 4vw, 28px);
+    }
     .step-item {
       counter-increment: steps;
       display: flex;
-      gap: 14px;
-      margin-bottom: 16px;
+      gap: clamp(10px, 3vw, 14px);
+      margin-bottom: clamp(12px, 3vw, 16px);
       align-items: flex-start;
     }
     .step-num {
       flex-shrink: 0;
-      width: 32px; height: 32px;
+      width: clamp(28px, 6vw, 32px);
+      height: clamp(28px, 6vw, 32px);
       background: var(--tomato);
       color: white;
       border-radius: 50%;
       border: 2.5px solid var(--dark);
       display: flex; align-items: center; justify-content: center;
       font-weight: 900;
-      font-size: 0.9rem;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
     }
-    .step-text { padding-top: 4px; line-height: 1.6; }
+    .step-text {
+      padding-top: 4px;
+      line-height: 1.6;
+      font-size: var(--fs-base);
+    }
 
-    /* Tips */
+    /* ═══════════════════════════════
+       TIPS GRID
+    ═══════════════════════════════ */
     .tips-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap: 14px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+      gap: clamp(10px, 3vw, 14px);
+      margin-bottom: clamp(16px, 4vw, 24px);
     }
     .tip-card {
       background: var(--cream);
       border: 2px solid var(--dark);
       border-radius: 14px;
-      padding: 14px;
-      font-size: 0.88rem;
+      padding: clamp(10px, 3vw, 14px);
+      font-size: clamp(0.78rem, 2vw, 0.88rem);
+      line-height: 1.5;
     }
-    .tip-card strong { display: block; font-family: 'Boogaloo',cursive; font-size: 1rem; margin-bottom: 4px; }
+    .tip-card strong {
+      display: block;
+      font-family: 'Boogaloo', cursive;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      margin-bottom: 4px;
+    }
     .tip-card.upgrade { border-color: var(--sky); background: #EEF5FF; }
     .tip-card.warn { border-color: var(--tomato); background: #FFF0F0; }
     .tip-card.wine { border-color: #9C5FBE; background: #F7EEFF; }
     .tip-card.leftover { border-color: var(--basil); background: #EDFFF2; }
 
-    /* Action buttons */
+    /* ═══════════════════════════════
+       ACTION BUTTONS
+    ═══════════════════════════════ */
     .card-actions {
       display: flex;
-      gap: 12px;
+      gap: clamp(8px, 2vw, 12px);
       flex-wrap: wrap;
-      margin-top: 24px;
+      margin-top: clamp(16px, 4vw, 24px);
       border-top: 2px dashed #e0ddd8;
-      padding-top: 20px;
+      padding-top: clamp(14px, 3vw, 20px);
     }
     .action-btn {
-      flex: 1;
-      min-width: 130px;
+      flex: 1 1 clamp(120px, 30%, 160px);
+      min-width: 120px;
       font-family: 'Nunito', sans-serif;
       font-weight: 700;
-      font-size: 0.9rem;
-      padding: 10px 16px;
+      font-size: clamp(0.78rem, 2vw, 0.9rem);
+      padding: clamp(9px, 2vw, 10px) clamp(10px, 2.5vw, 16px);
       border: 2.5px solid var(--dark);
       border-radius: 12px;
       cursor: pointer;
@@ -405,91 +630,195 @@
       background: white;
       box-shadow: 3px 3px 0 var(--dark);
       text-align: center;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
     }
     .action-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--dark); }
+    .action-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--dark); }
     .action-btn.primary { background: var(--yolk); }
 
-    /* Empty state */
+    /* ═══════════════════════════════
+       EMPTY STATE
+    ═══════════════════════════════ */
     .empty-state {
       text-align: center;
-      padding: 60px 20px;
+      padding: clamp(40px, 10vw, 60px) 20px;
       color: #bbb;
     }
-    .empty-state .big-icon { font-size: 5rem; display: block; margin-bottom: 16px; animation: bounce 2s ease infinite; }
+    .empty-state .big-icon {
+      font-size: clamp(3rem, 10vw, 5rem);
+      display: block;
+      margin-bottom: 16px;
+      animation: bounce 2s ease infinite;
+    }
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-    .empty-state p { font-size: 1.1rem; font-weight: 700; }
+    .empty-state p { font-size: var(--fs-lg); font-weight: 700; }
 
-    /* HISTORY */
-    #history-section { margin-top: 48px; }
+    /* ═══════════════════════════════
+       CUSTOM RESULT BANNER
+    ═══════════════════════════════ */
+    .custom-result-banner {
+      display: none;
+      background: linear-gradient(135deg, var(--yolk), #ffb830);
+      border: 2.5px solid var(--dark);
+      border-radius: 14px;
+      padding: clamp(12px, 3vw, 14px) clamp(14px, 4vw, 18px);
+      font-size: clamp(0.88rem, 2.5vw, 1rem);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: clamp(14px, 3vw, 20px);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .custom-result-banner.show { display: block; animation: popIn 0.3s ease; }
+    @keyframes popIn { 0%{transform:scale(0.9);opacity:0} 100%{transform:scale(1);opacity:1} }
+
+    /* Banner inner buttons */
+    .custom-result-banner button {
+      font-family:'Nunito',sans-serif;
+      font-weight:700;
+      font-size: clamp(0.78rem, 2vw, 0.88rem);
+      padding: clamp(7px, 2vw, 8px) clamp(12px, 3vw, 18px);
+      border:2.5px solid var(--dark);
+      border-radius:10px;
+      background:white;
+      cursor:pointer;
+      box-shadow:3px 3px 0 var(--dark);
+      transition:all 0.15s;
+      min-height: 40px;
+    }
+
+    /* ═══════════════════════════════
+       HISTORY
+    ═══════════════════════════════ */
+    #history-section { margin-top: clamp(32px, 8vw, 48px); }
     .history-title {
       font-family: 'Boogaloo', cursive;
-      font-size: 1.8rem;
-      margin-bottom: 16px;
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      margin-bottom: clamp(12px, 3vw, 16px);
       display: flex; align-items: center; gap: 8px;
     }
     .history-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(clamp(130px, 30vw, 160px), 1fr));
+      gap: clamp(8px, 2.5vw, 12px);
     }
     .history-item {
       background: white;
       border: 2.5px solid var(--dark);
       border-radius: 14px;
-      padding: 14px;
+      padding: clamp(10px, 3vw, 14px);
       cursor: pointer;
       transition: all 0.15s ease;
       box-shadow: 3px 3px 0 var(--dark);
       text-align: center;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .history-item:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--tomato); }
-    .history-item .h-emoji { font-size: 2rem; display: block; margin-bottom: 6px; }
-    .history-item .h-name { font-weight: 700; font-size: 0.85rem; }
-    .history-item .h-date { font-size: 0.72rem; color: #aaa; margin-top: 3px; }
+    .history-item:active { transform: translate(1px,1px); }
+    .history-item .h-emoji { font-size: clamp(1.5rem, 5vw, 2rem); display: block; margin-bottom: 6px; }
+    .history-item .h-name { font-weight: 700; font-size: clamp(0.72rem, 2vw, 0.85rem); }
+    .history-item .h-date { font-size: clamp(0.62rem, 1.6vw, 0.72rem); color: #aaa; margin-top: 3px; }
 
-    /* FAQ for SEO */
+    /* ═══════════════════════════════
+       FAQ
+    ═══════════════════════════════ */
     #faq {
-      margin-top: 64px;
+      margin-top: clamp(40px, 10vw, 64px);
       border-top: 2px dashed #ddd;
-      padding-top: 40px;
+      padding-top: clamp(24px, 6vw, 40px);
     }
     .faq-title {
       font-family: 'Boogaloo', cursive;
-      font-size: 2rem;
-      margin-bottom: 24px;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      margin-bottom: clamp(16px, 4vw, 24px);
       text-align: center;
     }
     details {
       background: white;
       border: 2.5px solid var(--dark);
       border-radius: 14px;
-      margin-bottom: 12px;
+      margin-bottom: clamp(8px, 2vw, 12px);
       overflow: hidden;
       box-shadow: 3px 3px 0 var(--dark);
     }
     summary {
       font-weight: 700;
-      padding: 16px 20px;
+      font-size: var(--fs-base);
+      padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 20px);
       cursor: pointer;
       list-style: none;
       display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      -webkit-tap-highlight-color: transparent;
     }
     summary::-webkit-details-marker { display: none; }
-    summary::after { content: '▼'; font-size: 0.75rem; color: #aaa; transition: transform 0.2s; }
+    summary::after { content: '▼'; font-size: 0.75rem; color: #aaa; transition: transform 0.2s; flex-shrink: 0; }
     details[open] summary::after { transform: rotate(180deg); }
-    details p { padding: 0 20px 16px; line-height: 1.7; color: #555; }
+    details p {
+      padding: 0 clamp(14px, 4vw, 20px) clamp(12px, 3vw, 16px);
+      line-height: 1.7;
+      color: #555;
+      font-size: var(--fs-base);
+    }
 
-    /* FOOTER */
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
     footer {
       position: relative; z-index: 10;
       text-align: center;
-      padding: 32px 20px;
+      padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 20px);
       border-top: 2px dashed #ddd;
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 2vw, 0.85rem);
       color: #bbb;
       font-weight: 600;
+      line-height: 1.8;
     }
     footer a { color: var(--tomato); text-decoration: none; }
+    .creator-credit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .creator-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--tomato);
+      object-fit: cover;
+    }
+
+    /* ═══════════════════════════════
+       TOAST
+    ═══════════════════════════════ */
+    .toast {
+      position: fixed;
+      bottom: clamp(20px, 5vw, 32px);
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--dark);
+      color: white;
+      padding: clamp(10px, 2.5vw, 12px) clamp(20px, 5vw, 28px);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+      z-index: 999;
+      transition: transform 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      white-space: nowrap;
+      max-width: calc(100vw - 32px);
+      white-space: normal;
+      text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
 
     /* Confetti canvas */
     #confetti-canvas {
@@ -500,174 +829,153 @@
       z-index: 1000;
     }
 
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 32px; left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--dark);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      z-index: 999;
-      transition: transform 0.3s ease;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    /* ═══════════════════════════════
+       BREAKPOINT: SMALL PHONES (< 400px)
+    ═══════════════════════════════ */
+    @media (max-width: 400px) {
+      .recipe-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .recipe-emoji {
+        align-self: center;
+      }
+      .recipe-title-group {
+        min-width: unset;
+        width: 100%;
+      }
+      .card-actions {
+        flex-direction: column;
+      }
+      .action-btn {
+        flex: unset;
+        width: 100%;
+      }
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+      .filter-btn {
+        font-size: 0.72rem;
+        padding: 6px 10px;
+      }
     }
-    .toast.show { transform: translateX(-50%) translateY(0); }
 
+    /* ═══════════════════════════════
+       BREAKPOINT: PHONES (< 560px)
+    ═══════════════════════════════ */
     @media (max-width: 560px) {
-      #recipe-card { padding: 20px; }
-      .tips-grid { grid-template-columns: 1fr; }
+      #recipe-card { padding: clamp(14px, 4vw, 20px); }
+      .tips-grid { grid-template-columns: 1fr 1fr; }
+      .roll-btn { width: 100%; max-width: none; }
+
+      /* On small screens, show table scroll hint */
+      .table-wrapper::after {
+        content: '← scroll →';
+        display: block;
+        text-align: center;
+        font-size: 0.72rem;
+        color: #ccc;
+        font-weight: 700;
+        margin-top: 4px;
+        letter-spacing: 1px;
+      }
+
+      /* Banner buttons stack */
+      .custom-result-banner > div {
+        flex-direction: column !important;
+        align-items: center !important;
+      }
     }
 
-    /* MODE TOGGLE */
-    .mode-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin: 0 0 28px;
-      background: white;
-      border: 2.5px solid var(--dark);
-      border-radius: 999px;
-      padding: 4px;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 4px 4px 0 var(--dark);
-    }
-    .mode-btn {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 9px 22px;
-      border-radius: 999px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      color: #888;
-      transition: all 0.2s ease;
-    }
-    .mode-btn.active {
-      background: var(--dark);
-      color: white;
+    /* ═══════════════════════════════
+       BREAKPOINT: TABLETS (560–860px)
+    ═══════════════════════════════ */
+    @media (min-width: 560px) and (max-width: 860px) {
+      .tips-grid { grid-template-columns: repeat(2, 1fr); }
+      .action-btn { flex: 1 1 calc(50% - 6px); }
     }
 
-    /* CUSTOM CHOICES PANEL */
-    #custom-panel {
-      background: white;
-      border: 3px solid var(--dark);
-      border-radius: 20px;
-      box-shadow: 6px 6px 0 var(--dark);
-      padding: 28px;
-      margin-bottom: 28px;
-      display: none;
-    }
-    #custom-panel.visible { display: block; }
-    .panel-title {
-      font-family: 'Boogaloo', cursive;
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-    }
-    .panel-sub {
-      font-size: 0.88rem;
-      color: #999;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-    .choices-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    .choice-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      animation: slideIn 0.2s ease;
-    }
-    @keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-    .choice-input {
-      flex: 1;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 10px 14px;
-      border: 2.5px solid #ddd;
-      border-radius: 12px;
-      outline: none;
-      transition: border-color 0.15s;
-      background: var(--cream);
-    }
-    .choice-input:focus { border-color: var(--tomato); background: white; }
-    .choice-input::placeholder { color: #ccc; font-weight: 400; }
-    .remove-choice {
-      width: 34px; height: 34px;
-      border: 2px solid #ddd;
-      background: white;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.15s;
-      color: #bbb;
-    }
-    .remove-choice:hover { border-color: var(--tomato); color: var(--tomato); background: #FFF0F0; }
-    .add-choice-btn {
-      background: transparent;
-      border: 2.5px dashed #ccc;
-      color: #aaa;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.88rem;
-      padding: 9px 18px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.15s;
-      align-self: flex-start;
-    }
-    .add-choice-btn:hover { border-color: var(--basil); color: var(--basil); background: #EDFFF2; }
-    .choices-note {
-      font-size: 0.8rem;
-      color: #bbb;
-      font-weight: 600;
-      margin-top: 12px;
-      font-style: italic;
+    /* ═══════════════════════════════
+       BREAKPOINT: DESKTOP (> 860px)
+    ═══════════════════════════════ */
+    @media (min-width: 860px) {
+      .tips-grid { grid-template-columns: repeat(4, 1fr); }
+      .action-btn { flex: 1; }
     }
 
-    /* Custom roll result banner */
-    .custom-result-banner {
-      display: none;
-      background: linear-gradient(135deg, var(--yolk), #ffb830);
-      border: 2.5px solid var(--dark);
-      border-radius: 14px;
-      padding: 14px 18px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 20px;
-      text-align: center;
+    /* ═══════════════════════════════
+       REDUCED MOTION
+    ═══════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
-    .custom-result-banner.show { display: block; animation: popIn 0.3s ease; }
-    @keyframes popIn { 0%{transform:scale(0.9);opacity:0} 100%{transform:scale(1);opacity:1} }
 
-    /* Branding footer */
-    .creator-credit {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 10px;
+    /* ═══════════════════════════════
+       DARK MODE (basic)
+    ═══════════════════════════════ */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cream: #16162a;
+        --card: #1e1e36;
+        --dark: #f0ece4;
+        --shadow: rgba(0,0,0,0.4);
+      }
+      body { background: var(--cream); color: var(--dark); }
+      body::before { background: radial-gradient(circle, rgba(255,217,61,0.08) 0%, transparent 70%); }
+      body::after { background: radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 70%); }
+
+      .filter-btn, .action-btn, .mode-toggle, .mode-btn,
+      #recipe-card, #custom-panel, .history-item, details, .dice {
+        background: #23234a;
+        color: #f0ece4;
+        border-color: #f0ece4;
+      }
+      .ingredients-table td { border-bottom-color: #2e2e50; }
+      .ingredients-table tr:nth-child(even) td { background: #1e1e38; }
+      .ingredients-table tr:hover td { background: #2a2a4e; }
+      .recipe-funny { background: #2a2000; border-color: #7a5000; color: #ffd080; }
+      .choice-input { background: #1e1e36; border-color: #444; color: #f0ece4; }
+      .choice-input:focus { background: #23234a; }
+      .remove-choice { background: #23234a; border-color: #555; color: #aaa; }
+      .tip-card { background: #1e1e36; }
+      .tip-card.upgrade { background: #0e1830; }
+      .tip-card.warn { background: #200e0e; }
+      .tip-card.wine { background: #180e25; }
+      .tip-card.leftover { background: #0e201a; }
+      .mode-btn { color: #aaa; }
+      .mode-btn.active { background: #f0ece4; color: #16162a; }
+      .filter-btn:hover, .filter-btn.active { background: #f0ece4; color: #16162a; }
+      .roll-btn { /* keep tomato */ }
+      .history-item:hover { box-shadow: 5px 5px 0 var(--tomato); }
+      .empty-state { color: #555; }
+      details p { color: #bbb; }
+      footer, .tagline, .roll-hint, .h-date, .choices-note { color: #666; }
     }
-    .creator-avatar {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      border: 2px solid var(--tomato);
-      object-fit: cover;
+
+    /* ═══════════════════════════════
+       PRINT
+    ═══════════════════════════════ */
+    @media print {
+      body::before, body::after, #confetti-canvas,
+      .dice-area, .filters, .mode-toggle, #custom-panel,
+      .card-actions, #history-section, #faq, footer,
+      .toast { display: none !important; }
+
+      #recipe-card {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+        padding: 16px;
+      }
+      main { max-width: 100%; padding: 0; }
+      .tips-grid { grid-template-columns: repeat(2, 1fr); }
+      a { color: inherit; text-decoration: none; }
     }
   </style>
 </head>
@@ -689,14 +997,13 @@
   <section aria-label="Recipe category filters">
     <div class="filters" id="filters" role="group" aria-label="Filter by cuisine or diet">
       <button class="filter-btn active" data-cat="all">🎲 Anything!</button>
-      
-	  <button class="filter-btn" data-cat="indian">🍛 Indian</button>
+      <button class="filter-btn" data-cat="indian">🍛 Indian</button>
       <button class="filter-btn" data-cat="asian">🥢 Asian</button>
-	  <button class="filter-btn" data-cat="italian">🍝 Italian</button>
+      <button class="filter-btn" data-cat="italian">🍝 Italian</button>
       <button class="filter-btn" data-cat="mexican">🌮 Mexican</button>
       <button class="filter-btn" data-cat="comfort">🧀 Comfort Food</button>
       <button class="filter-btn" data-cat="healthy">🥗 Healthy</button>
-      <button class="filter-btn" data-cat="quick">⚡ Quick (<30min)</button>
+      <button class="filter-btn" data-cat="quick">⚡ Quick (&lt;30min)</button>
       <button class="filter-btn" data-cat="fancy">✨ Impress Me</button>
     </div>
   </section>
@@ -753,17 +1060,19 @@
       <div class="recipe-funny" id="r-funny" role="note" aria-label="Funny tip"></div>
 
       <h3 class="section-title">🛒 Ingredients</h3>
-      <table class="ingredients-table" id="r-table" itemprop="recipeIngredient" aria-label="Ingredients list">
-        <thead>
-          <tr>
-            <th>✓</th>
-            <th>Ingredient</th>
-            <th>Amount</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody id="r-ingredients"></tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="ingredients-table" id="r-table" itemprop="recipeIngredient" aria-label="Ingredients list">
+          <thead>
+            <tr>
+              <th>✓</th>
+              <th>Ingredient</th>
+              <th>Amount</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="r-ingredients"></tbody>
+        </table>
+      </div>
 
       <h3 class="section-title">👨‍🍳 How to Make It</h3>
       <ol class="steps-list" id="r-steps" itemprop="recipeInstructions"></ol>
@@ -854,7 +1163,7 @@ const RECIPES = [
       "In a bowl, whisk eggs + yolks with grated pecorino and a LOT of black pepper until smooth. This is your sauce.",
       "Cook pasta 1 minute LESS than package says. Reserve 1 full cup of pasta water — liquid gold!",
       "Off heat, add hot drained pasta to the mushroom pan. Add egg mixture and toss furiously, adding splashes of pasta water to create a silky, creamy sauce. Work fast!",
-      "Plate immediately, top with more pecorino and a final crack of black pepper. Eat before it gets cold. Mushrooms > pancetta, fight us."
+      "Plate immediately, top with more pecorino and a final crack of black pepper. Eat before it gets cold."
     ],
     tips: [
       { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a splash of white wine when frying the mushrooms and scrape up the browned bits for extra depth." },
@@ -886,17 +1195,17 @@ const RECIPES = [
     ],
     steps: [
       "Press tofu between paper towels with something heavy on top for 10 minutes. This step matters — dry tofu fries, wet tofu steams.",
-      "Start your jasmine rice — it takes about 15 min. Cook according to packet or use a rice cooker.",
-      "Heat 1 tbsp of the thick top of the coconut milk in a wok over medium-high heat until it sizzles. Add curry paste and fry for 2 minutes until fragrant. Your kitchen will smell incredible.",
+      "Start your jasmine rice — it takes about 15 min.",
+      "Heat 1 tbsp of the thick top of the coconut milk in a wok over medium-high heat until it sizzles. Add curry paste and fry for 2 minutes until fragrant.",
       "Add tofu cubes and stir to coat in the paste. Cook 3–4 minutes until slightly golden.",
       "Pour in the rest of the coconut milk + ½ cup water. Bring to a gentle simmer. Add vegetables and simmer 10 minutes until tender.",
       "Season with soy sauce, sugar, and lime juice. Taste and adjust. Turn off heat, stir in Thai basil. Serve over jasmine rice."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Pan-fry tofu cubes separately until golden and crispy before adding to the curry. Crispy tofu = 10x better texture." },
-      { type: "warn", icon: "⚠️", title: "Don't Boil Hard", text: "Coconut milk breaks if you boil it aggressively. Gentle simmer is key to a smooth, rich curry." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold Thai beer (Singha, Chang) or a slightly sweet Riesling. Refreshing contrast to the heat." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Gets better on day 2! Store separately from rice and it'll last 3 days in the fridge." }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Pan-fry tofu cubes separately until golden and crispy before adding to the curry." },
+      { type: "warn", icon: "⚠️", title: "Don't Boil Hard", text: "Coconut milk breaks if you boil it aggressively. Gentle simmer is key." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold Thai beer (Singha, Chang) or a slightly sweet Riesling." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Gets better on day 2! Store separately from rice." }
     ]
   },
   {
@@ -923,16 +1232,16 @@ const RECIPES = [
     steps: [
       "Blend achiote paste, soaked guajillo chiles, garlic, juice of 1 lime, and ¼ of the pineapple into a thick marinade.",
       "Toss cauliflower florets in marinade. Marinate at least 20 mins (overnight is a game changer).",
-      "Roast or pan-fry cauliflower on high heat in a single layer until charred edges appear. Resist moving it too much — let it sear!",
-      "Char your tortillas directly over a gas flame or in a dry cast-iron pan. 30 seconds each side.",
+      "Roast or pan-fry cauliflower on high heat in a single layer until charred edges appear.",
+      "Char your tortillas directly over a gas flame or in a dry cast-iron pan.",
       "Pile cauliflower onto tortillas. Top with diced onion, fresh pineapple chunks, cilantro, and a squeeze of lime.",
-      "Eat immediately. Salsa verde on the side highly encouraged. Nobody will miss the meat, we promise."
+      "Eat immediately. Nobody will miss the meat, we promise."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Marinate overnight and roast on a charcoal grill. The smoke and char edges are what make al pastor style special." },
-      { type: "warn", icon: "⚠️", title: "Small Tortillas Only", text: "Corn tortillas should be small (4–5\"). Big flour tortillas = burrito. Totally different vibe." },
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Marinate overnight and roast on a charcoal grill for that al pastor char." },
+      { type: "warn", icon: "⚠️", title: "Small Tortillas Only", text: "Corn tortillas should be small (4–5\"). Big flour tortillas = burrito. Different vibe." },
       { type: "wine", icon: "🍹", title: "Pair With", text: "A spicy paloma (grapefruit + chili salt rim). Non-alcoholic: hibiscus agua fresca." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make a breakfast hash: fry leftover cauliflower with scrambled eggs. You're welcome." }
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make a breakfast hash: fry leftover cauliflower with scrambled eggs." }
     ]
   },
   {
@@ -944,7 +1253,7 @@ const RECIPES = [
     servings: "2 servings",
     category: "Comfort",
     categories: ["comfort","quick"],
-    funny: "These bean smash burgers are so crispy and satisfying, you'll forget they're not beef. Actually, don't tell your friends. Let them find out after. 🔨🫘",
+    funny: "These bean smash burgers are so crispy and satisfying, you'll forget they're not beef. Don't tell your friends. Let them find out after. 🔨🫘",
     ingredients: [
       { name: "Black beans (drained)", amount: "400g tin", notes: "dry them very well!" },
       { name: "Panko breadcrumbs", amount: "4 tbsp", notes: "for binding and crunch" },
@@ -954,22 +1263,22 @@ const RECIPES = [
       { name: "Pickles", amount: "good handful", notes: "dill, thinly sliced" },
       { name: "Mayonnaise", amount: "3 tbsp", notes: "for sauce" },
       { name: "Ketchup", amount: "1 tbsp", notes: "for sauce" },
-      { name: "Hot sauce", amount: "1 tsp", notes: "for sauce, adjust to taste" },
+      { name: "Hot sauce", amount: "1 tsp", notes: "adjust to taste" },
       { name: "Garlic powder", amount: "1 tsp", notes: "mix into beans" }
     ],
     steps: [
-      "Mix mayo, ketchup, and hot sauce. Refrigerate the secret sauce — it gets better as it sits.",
-      "Mash black beans with garlic powder, salt, pepper, and panko until a thick paste forms. Don't over-mash — a few chunks = better texture.",
+      "Mix mayo, ketchup, and hot sauce. Refrigerate the secret sauce.",
+      "Mash black beans with garlic powder, salt, pepper, and panko until a thick paste forms. Don't over-mash.",
       "Divide into 2 balls. Heat a cast iron pan on HIGH with a thin film of oil until screaming hot.",
       "Place bean balls on the pan and immediately SMASH flat with a spatula. Press hard and hold 10 seconds.",
-      "Cook 2 minutes until bottom is deeply browned and crispy. Flip carefully. Immediately add 2 cheese slices. Cook 90 more seconds.",
-      "Toast buns in butter. Build: sauce on both buns, pickles, smashed patties, onion, more sauce. Eat while questioning your meat-eating past."
+      "Cook 2 minutes until bottom is deeply browned and crispy. Flip carefully. Add 2 cheese slices. Cook 90 more seconds.",
+      "Toast buns in butter. Build: sauce on both buns, pickles, smashed patties, onion, more sauce."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add smoked paprika and a dash of Worcestershire sauce (veg version) to the bean mix. Massive depth of flavour." },
-      { type: "warn", icon: "⚠️", title: "DRY Those Beans!", text: "Pat beans very dry before mashing. Wet beans = falling-apart patties. Dry beans = crispy smashable heaven." },
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add smoked paprika and a dash of Worcestershire sauce to the bean mix for depth." },
+      { type: "warn", icon: "⚠️", title: "DRY Those Beans!", text: "Pat beans very dry before mashing. Wet beans = falling-apart patties." },
       { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold lager or craft IPA. Burger + cold beer is eternal." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in a dry pan for full crispiness revival. Microwave will make them sad and soggy." }
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in a dry pan for crispiness revival. Microwave = sad and soggy." }
     ]
   },
   {
@@ -981,7 +1290,7 @@ const RECIPES = [
     servings: "2 servings",
     category: "Healthy",
     categories: ["healthy","quick","fancy"],
-    funny: "Eating a Niçoise salad makes you feel like you're on the Côte d'Azur in a linen shirt. Even if you're in your pyjamas. The vibes are real. 🇫🇷🌊",
+    funny: "Eating a Niçoise salad makes you feel like you're on the Côte d'Azur in a linen shirt. Even if you're in your pyjamas. 🇫🇷🌊",
     ingredients: [
       { name: "Eggs", amount: "4", notes: "soft-boiled 7 minutes exactly" },
       { name: "Green beans", amount: "150g", notes: "blanched until just tender" },
@@ -995,16 +1304,16 @@ const RECIPES = [
     ],
     steps: [
       "Boil eggs for exactly 7 minutes (soft but not runny). Plunge into cold water to stop cooking. Peel carefully.",
-      "Blanch green beans in the same boiling water for 3 minutes. Cold water bath again to keep them vibrantly green.",
+      "Blanch green beans in the same boiling water for 3 minutes. Cold water bath to keep them vibrantly green.",
       "Make vinaigrette: whisk mustard, vinegar, salt, pepper, then slowly drizzle in olive oil until emulsified.",
-      "Arrange everything on a large plate or platter — don't toss it, Niçoise is composed! Potatoes, tomatoes, beans, eggs halved, olives, peppers.",
-      "Drizzle generously with vinaigrette. Tear some crusty bread to serve alongside. Pretend you're in Nice."
+      "Arrange everything on a large plate — don't toss it, Niçoise is composed! Potatoes, tomatoes, beans, eggs halved, olives, peppers.",
+      "Drizzle generously with vinaigrette. Tear some crusty bread to serve alongside."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a handful of capers and some blanched artichoke hearts. More components = more Niçoise energy." },
-      { type: "warn", icon: "⚠️", title: "Don't Toss It!", text: "A proper Niçoise is composed (arranged). Tossed salads are for peasants, apparently. The French take this seriously." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "Provençal rosé. Cold. In a big glass. This is mandatory. Non-negotiable. The wine IS the recipe." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Keep vinaigrette separate and it'll last 2 days. The composed plate doesn't survive — eat it fresh!" }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a handful of capers and blanched artichoke hearts for full Niçoise energy." },
+      { type: "warn", icon: "⚠️", title: "Don't Toss It!", text: "A proper Niçoise is composed (arranged). Tossed salads are for peasants, apparently." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Provençal rosé. Cold. In a big glass. This is mandatory. Non-negotiable." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Keep vinaigrette separate and it'll last 2 days. The composed plate — eat it fresh!" }
     ]
   },
   {
@@ -1016,7 +1325,7 @@ const RECIPES = [
     servings: "4 servings",
     category: "Indian",
     categories: ["indian","comfort","fancy"],
-    funny: "Paneer tikka masala is proof that cheese in a spiced tomato bath is humanity's greatest invention. Sorry, smartphones. You tried. 🧀🔥",
+    funny: "Paneer tikka masala is proof that cheese in a spiced tomato bath is humanity's greatest invention. Sorry, smartphones. 🧀🔥",
     ingredients: [
       { name: "Paneer", amount: "400g", notes: "cubed" },
       { name: "Greek yoghurt", amount: "150ml", notes: "for marinade" },
@@ -1032,316 +1341,21 @@ const RECIPES = [
     ],
     steps: [
       "Marinate paneer cubes in yoghurt, 1 tsp garam masala, kashmiri chili, salt for at least 20 minutes.",
-      "Grill or pan-fry marinated paneer on high heat until charred in spots. Set aside — it finishes in the sauce.",
-      "In a large pan, melt butter. Fry onion 8–10 minutes until golden and soft. Add garlic and ginger, cook 2 more minutes.",
-      "Add remaining garam masala and stir into onions for 1 minute. Add crushed tomatoes. Simmer 10 minutes until thick.",
+      "Grill or pan-fry marinated paneer on high heat until charred in spots. Set aside.",
+      "In a large pan, melt butter. Fry onion 8–10 minutes until golden and soft. Add garlic and ginger.",
+      "Add remaining garam masala and stir into onions for 1 minute. Add crushed tomatoes. Simmer 10 minutes.",
       "Pour in cream, stir through. Add paneer pieces. Simmer gently 8 more minutes.",
-      "Adjust seasoning. Serve with naan (for scooping!) and rice (for soaking up that gorgeous sauce). Sob with happiness."
+      "Adjust seasoning. Serve with naan and rice. Sob with happiness."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Char your paneer in a screaming hot pan. The golden crust holds up in the sauce and adds incredible flavour." },
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Char your paneer in a screaming hot pan. The golden crust holds up in the sauce." },
       { type: "warn", icon: "⚠️", title: "Don't Skip Marinade", text: "The yoghurt marinade adds flavour and helps the paneer char beautifully. 20 minutes minimum." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "Mango lassi or an IPA beer. The hoppy bitterness contrasts the creamy, spiced sauce beautifully." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Genuinely better next day. One of the best meal preps ever. Serve with fresh hot naan." }
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Mango lassi or an IPA beer. Hoppy bitterness contrasts the creamy, spiced sauce." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Genuinely better next day. Serve with fresh hot naan." }
     ]
   },
   {
     id: 7,
-    emoji: "🥧",
-    title: "Roasted Asparagus & Ricotta Tart",
-    time: "⏱ 35 min",
-    difficulty: "Easy",
-    servings: "2–3 servings",
-    category: "Healthy",
-    categories: ["healthy","fancy"],
-    funny: "This tart makes you look like a competent adult human who definitely has their life together. Save this one for when the in-laws visit. 🧀✨",
-    ingredients: [
-      { name: "Ready-rolled puff pastry", amount: "1 sheet", notes: "shop-bought, no shame" },
-      { name: "Asparagus", amount: "200g", notes: "woody ends snapped off" },
-      { name: "Ricotta", amount: "200g", notes: "the creamy base" },
-      { name: "Lemon", amount: "1", notes: "zest + juice" },
-      { name: "Garlic", amount: "2 cloves", notes: "minced" },
-      { name: "Parmesan", amount: "40g", notes: "grated" },
-      { name: "Fresh dill or parsley", amount: "small bunch", notes: "chopped" },
-      { name: "Cherry tomatoes", amount: "100g", notes: "halved" },
-      { name: "Olive oil", amount: "2 tbsp", notes: "" }
-    ],
-    steps: [
-      "Preheat oven to 200°C. Unroll pastry onto a baking sheet lined with paper. Score a 2cm border around the edge (don't cut all the way through).",
-      "Mix ricotta, parmesan, garlic, lemon zest, and half the herbs. Season well. Spread inside the scored border.",
-      "Arrange asparagus spears and cherry tomatoes on top. Drizzle with olive oil, season with salt and pepper.",
-      "Bake 20–22 minutes until pastry is golden and puffed, asparagus is tender.",
-      "Remove from oven. Squeeze lemon juice over, scatter remaining fresh herbs. Slice and serve warm or at room temperature."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a drizzle of honey and some crumbled walnuts after baking. Sweet, savoury, crunchy — restaurant-level finish." },
-      { type: "warn", icon: "⚠️", title: "Score, Don't Cut!", text: "The border score is what makes the edges puff dramatically. Cut all the way through and you lose the magic." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "Chablis or unoaked Chardonnay. Clean mineral wines that complement the asparagus and lemon perfectly." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Great cold the next day as a packed lunch. Reheat in oven (not microwave!) to restore pastry crispness." }
-    ]
-  },
-  {
-    id: 8,
-    emoji: "🍕",
-    title: "Neapolitan Pizza Bianca",
-    time: "⏱ 25 min + dough",
-    difficulty: "Challenge",
-    servings: "2 pizzas",
-    category: "Italian",
-    categories: ["italian","fancy","comfort"],
-    funny: "Real Neapolitan pizza is cooked at 485°C for 90 seconds. Your oven does 250°C. Welcome to the amateur zone. It's still incredible. 🍕🔥",
-    ingredients: [
-      { name: "00 flour", amount: "300g", notes: "or bread flour, not plain flour" },
-      { name: "Instant yeast", amount: "½ tsp", notes: "cold ferment = more flavour" },
-      { name: "Salt", amount: "7g", notes: "weigh it!" },
-      { name: "Water", amount: "200ml", notes: "lukewarm" },
-      { name: "Fresh mozzarella", amount: "250g", notes: "torn, not shredded" },
-      { name: "Ricotta", amount: "150g", notes: "white pizza base" },
-      { name: "Garlic", amount: "3 cloves", notes: "sliced thin" },
-      { name: "Fresh rosemary", amount: "small bunch", notes: "" },
-      { name: "Extra virgin olive oil", amount: "3 tbsp", notes: "good quality" },
-      { name: "Black pepper", amount: "generous", notes: "freshly cracked" }
-    ],
-    steps: [
-      "Mix flour, yeast, salt. Add water and mix into a shaggy dough. Knead 8–10 minutes until smooth and elastic. Oil the bowl, cover, cold ferment in fridge 24–48 hours (or 2 hours at room temp).",
-      "Remove dough 1 hour before cooking to come to room temperature. Divide in half.",
-      "Preheat oven to absolute max (250°C+) with a pizza stone or heavy baking sheet inside for at least 45 minutes.",
-      "Stretch dough gently by hand (never rolling pin) into a thin round. Imperfect = authentic.",
-      "Spread thin layer of ricotta. Add torn mozzarella, sliced garlic, rosemary. Drizzle with olive oil and crack pepper.",
-      "Bake 7–10 minutes until crust is blistered and cheese is bubbling. Rest 2 minutes, then eat immediately. The crust should make a hollow sound when you tap it."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Cold ferment the dough for 48–72 hours. The slow yeast develops incredible flavour and a perfectly chewy crust." },
-      { type: "warn", icon: "⚠️", title: "Pre-heat That Stone!", text: "The stone MUST be scorching hot before the pizza goes in. 45 minutes minimum. This is how you get the bottom crisp." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "Lambrusco (a lightly sparkling red) or a cold Peroni beer. Both cut through the richness perfectly." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Cold pizza the next morning is a life choice and we respect it. Reheat in a dry pan for crispy base revival." }
-    ]
-  },
-  {
-    id: 9,
-    emoji: "🧆",
-    title: "Crispy Falafel with Tahini",
-    time: "⏱ 30 min",
-    difficulty: "Medium",
-    servings: "3–4 servings",
-    category: "Healthy",
-    categories: ["healthy","quick","fancy"],
-    funny: "Falafel is just blended chickpeas fried in a ball. A very, very good ball. A ball that changed civilisations. A ball that should be respected. 🫡",
-    ingredients: [
-      { name: "Dried chickpeas (soaked overnight)", amount: "250g", notes: "NOT canned — this matters!" },
-      { name: "Onion", amount: "½ small", notes: "roughly chopped" },
-      { name: "Garlic", amount: "3 cloves", notes: "" },
-      { name: "Fresh parsley", amount: "big handful", notes: "" },
-      { name: "Cumin", amount: "2 tsp", notes: "" },
-      { name: "Coriander", amount: "1 tsp", notes: "" },
-      { name: "Baking powder", amount: "1 tsp", notes: "for fluffiness inside" },
-      { name: "Sesame seeds", amount: "2 tbsp", notes: "rolled on outside" },
-      { name: "Tahini", amount: "3 tbsp", notes: "for sauce" },
-      { name: "Lemon", amount: "1", notes: "for tahini sauce" },
-      { name: "Oil for frying", amount: "enough to shallow fry", notes: "vegetable or sunflower" }
-    ],
-    steps: [
-      "Drain soaked chickpeas (don't cook them — raw soaked is the secret). Blitz in a food processor with onion, garlic, parsley, cumin, coriander, baking powder, salt. Pulse — don't blend smooth. Texture = key.",
-      "Refrigerate mixture 30 minutes. This stops them falling apart in the oil.",
-      "Make tahini sauce: whisk tahini, lemon juice, water, salt until smooth and pourable. Taste and adjust.",
-      "Form mixture into golf-ball sized rounds, roll in sesame seeds.",
-      "Heat oil in a heavy pan to 175°C. Fry falafel in batches 3–4 minutes, turning, until deep golden-brown all over.",
-      "Drain on paper towel. Serve immediately in warm pitta with tahini, pickles, and fresh tomato. Don't delay — crispy falafel waits for no one."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tiny pinch of cayenne and a tablespoon of flour if mixture is too wet. Perfect binding without losing flavour." },
-      { type: "warn", icon: "⚠️", title: "No Canned Chickpeas!", text: "Canned = too wet = falafel that explodes in the oil. Soaked dried chickpeas only. You were warned." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold mint lemonade or a light lager. The freshness cuts through the fried richness beautifully." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in oven or air fryer to restore crispiness. Next-day falafel in a lunchbox salad is genuinely great." }
-    ]
-  },
-  {
-    id: 10,
-    emoji: "🍲",
-    title: "Dal Makhani",
-    time: "⏱ 60 min",
-    difficulty: "Medium",
-    servings: "4 servings",
-    category: "Indian",
-    categories: ["indian","comfort"],
-    funny: "Dal Makhani is the little black dress of Indian cooking. Appropriate for every occasion. Weeknight dinner. Dinner party. Heartbreak. All valid. 🖤",
-    ingredients: [
-      { name: "Black lentils (whole urad dal)", amount: "200g", notes: "soaked overnight" },
-      { name: "Kidney beans (canned)", amount: "1 tin", notes: "drained" },
-      { name: "Butter", amount: "3 tbsp", notes: "the makhani in the name" },
-      { name: "Onion", amount: "1 large", notes: "finely diced" },
-      { name: "Garlic", amount: "5 cloves", notes: "minced" },
-      { name: "Ginger", amount: "2cm piece", notes: "grated" },
-      { name: "Crushed tomatoes", amount: "400g tin", notes: "" },
-      { name: "Garam masala", amount: "1.5 tsp", notes: "" },
-      { name: "Heavy cream", amount: "100ml", notes: "stirred in at the end" },
-      { name: "Kasuri methi (dried fenugreek)", amount: "1 tsp", notes: "the secret ingredient" },
-      { name: "Basmati rice or naan", amount: "to serve", notes: "" }
-    ],
-    steps: [
-      "Pressure cook or boil soaked lentils until completely soft (45 mins on stove, 15 in pressure cooker). Add kidney beans.",
-      "In a separate pan, melt butter over medium heat. Fry onion 10 minutes until deeply golden-brown — don't rush this step.",
-      "Add garlic and ginger, cook 2 minutes. Add garam masala and stir 1 minute. Add crushed tomatoes and simmer 15 minutes until thick and dark.",
-      "Add cooked lentils and kidney beans to the tomato base. Add a cup of water. Simmer 20 minutes, stirring often.",
-      "Stir in cream and crushed kasuri methi (rub between palms first to release aroma). Simmer 5 more minutes.",
-      "Taste and season. The dal should be thick, glossy, and deeply flavoured. Top with a pat of butter and serve hot with rice or naan."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "The longer this cooks, the better. Slow simmer for 3+ hours on the lowest heat transforms good dal into legendary dal." },
-      { type: "warn", icon: "⚠️", title: "Soak the Lentils!", text: "Whole urad dal takes forever without soaking. 8 hours minimum. Overnight = best. Don't skip this." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "Sweet mango lassi or a cold kingfisher beer. Both complement the rich, buttery dal perfectly." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Genuinely improves overnight as flavours deepen. The ultimate batch cook — make double and freeze." }
-    ]
-  },
-  {
-    id: 11,
-    emoji: "🧀",
-    title: "Spinach & Ricotta Stuffed Shells",
-    time: "⏱ 50 min",
-    difficulty: "Medium",
-    servings: "3–4 servings",
-    category: "Italian",
-    categories: ["italian","comfort","fancy"],
-    funny: "Stuffed pasta shells are basically Italian dumplings for people who can't fold dumplings. The filling to pasta ratio is elite. 🍝",
-    ingredients: [
-      { name: "Jumbo pasta shells (conchiglioni)", amount: "20–24 shells", notes: "" },
-      { name: "Ricotta", amount: "400g", notes: "" },
-      { name: "Frozen spinach (thawed, squeezed dry)", amount: "250g", notes: "squeeze VERY dry" },
-      { name: "Parmesan", amount: "60g", notes: "grated, divided" },
-      { name: "Egg", amount: "1", notes: "for filling" },
-      { name: "Garlic", amount: "2 cloves", notes: "minced" },
-      { name: "Nutmeg", amount: "pinch", notes: "the Italian secret" },
-      { name: "Jarred tomato passata", amount: "700ml", notes: "good quality" },
-      { name: "Mozzarella", amount: "150g", notes: "torn, for topping" }
-    ],
-    steps: [
-      "Cook pasta shells 2 minutes less than packet instructions — they finish in the oven. Drain and cool on a tray.",
-      "Mix ricotta, drained spinach, half the parmesan, egg, garlic, nutmeg, salt, and pepper until smooth.",
-      "Preheat oven to 190°C. Pour half the passata in the bottom of a baking dish.",
-      "Fill each shell with ricotta mixture using a spoon or piping bag. Nestle into the sauce.",
-      "Pour remaining passata over shells. Top with torn mozzarella and remaining parmesan.",
-      "Cover with foil and bake 25 minutes. Remove foil, bake 10 more until bubbly and golden. Rest 5 minutes before serving."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tablespoon of pesto to the ricotta filling. It takes the whole dish to another level with very little effort." },
-      { type: "warn", icon: "⚠️", title: "SQUEEZE the Spinach!", text: "Wet spinach = watery filling = soggy shells. Squeeze the living daylights out of it. Multiple times." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "Chianti Classico or a medium-bodied Sangiovese. Italian red with Italian pasta — it's basically the law." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in oven covered with foil. Excellent next day. Can be prepped a day ahead and baked fresh." }
-    ]
-  },
-  {
-    id: 12,
-    emoji: "🥬",
-    title: "Saag Paneer",
-    time: "⏱ 35 min",
-    difficulty: "Easy",
-    servings: "3–4 servings",
-    category: "Indian",
-    categories: ["indian","healthy","comfort"],
-    funny: "Saag paneer is proof that spinach and cheese should be best friends everywhere, not just Italy. India figured this out first and we should all be grateful. 🌿🧀",
-    ingredients: [
-      { name: "Paneer", amount: "300g", notes: "cubed" },
-      { name: "Fresh or frozen spinach", amount: "500g", notes: "wilted if fresh" },
-      { name: "Onion", amount: "1 large", notes: "finely diced" },
-      { name: "Garlic", amount: "4 cloves", notes: "minced" },
-      { name: "Ginger", amount: "2cm", notes: "grated" },
-      { name: "Green chillies", amount: "1–2", notes: "adjust to heat preference" },
-      { name: "Cumin seeds", amount: "1 tsp", notes: "bloomed in oil" },
-      { name: "Garam masala", amount: "1 tsp", notes: "" },
-      { name: "Heavy cream or yoghurt", amount: "3 tbsp", notes: "stirred in at end" },
-      { name: "Oil", amount: "2 tbsp", notes: "" },
-      { name: "Basmati rice or naan", amount: "to serve", notes: "" }
-    ],
-    steps: [
-      "Pan-fry paneer cubes in a little oil until golden on all sides. Set aside — this step gives the paneer great texture.",
-      "Wilt spinach (if fresh) in the same pan with a splash of water. Blend roughly — it doesn't need to be completely smooth.",
-      "Heat oil, add cumin seeds and let them sizzle. Add onion and fry 8 minutes until golden.",
-      "Add garlic, ginger, and green chillies. Cook 2 minutes. Add garam masala and stir 1 minute.",
-      "Add blended spinach. Stir to combine and simmer 10 minutes.",
-      "Add golden paneer cubes. Stir in cream or yoghurt. Simmer 5 more minutes. Serve with hot naan or basmati rice."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Blanch spinach in boiling water and immediately plunge into ice water before blending. Keeps the colour vibrantly green." },
-      { type: "warn", icon: "⚠️", title: "Don't Skip the Fry", text: "Golden pan-fried paneer holds its shape in the curry and tastes 10x better than pale, soft paneer." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "Mango lassi or a cold lager. The sweetness of mango offsets the earthy spinach beautifully." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Excellent next day. The spinach absorbs all the spice flavours overnight. Reheat gently with a splash of water." }
-    ]
-  },
-  {
-    id: 13,
-    emoji: "🫔",
-    title: "Halloumi & Roasted Pepper Wraps",
-    time: "⏱ 20 min",
-    difficulty: "Easy",
-    servings: "2 servings",
-    category: "Comfort",
-    categories: ["comfort","quick","healthy"],
-    funny: "Halloumi squeaks when it's fresh. It is the most fun food to eat and anyone who says otherwise is wrong. Science has not disproved this. 🎵🧀",
-    ingredients: [
-      { name: "Halloumi", amount: "250g", notes: "sliced 1cm thick" },
-      { name: "Roasted red peppers (jar)", amount: "200g", notes: "sliced" },
-      { name: "Large flour tortillas", amount: "2", notes: "warmed" },
-      { name: "Hummus", amount: "4 tbsp", notes: "generous spread" },
-      { name: "Rocket", amount: "big handful", notes: "" },
-      { name: "Avocado", amount: "1", notes: "sliced" },
-      { name: "Lemon", amount: "½", notes: "for squeezing" },
-      { name: "Smoked paprika", amount: "pinch", notes: "for the halloumi" },
-      { name: "Olive oil", amount: "1 tbsp", notes: "" }
-    ],
-    steps: [
-      "Slice halloumi and pat dry. Toss with olive oil and smoked paprika.",
-      "Fry halloumi in a dry non-stick pan over high heat 2 minutes per side until golden brown stripes appear.",
-      "Warm tortillas in the same pan or microwave 20 seconds.",
-      "Spread hummus generously on each tortilla. Top with rocket, roasted peppers, avocado, and golden halloumi.",
-      "Squeeze lemon over everything. Fold and wrap tightly. Cut in half on the diagonal for maximum appeal.",
-      "Eat immediately while halloumi is still squeaky and crispy."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a drizzle of sweet chilli sauce or harissa for a flavour kick that takes this from lunch to event." },
-      { type: "warn", icon: "⚠️", title: "No Oil in the Pan!", text: "Fry halloumi in a DRY pan. It releases its own moisture first, then browns beautifully. Oil makes it greasy." },
-      { type: "wine", icon: "🥤", title: "Pair With", text: "Sparkling water with mint and lemon. Fresh, light, and cuts through the richness of halloumi and hummus." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Assembled wraps don't survive well — make to order. Leftover halloumi can go cold in a salad the next day." }
-    ]
-  },
-  {
-    id: 14,
-    emoji: "🍚",
-    title: "Vegetable Biryani",
-    time: "⏱ 55 min",
-    difficulty: "Challenge",
-    servings: "4 servings",
-    category: "Indian",
-    categories: ["indian","fancy","comfort"],
-    funny: "Biryani is a two-layer cooking project that rewards patience with one of the most gloriously fragrant dishes on earth. It's not fast food. It's fast art. 🎨",
-    ingredients: [
-      { name: "Basmati rice", amount: "300g", notes: "soaked 30 minutes, parboiled" },
-      { name: "Mixed vegetables (carrot, peas, potato, cauliflower)", amount: "400g", notes: "cut into 2cm pieces" },
-      { name: "Onion", amount: "2 large", notes: "thinly sliced for frying" },
-      { name: "Greek yoghurt", amount: "200ml", notes: "for marinating veg" },
-      { name: "Biryani masala", amount: "2 tbsp", notes: "or garam masala + extra spices" },
-      { name: "Saffron", amount: "pinch", notes: "soaked in 3 tbsp warm milk" },
-      { name: "Fresh mint", amount: "large handful", notes: "" },
-      { name: "Ghee or butter", amount: "3 tbsp", notes: "" },
-      { name: "Fried onions (birista)", amount: "4 tbsp", notes: "buy ready-made or fry slowly yourself" },
-      { name: "Oil", amount: "3 tbsp", notes: "" }
-    ],
-    steps: [
-      "Parboil soaked basmati rice until 70% cooked (it should have a white dot in the centre). Drain immediately and set aside.",
-      "Fry sliced onions in oil until deeply golden (20 mins minimum — this is the key). Set half aside for topping.",
-      "Marinate vegetables in yoghurt, biryani masala, salt, and half the fried onions for 20 minutes.",
-      "Spread marinated veg in a heavy-bottomed pot. Layer cooked rice on top. Drizzle saffron milk over rice for colour streaks.",
-      "Dot with ghee, scatter fresh mint and remaining fried onions. Cover tightly with foil then the lid. Cook on lowest heat 25 minutes (dum method).",
-      "Remove lid at the table for the full dramatic aroma reveal. Gently mix the layers as you serve. Serve with raita."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Use a dough seal around the pot lid to trap steam perfectly. This is the traditional dum cooking method and it makes all the difference." },
-      { type: "warn", icon: "⚠️", title: "70% Cooked Rice Only!", text: "Fully cooked rice will go mushy in the pot. The rice must have a firm white dot when layered. This is non-negotiable." },
-      { type: "wine", icon: "🥤", title: "Pair With", text: "Cucumber raita on the side is essential — it cools and complements the warm spices. Saffron tea for something special." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Biryani is exceptional the next day as the flavours intensify. Reheat with a tablespoon of water to keep the rice fluffy." }
-    ]
-  },
-  {
-    id: 15,
     emoji: "🫕",
     title: "Shakshuka with Feta",
     time: "⏱ 25 min",
@@ -1364,174 +1378,22 @@ const RECIPES = [
       { name: "Crusty bread", amount: "to serve", notes: "for scooping — essential" }
     ],
     steps: [
-      "Heat olive oil in a wide, oven-safe pan (or ovenproof skillet). Fry onion and pepper 7 minutes until soft.",
+      "Heat olive oil in a wide pan. Fry onion and pepper 7 minutes until soft.",
       "Add garlic, cumin, smoked paprika, and chilli. Stir 1 minute until fragrant.",
       "Add crushed tomatoes, season with salt. Simmer 10 minutes until sauce is thick and rich.",
       "Make 4 wells in the sauce with a spoon. Crack an egg into each well.",
       "Cover the pan and cook on low-medium heat 5–7 minutes until whites are set but yolks are still runny.",
-      "Crumble feta over top. Take the pan to the table and let everyone dig in. Serve with plenty of crusty bread."
+      "Crumble feta over top. Take the pan to the table and serve with crusty bread."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a dollop of harissa to the sauce for North African heat. Swirl a spoonful of yoghurt over the top to finish." },
-      { type: "warn", icon: "⚠️", title: "Watch Those Yolks!", text: "The eggs cook fast once in the sauce. Check every minute — you want set whites and liquid gold yolks." },
-      { type: "wine", icon: "🧃", title: "Pair With", text: "Strong mint tea or fresh orange juice. Shakshuka is a social, morning-vibes dish that doesn't need wine. Yet." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make extra sauce (no eggs) and refrigerate. Next day: reheat sauce, crack in fresh eggs. 10-minute luxury." }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a dollop of harissa to the sauce for North African heat." },
+      { type: "warn", icon: "⚠️", title: "Watch Those Yolks!", text: "The eggs cook fast. You want set whites and liquid gold yolks." },
+      { type: "wine", icon: "🧃", title: "Pair With", text: "Strong mint tea or fresh orange juice. Morning vibes." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make extra sauce (no eggs). Next day: reheat sauce, crack in fresh eggs. 10-minute luxury." }
     ]
   },
   {
-    id: 16,
-    emoji: "🥘",
-    title: "Chana Masala",
-    time: "⏱ 40 min",
-    difficulty: "Easy",
-    servings: "4 servings",
-    category: "Indian",
-    categories: ["indian","healthy","comfort"],
-    funny: "Chana masala is spicy chickpea excellence in a bowl. It is also technically a health food. You can eat it four nights in a row and call it a cleanse. 🫘✨",
-    ingredients: [
-      { name: "Chickpeas (canned)", amount: "2 × 400g tins", notes: "drained" },
-      { name: "Onion", amount: "2 medium", notes: "finely diced" },
-      { name: "Garlic", amount: "4 cloves", notes: "minced" },
-      { name: "Ginger", amount: "2cm", notes: "grated" },
-      { name: "Tomatoes", amount: "400g tin", notes: "or 3 fresh tomatoes" },
-      { name: "Chana masala powder", amount: "2 tbsp", notes: "or garam masala + amchur" },
-      { name: "Cumin seeds", amount: "1 tsp", notes: "" },
-      { name: "Green chillies", amount: "1–2", notes: "slit" },
-      { name: "Lemon", amount: "1", notes: "juice at end" },
-      { name: "Fresh coriander", amount: "handful", notes: "to garnish" },
-      { name: "Oil", amount: "2 tbsp", notes: "" }
-    ],
-    steps: [
-      "Heat oil, add cumin seeds and let them pop. Add onion and fry 10 minutes until deep golden.",
-      "Add garlic, ginger, green chillies. Cook 2 minutes. Add chana masala powder, stir 1 minute.",
-      "Add tomatoes, cook down 10 minutes until paste-thick and oil starts to separate.",
-      "Add drained chickpeas and ½ cup water. Stir well to coat every chickpea in that gorgeous masala.",
-      "Simmer 15 minutes, mashing a few chickpeas against the pan wall to thicken the sauce naturally.",
-      "Finish with lemon juice. Garnish with fresh coriander. Serve with bhatura, puri, or basmati rice."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a pinch of amchur (dry mango powder) at the end for a tangy depth that makes this taste restaurant-level." },
-      { type: "warn", icon: "⚠️", title: "Cook Down the Tomatoes!", text: "Under-cooked tomatoes make the dish acidic and raw-tasting. Cook until the oil separates — that's your sign." },
-      { type: "wine", icon: "🥤", title: "Pair With", text: "Lassi (sweet or salted), chai, or a cold lager. All work beautifully." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Excellent batch cook. Freezes perfectly for up to 3 months. The flavour only gets better over 2–3 days." }
-    ]
-  },
-  {
-    id: 17,
-    emoji: "🍱",
-    title: "Aloo Gobi",
-    time: "⏱ 35 min",
-    difficulty: "Easy",
-    servings: "3–4 servings",
-    category: "Indian",
-    categories: ["indian","healthy","comfort"],
-    funny: "Aloo Gobi proves that potatoes and cauliflower — two very modest vegetables — can become something transcendent with the right spices. Humble heroes. 🥔🌟",
-    ingredients: [
-      { name: "Cauliflower", amount: "1 medium", notes: "cut into florets" },
-      { name: "Potatoes", amount: "2 medium", notes: "peeled, cubed" },
-      { name: "Onion", amount: "1 medium", notes: "diced" },
-      { name: "Tomatoes", amount: "2 medium", notes: "chopped" },
-      { name: "Garlic", amount: "3 cloves", notes: "minced" },
-      { name: "Ginger", amount: "1.5cm", notes: "grated" },
-      { name: "Cumin seeds", amount: "1 tsp", notes: "" },
-      { name: "Turmeric", amount: "½ tsp", notes: "" },
-      { name: "Cumin powder", amount: "1 tsp", notes: "" },
-      { name: "Coriander powder", amount: "1 tsp", notes: "" },
-      { name: "Garam masala", amount: "½ tsp", notes: "added at end" },
-      { name: "Oil", amount: "3 tbsp", notes: "" }
-    ],
-    steps: [
-      "Heat oil over medium-high. Add cumin seeds — when they sizzle, add diced onion and fry 8 minutes until golden.",
-      "Add garlic and ginger, cook 2 minutes. Add turmeric, cumin powder, coriander powder. Stir 1 minute.",
-      "Add chopped tomatoes and cook 5 minutes until they break down into the oil.",
-      "Add potato cubes first (they take longer). Stir to coat in masala. Add ¼ cup water, cover and cook 8 minutes.",
-      "Add cauliflower florets, stir well. Cover and cook another 10 minutes until both vegetables are tender.",
-      "Sprinkle garam masala, stir through. Garnish with fresh coriander. Serve with chapati or basmati rice."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Roast the cauliflower and potatoes in the oven first at 200°C until golden before adding to the masala. Incredible caramelised depth." },
-      { type: "warn", icon: "⚠️", title: "Add Water Gradually", text: "Too much water makes it a watery curry, not a dry sabzi. Add just enough to prevent sticking — 2 tbsp at a time." },
-      { type: "wine", icon: "🥤", title: "Pair With", text: "Hot chai masala or a classic cucumber lassi. The dal or raita on the side is strongly recommended." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Excellent as a stuffing for parathas the next morning. Press into buttered flatbread dough and pan-fry for aloo paratha." }
-    ]
-  },
-  {
-    id: 18,
-    emoji: "🥣",
-    title: "Matar Paneer",
-    time: "⏱ 35 min",
-    difficulty: "Easy",
-    servings: "3–4 servings",
-    category: "Indian",
-    categories: ["indian","comfort"],
-    funny: "Peas and paneer in a tomato-onion gravy is the kind of dish that makes you want to live life fully and eat seconds. Both at the same time. 🫛🧀",
-    ingredients: [
-      { name: "Paneer", amount: "300g", notes: "cubed" },
-      { name: "Frozen peas", amount: "200g", notes: "or fresh" },
-      { name: "Onion", amount: "2 medium", notes: "blended or finely diced" },
-      { name: "Tomatoes", amount: "3 medium", notes: "blended" },
-      { name: "Garlic", amount: "4 cloves", notes: "minced" },
-      { name: "Ginger", amount: "2cm", notes: "grated" },
-      { name: "Garam masala", amount: "1 tsp", notes: "" },
-      { name: "Coriander powder", amount: "1 tsp", notes: "" },
-      { name: "Kashmiri chilli powder", amount: "½ tsp", notes: "for colour" },
-      { name: "Cream or yoghurt", amount: "3 tbsp", notes: "at the end" },
-      { name: "Oil", amount: "2 tbsp", notes: "" }
-    ],
-    steps: [
-      "Pan-fry paneer cubes in oil until golden. Remove and set aside.",
-      "In same pan, fry onion (or blended onion paste) until golden. Add garlic and ginger.",
-      "Add dry spices and stir 1 minute. Add blended tomatoes and cook 10–12 minutes until oil separates from the masala.",
-      "Add frozen peas and ½ cup water. Simmer 5 minutes.",
-      "Return fried paneer to the pan. Simmer together 5 minutes, letting paneer absorb the curry.",
-      "Stir in cream or yoghurt. Check seasoning. Garnish with fresh coriander. Serve with chapati or naan."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Blend the onion to a paste before frying for a restaurant-smooth, glossy gravy. Worth the extra blender step." },
-      { type: "warn", icon: "⚠️", title: "Don't Add Cold Cream!", text: "Temper the cream by mixing a little hot curry into it first, then add to the pan. Prevents curdling." },
-      { type: "wine", icon: "🥤", title: "Pair With", text: "Mango lassi or sweet chai. The gentle sweetness balances the warm spiced tomato gravy perfectly." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Tastes even better next day. The paneer soaks up all the masala overnight. Reheat with a splash of water." }
-    ]
-  },
-  {
-    id: 19,
-    emoji: "🫓",
-    title: "Masala Dosa with Coconut Chutney",
-    time: "⏱ 45 min",
-    difficulty: "Challenge",
-    servings: "2–3 servings",
-    category: "Indian",
-    categories: ["indian","healthy","fancy"],
-    funny: "Masala dosa is a crispy crepe the size of your torso, stuffed with spiced potato. South India gave the world this masterpiece and it deserves a Nobel prize. 🏆",
-    ingredients: [
-      { name: "Ready dosa batter (from Indian grocery)", amount: "400ml", notes: "or make from scratch the day before" },
-      { name: "Potatoes", amount: "3 large", notes: "boiled and roughly mashed" },
-      { name: "Onion", amount: "1 large", notes: "sliced" },
-      { name: "Green chillies", amount: "2", notes: "sliced" },
-      { name: "Mustard seeds", amount: "1 tsp", notes: "" },
-      { name: "Curry leaves", amount: "10–12", notes: "fresh or dried" },
-      { name: "Turmeric", amount: "½ tsp", notes: "" },
-      { name: "Fresh coconut", amount: "100g grated", notes: "for chutney" },
-      { name: "Coriander seeds", amount: "1 tsp", notes: "roasted, for chutney" },
-      { name: "Oil", amount: "3 tbsp", notes: "" }
-    ],
-    steps: [
-      "Make the potato filling: heat oil, add mustard seeds (let them pop), curry leaves, green chillies. Add onion and fry 8 minutes. Add turmeric and mashed potato. Stir well. Season with salt.",
-      "Make coconut chutney: blend grated coconut, roasted coriander seeds, a green chilli, salt, and water to a smooth paste. Set aside.",
-      "Heat a non-stick or cast iron pan on high. Sprinkle with a little water — it should evaporate instantly.",
-      "Pour a ladleful of dosa batter and spread immediately in a thin, wide circle. Drizzle oil around the edges.",
-      "Cook until the edges start lifting and the underside is golden-crispy, about 2–3 minutes. Place potato filling in the centre.",
-      "Fold the dosa around the filling or roll. Serve with coconut chutney and sambar."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "The first dosa is almost always a test run. The pan needs calibrating. Don't be disheartened — dosa 2 will be glorious." },
-      { type: "warn", icon: "⚠️", title: "HOT Pan Required", text: "The pan must be very hot before adding batter. Not warm. Not medium. HOT. This is what gives the crispy edges." },
-      { type: "wine", icon: "🥤", title: "Pair With", text: "Filter coffee (South Indian style) or fresh coconut water. This is non-negotiable breakfast culture." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Extra potato filling makes great stuffed parathas the next morning. Dosas don't store well — make to order." }
-    ]
-  },
-  {
-    id: 20,
+    id: 8,
     emoji: "🍜",
     title: "Miso Ramen with Soft-Boiled Egg",
     time: "⏱ 35 min",
@@ -1556,133 +1418,20 @@ const RECIPES = [
     steps: [
       "Soft boil eggs: 6.5 minutes in boiling water, immediately into ice water. Peel and halve before serving.",
       "In a pot, fry garlic in sesame oil 1 minute. Add vegetable stock and bring to a simmer.",
-      "Whisk miso paste with a ladle of hot stock until smooth, then stir into the pot. Add soy sauce. Don't boil after adding miso — it kills the probiotic magic.",
+      "Whisk miso paste with a ladle of hot stock until smooth, then stir into the pot. Add soy sauce. Don't boil after adding miso.",
       "Cook ramen noodles separately according to packet. Drain and divide between bowls.",
       "Ladle hot miso broth over noodles. Arrange toppings: corn, bean sprouts, spring onions, halved soft-boiled egg, nori.",
-      "Drizzle extra sesame oil over top. Eat with chopsticks and make appreciative noises."
+      "Drizzle extra sesame oil over top. Eat with chopsticks."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tablespoon of butter to the broth at the end. Rich, glossy, Sapporo-style miso ramen that makes everything better." },
-      { type: "warn", icon: "⚠️", title: "Don't Boil the Miso!", text: "Once miso is added, keep heat low. Boiling destroys the complex flavour compounds and beneficial enzymes." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold Japanese beer (Sapporo, Asahi) or barley tea (mugicha). Both are traditional ramen companions." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Store broth and noodles separately. Noodles in broth overnight = soggy disaster. Reheat broth, add fresh noodles." }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tablespoon of butter to the broth at the end for glossy Sapporo-style ramen." },
+      { type: "warn", icon: "⚠️", title: "Don't Boil the Miso!", text: "Once miso is added, keep heat low. Boiling destroys the complex flavour." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold Japanese beer (Sapporo, Asahi) or barley tea." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Store broth and noodles separately. Reheat broth, add fresh noodles." }
     ]
   },
   {
-    id: 21,
-    emoji: "🥞",
-    title: "Korean Pajeon (Spring Onion Pancakes)",
-    time: "⏱ 20 min",
-    difficulty: "Easy",
-    servings: "2 servings",
-    category: "Asian",
-    categories: ["asian","quick","comfort"],
-    funny: "Pajeon is the Korean pancake you make when it's raining and you can't be bothered to cook anything 'proper'. It is always the right decision. ☔🥞",
-    ingredients: [
-      { name: "Spring onions", amount: "10–12", notes: "cut into 8cm lengths" },
-      { name: "All-purpose flour", amount: "150g", notes: "" },
-      { name: "Rice flour", amount: "50g", notes: "for extra crispiness" },
-      { name: "Cold water", amount: "200ml", notes: "very cold — helps crispy texture" },
-      { name: "Egg", amount: "1", notes: "" },
-      { name: "Salt", amount: "½ tsp", notes: "" },
-      { name: "Soy sauce", amount: "2 tbsp", notes: "for dipping sauce" },
-      { name: "Rice vinegar", amount: "1 tbsp", notes: "for dipping sauce" },
-      { name: "Sesame oil", amount: "1 tsp", notes: "for dipping sauce" },
-      { name: "Chilli flakes", amount: "pinch", notes: "for dipping sauce" },
-      { name: "Vegetable oil", amount: "3 tbsp", notes: "for frying" }
-    ],
-    steps: [
-      "Mix dipping sauce: soy sauce, rice vinegar, sesame oil, chilli flakes. Set aside.",
-      "Whisk flours, cold water, egg, and salt into a smooth batter. Don't overmix.",
-      "Heat oil in a large non-stick pan on medium-high until shimmering.",
-      "Pour batter into pan to make a thin pancake. Arrange spring onion pieces all over the top, pressing gently.",
-      "Cook 3–4 minutes until edges are set and bottom is deeply golden-brown and crispy. Flip and cook another 2–3 minutes.",
-      "Cut into squares. Serve immediately with dipping sauce. Best eaten while still crackling crispy."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add kimchi to the batter for a fermented, spicy Kimchi Jeon. Even more spectacular and uses up aging kimchi." },
-      { type: "warn", icon: "⚠️", title: "Cold Water = Crispy", text: "Ice cold water develops less gluten = crispier pancake. Some people add ice cubes to the batter. Worth it." },
-      { type: "wine", icon: "🍶", title: "Pair With", text: "Makgeolli (Korean rice wine) if you can find it. Otherwise, cold Korean beer. Pajeon and booze is centuries-old tradition." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in a dry pan for 2 minutes each side to restore crispiness. Microwave will ruin them completely." }
-    ]
-  },
-  {
-    id: 22,
-    emoji: "🫙",
-    title: "Beet & Lentil Salad with Goat Cheese",
-    time: "⏱ 20 min",
-    difficulty: "Easy",
-    servings: "2 servings",
-    category: "Healthy",
-    categories: ["healthy","quick","fancy"],
-    funny: "This salad is what happens when you decide to be virtuous but refuse to be boring. It's purple. It's earthy. It's dressed in balsamic glamour. 💜",
-    ingredients: [
-      { name: "Ready-cooked beetroot", amount: "300g", notes: "sliced or cubed" },
-      { name: "Puy lentils (canned)", amount: "400g", notes: "drained" },
-      { name: "Goat cheese", amount: "100g", notes: "crumbled" },
-      { name: "Rocket", amount: "big handful", notes: "" },
-      { name: "Walnuts", amount: "40g", notes: "toasted" },
-      { name: "Red onion", amount: "¼", notes: "very thinly sliced" },
-      { name: "Balsamic vinegar", amount: "2 tbsp", notes: "for dressing" },
-      { name: "Honey", amount: "1 tsp", notes: "for dressing" },
-      { name: "Dijon mustard", amount: "½ tsp", notes: "for dressing" },
-      { name: "Olive oil", amount: "3 tbsp", notes: "for dressing" }
-    ],
-    steps: [
-      "Toast walnuts in a dry pan for 3 minutes until fragrant. Let cool.",
-      "Make dressing: whisk balsamic vinegar, honey, mustard, olive oil, salt, and pepper until emulsified.",
-      "Toss lentils in half the dressing — warm lentils absorb dressing beautifully.",
-      "Arrange rocket on a platter. Pile dressed lentils on top.",
-      "Add beetroot, red onion slices, and toasted walnuts. Crumble goat cheese over everything.",
-      "Drizzle remaining dressing. Serve immediately at room temperature."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Roast the beetroot yourself from raw with thyme and balsamic. It takes an hour but the flavour is extraordinary." },
-      { type: "warn", icon: "⚠️", title: "Wear an Apron!", text: "Beetroot will stain everything it touches. Your shirt, your cutting board, your fingernails. You have been warned." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "Earthy Pinot Noir or a light Gamay. Red wine with beetroot is an underrated pairing." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Store undressed. Assembled salad with dressing gets sad quickly. Individually stored, all elements keep 3 days." }
-    ]
-  },
-  {
-    id: 23,
-    emoji: "🫘",
-    title: "Smoky Chipotle Bean Chilli",
-    time: "⏱ 35 min",
-    difficulty: "Easy",
-    servings: "4 servings",
-    category: "Comfort",
-    categories: ["comfort","healthy","mexican"],
-    funny: "This chilli doesn't need meat because it has SMOKE and HEAT and three types of beans. That's more than enough character for any dish. 🌶️🔥",
-    ingredients: [
-      { name: "Mixed beans (kidney, black, pinto)", amount: "2 × 400g tins", notes: "drained" },
-      { name: "Chipotle in adobo", amount: "2 tbsp", notes: "the smoky magic" },
-      { name: "Crushed tomatoes", amount: "400g tin", notes: "" },
-      { name: "Onion", amount: "1 large", notes: "diced" },
-      { name: "Garlic", amount: "4 cloves", notes: "minced" },
-      { name: "Smoked paprika", amount: "2 tsp", notes: "" },
-      { name: "Cumin", amount: "1 tsp", notes: "" },
-      { name: "Coriander powder", amount: "1 tsp", notes: "" },
-      { name: "Dark chocolate", amount: "20g", notes: "the secret weapon" },
-      { name: "Lime", amount: "1", notes: "" },
-      { name: "Soured cream & cheddar", amount: "to serve", notes: "" }
-    ],
-    steps: [
-      "Fry onion in oil over medium-high heat 8 minutes until golden. Add garlic, cook 1 more minute.",
-      "Add smoked paprika, cumin, and coriander powder. Stir 1 minute until fragrant.",
-      "Add chipotle in adobo, crushed tomatoes, and drained beans. Stir to combine.",
-      "Simmer 20 minutes until thick. Stir in dark chocolate until melted — it adds richness without sweetness.",
-      "Taste, season, squeeze over lime juice. It should be smoky, thick, and deeply flavoured.",
-      "Serve with soured cream, cheddar, and tortilla chips. Or on rice. Or in tacos. Or just eat it with a spoon. No rules."
-    ],
-    tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Make it the day before. Chilli always tastes better after a night of contemplating itself in the fridge." },
-      { type: "warn", icon: "⚠️", title: "Chipotle = HOT", text: "Chipotle in adobo is smoky but also VERY hot. Start with 1 tbsp if you're heat-sensitive and taste before adding more." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold lager or a bold Malbec. Both stand up to the smokiness and heat beautifully." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Freezes perfectly for 3 months. Batch cook this on a Sunday and you have easy weekday lunches sorted." }
-    ]
-  },
-  {
-    id: 24,
+    id: 9,
     emoji: "🍃",
     title: "Pesto Gnocchi with Crispy Sage",
     time: "⏱ 15 min",
@@ -1706,547 +1455,280 @@ const RECIPES = [
       "Toast pine nuts in a dry pan 2 minutes until golden. Set aside.",
       "Heat butter and olive oil in a wide pan over medium-high heat. Add smashed garlic and let sizzle 1 minute.",
       "Add gnocchi in a single layer — don't overcrowd! Cook without moving 3–4 minutes until golden-crispy on the bottom.",
-      "Flip gnocchi, add sage leaves. Cook 2 more minutes until gnocchi is golden all over and sage is crispy.",
-      "Remove from heat. Add halved cherry tomatoes and toss gently. They soften in the residual heat.",
-      "Add pesto and toss to coat. Plate up. Top with toasted pine nuts and grated parmesan. Serve immediately."
+      "Flip gnocchi, add sage leaves. Cook 2 more minutes until gnocchi is golden and sage is crispy.",
+      "Remove from heat. Add halved cherry tomatoes and toss gently.",
+      "Add pesto and toss to coat. Top with toasted pine nuts and grated parmesan. Serve immediately."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Make fresh gnocchi — it only takes 20 minutes and the pillowy texture is incomparably better than shop-bought." },
-      { type: "warn", icon: "⚠️", title: "Single Layer Only!", text: "Overcrowded gnocchi steams instead of crisps. Work in batches if needed. The golden crust is the whole point." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "Soave or a light Pinot Grigio. The grassy freshness of pesto needs a wine that doesn't compete." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Re-fry in a dry pan to restore crispiness. Leftover pesto gnocchi straight from the fridge is actually excellent cold." }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Make fresh gnocchi — only 20 minutes and the pillowy texture is incomparably better." },
+      { type: "warn", icon: "⚠️", title: "Single Layer Only!", text: "Overcrowded gnocchi steams instead of crisps. The golden crust is the whole point." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Soave or a light Pinot Grigio. Grassy pesto needs a wine that doesn't compete." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Re-fry in a dry pan to restore crispiness." }
     ]
   },
   {
-  id: 25,
-  emoji: "🍛",
-  title: "Paneer Butter Masala",
-  time: "⏱ 40 min",
-  difficulty: "Medium",
-  servings: "3–4 servings",
-  category: "Indian",
-  categories: ["indian","vegetarian","fancy"],
-  funny: "Paneer butter masala is what happens when tomatoes, butter and cream decide to live their best life together. Restaurant royalty in a bowl. 👑",
-  ingredients: [
-    { name: "Paneer", amount: "250g", notes: "cubed" },
-    { name: "Tomatoes", amount: "4 large", notes: "pureed" },
-    { name: "Onion", amount: "1 large", notes: "finely chopped" },
-    { name: "Ginger-garlic paste", amount: "1 tbsp", notes: "" },
-    { name: "Butter", amount: "2 tbsp", notes: "" },
-    { name: "Fresh cream", amount: "3 tbsp", notes: "" },
-    { name: "Red chilli powder", amount: "1 tsp", notes: "" },
-    { name: "Garam masala", amount: "1 tsp", notes: "" },
-    { name: "Kasuri methi", amount: "1 tsp", notes: "crushed" }
-  ],
-  steps: [
-    "Heat butter in a pan. Add onions and cook until soft and lightly golden.",
-    "Add ginger-garlic paste and cook 1 minute.",
-    "Add tomato puree, chilli powder and salt. Simmer until oil separates.",
-    "Add garam masala and crushed kasuri methi.",
-    "Add paneer cubes and simmer 5–7 minutes.",
-    "Stir in cream, cook 2 minutes more. Serve hot."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Restaurant Trick", text: "Add 1 tsp sugar if tomatoes are too tangy. It balances the sauce beautifully." },
-    { type: "warn", icon: "⚠️", title: "Don't Overcook", text: "Paneer becomes rubbery if cooked too long. Add it near the end." },
-    { type: "pair", icon: "🥖", title: "Best With", text: "Butter naan, jeera rice or soft tandoori roti." },
-    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Tastes even better the next day as flavours deepen overnight." }
-  ]
-},
-{
-  id: 26,
-  emoji: "🥘",
-  title: "Vegetable Pulao",
-  time: "⏱ 30 min",
-  difficulty: "Easy",
-  servings: "3 servings",
-  category: "Indian",
-  categories: ["indian","healthy","onepot"],
-  funny: "Vegetable pulao is the ‘I want something nice but not complicated’ answer to life. One pot. Zero drama. Maximum aroma. 🌿",
-  ingredients: [
-    { name: "Basmati rice", amount: "1 cup", notes: "soaked 20 min" },
-    { name: "Mixed vegetables", amount: "1.5 cups", notes: "carrot, beans, peas" },
-    { name: "Onion", amount: "1 medium", notes: "sliced" },
-    { name: "Green chilli", amount: "1", notes: "slit" },
-    { name: "Cumin seeds", amount: "1 tsp", notes: "" },
-    { name: "Bay leaf", amount: "1", notes: "" },
-    { name: "Cloves", amount: "3", notes: "" },
-    { name: "Oil or ghee", amount: "2 tbsp", notes: "" }
-  ],
-  steps: [
-    "Heat oil or ghee. Add cumin, bay leaf and cloves.",
-    "Add onions and sauté until soft.",
-    "Add vegetables and cook 3–4 minutes.",
-    "Drain rice and add to pot. Stir gently.",
-    "Add 2 cups water and salt. Bring to boil.",
-    "Cover and cook on low 12–15 minutes until rice is fluffy."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Extra Aroma", text: "Add a few drops of rose water or saffron soaked in warm milk." },
-    { type: "warn", icon: "⚠️", title: "No Stirring", text: "Avoid stirring after adding water. It can break the rice." },
-    { type: "pair", icon: "🥒", title: "Serve With", text: "Cool cucumber raita and pickle." },
-    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Makes great fried rice the next day." }
-  ]
-},
-{
-  id: 27,
-  emoji: "🥞",
-  title: "Besan Chilla",
-  time: "⏱ 20 min",
-  difficulty: "Easy",
-  servings: "2 servings",
-  category: "Indian",
-  categories: ["indian","healthy","quick"],
-  funny: "Besan chilla is the protein-packed cousin of pancakes. Except it wakes you up with spices instead of syrup. 💪",
-  ingredients: [
-    { name: "Besan (gram flour)", amount: "1 cup", notes: "" },
-    { name: "Onion", amount: "1 small", notes: "finely chopped" },
-    { name: "Tomato", amount: "1 small", notes: "finely chopped" },
-    { name: "Green chilli", amount: "1", notes: "chopped" },
-    { name: "Turmeric", amount: "¼ tsp", notes: "" },
-    { name: "Cumin powder", amount: "½ tsp", notes: "" },
-    { name: "Water", amount: "as needed", notes: "to make batter" },
-    { name: "Oil", amount: "2 tbsp", notes: "" }
-  ],
-  steps: [
-    "Mix besan, spices and salt in a bowl.",
-    "Add water gradually to form smooth batter.",
-    "Stir in onion, tomato and chilli.",
-    "Heat pan and grease lightly.",
-    "Pour ladle of batter and spread like pancake.",
-    "Cook both sides until golden."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Cheesy Twist", text: "Add grated paneer or cheese on top before flipping." },
-    { type: "warn", icon: "⚠️", title: "No Lumps", text: "Whisk well to avoid dry besan lumps." },
-    { type: "pair", icon: "🍵", title: "Perfect With", text: "Green chutney and masala chai." },
-    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Wrap in foil and carry as breakfast on the go." }
-  ]
-},
-{
-  id: 28,
-  emoji: "🍲",
-  title: "Dal Tadka",
-  time: "⏱ 35 min",
-  difficulty: "Medium",
-  servings: "4 servings",
-  category: "Indian",
-  categories: ["indian","comfort","healthy"],
-  funny: "Dal tadka is Indian comfort in liquid form. Simple lentils until the sizzling ghee tempering enters like a hero in slow motion. 🎬",
-  ingredients: [
-    { name: "Toor dal", amount: "1 cup", notes: "washed" },
-    { name: "Tomato", amount: "1 medium", notes: "chopped" },
-    { name: "Onion", amount: "1 small", notes: "chopped" },
-    { name: "Turmeric", amount: "½ tsp", notes: "" },
-    { name: "Garlic", amount: "3 cloves", notes: "sliced" },
-    { name: "Cumin seeds", amount: "1 tsp", notes: "" },
-    { name: "Dry red chillies", amount: "2", notes: "" },
-    { name: "Ghee", amount: "2 tbsp", notes: "" }
-  ],
-  steps: [
-    "Pressure cook dal with turmeric and water until soft.",
-    "Mash lightly and simmer with tomato and salt.",
-    "Heat ghee in small pan.",
-    "Add cumin, garlic and red chillies. Let garlic turn golden.",
-    "Pour hot tempering over dal. Mix and serve."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Smoky Touch", text: "Add a tiny piece of charcoal smoke for dhaba-style flavour." },
-    { type: "warn", icon: "⚠️", title: "Watch the Garlic", text: "Burnt garlic turns bitter quickly." },
-    { type: "pair", icon: "🍚", title: "Best Combo", text: "Steamed rice and a squeeze of lemon." },
-    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Thicken next day and use as filling for parathas." }
-  ]
-},
-{
-  id: 29,
-  emoji: "🍮",
-  title: "Gajar Ka Halwa",
-  time: "⏱ 60 min",
-  difficulty: "Medium",
-  servings: "4 servings",
-  category: "Indian",
-  categories: ["indian","dessert","festive"],
-  funny: "Carrots never imagined this destiny. Slow-cooked in milk and ghee until they become winter festival magic. 🧡",
-  ingredients: [
-    { name: "Carrots", amount: "500g", notes: "grated" },
-    { name: "Full fat milk", amount: "500ml", notes: "" },
-    { name: "Sugar", amount: "½ cup", notes: "adjust to taste" },
-    { name: "Ghee", amount: "3 tbsp", notes: "" },
-    { name: "Cardamom powder", amount: "½ tsp", notes: "" },
-    { name: "Cashews & raisins", amount: "2 tbsp", notes: "optional" }
-  ],
-  steps: [
-    "Heat ghee in heavy pan. Add grated carrots and sauté 5 minutes.",
-    "Add milk and cook on medium, stirring often.",
-    "Cook until milk reduces and thickens.",
-    "Add sugar and cardamom. Cook until glossy.",
-    "Add nuts and serve warm."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Luxury Version", text: "Replace some milk with condensed milk for richer texture." },
-    { type: "warn", icon: "⚠️", title: "Stir Often", text: "Milk can stick at the bottom if ignored." },
-    { type: "pair", icon: "🍨", title: "Serve With", text: "A scoop of vanilla ice cream." },
-    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Roll into laddoo shapes and refrigerate." }
-  ]
-},
-{
-  id: 30,
-  emoji: "🍚",
-  title: "Lemon Rice",
-  time: "⏱ 20 min",
-  difficulty: "Easy",
-  servings: "3 servings",
-  category: "Indian",
-  categories: ["indian","quick","healthy"],
-  funny: "When life gives you lemons, South India makes lemon rice. Tangy, bright and dangerously addictive. 🍋",
-  ingredients: [
-    { name: "Cooked rice", amount: "3 cups", notes: "cooled" },
-    { name: "Lemon juice", amount: "2 tbsp", notes: "freshly squeezed" },
-    { name: "Mustard seeds", amount: "1 tsp", notes: "" },
-    { name: "Peanuts", amount: "2 tbsp", notes: "" },
-    { name: "Green chilli", amount: "1", notes: "slit" },
-    { name: "Turmeric", amount: "½ tsp", notes: "" },
-    { name: "Curry leaves", amount: "8–10", notes: "" },
-    { name: "Oil", amount: "2 tbsp", notes: "" }
-  ],
-  steps: [
-    "Heat oil and add mustard seeds. Let them pop.",
-    "Add peanuts and fry until golden.",
-    "Add chilli, curry leaves and turmeric.",
-    "Mix in rice and salt gently.",
-    "Turn off heat and stir in lemon juice.",
-    "Mix well and serve."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Extra Crunch", text: "Add roasted cashews along with peanuts." },
-    { type: "warn", icon: "⚠️", title: "Add Lemon Last", text: "Always add lemon after switching off heat to keep flavour fresh." },
-    { type: "pair", icon: "🥒", title: "Serve With", text: "Coconut chutney or plain yogurt." },
-    { type: "leftover", icon: "📦", title: "Lunchbox Hero", text: "Perfect travel rice. Stays good for hours." }
-  ]
-},
-{
-  id: 31,
-  emoji: "🥔",
-  title: "Aloo Paratha",
-  time: "⏱ 45 min",
-  difficulty: "Medium",
-  servings: "3 servings",
-  category: "Indian",
-  categories: ["indian","breakfast","comfort"],
-  funny: "Aloo paratha is basically a warm edible hug stuffed with spiced potatoes. North India approves. 🥰",
-  ingredients: [
-    { name: "Whole wheat flour", amount: "2 cups", notes: "" },
-    { name: "Boiled potatoes", amount: "3 medium", notes: "mashed" },
-    { name: "Green chilli", amount: "1", notes: "chopped" },
-    { name: "Cumin powder", amount: "½ tsp", notes: "" },
-    { name: "Coriander leaves", amount: "2 tbsp", notes: "chopped" },
-    { name: "Ghee or oil", amount: "3 tbsp", notes: "" }
-  ],
-  steps: [
-    "Make soft dough with flour, salt and water. Rest 15 minutes.",
-    "Mix mashed potatoes with chilli, cumin and coriander.",
-    "Divide dough and stuffing into balls.",
-    "Roll dough, place stuffing inside and seal.",
-    "Roll gently into thick circle.",
-    "Cook on hot tawa with ghee until golden both sides."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Extra Flavour", text: "Add grated paneer to potato mix." },
-    { type: "warn", icon: "⚠️", title: "Seal Properly", text: "Poor sealing causes stuffing to spill out." },
-    { type: "pair", icon: "🥣", title: "Classic Combo", text: "White butter and mango pickle." },
-    { type: "leftover", icon: "📦", title: "Next Day", text: "Tastes amazing reheated on a pan." }
-  ]
-},
-{
-  id: 32,
-  emoji: "🍲",
-  title: "Chole Masala",
-  time: "⏱ 50 min",
-  difficulty: "Medium",
-  servings: "4 servings",
-  category: "Indian",
-  categories: ["indian","vegetarian","hearty"],
-  funny: "Chole masala is bold, spicy and dramatic. Like a Bollywood climax but in gravy form. 🎬",
-  ingredients: [
-    { name: "Chickpeas", amount: "2 cups", notes: "boiled" },
-    { name: "Onion", amount: "1 large", notes: "chopped" },
-    { name: "Tomatoes", amount: "2", notes: "pureed" },
-    { name: "Ginger-garlic paste", amount: "1 tbsp", notes: "" },
-    { name: "Chole masala powder", amount: "2 tsp", notes: "" },
-    { name: "Cumin seeds", amount: "1 tsp", notes: "" },
-    { name: "Oil", amount: "3 tbsp", notes: "" }
-  ],
-  steps: [
-    "Heat oil, add cumin seeds.",
-    "Add onion and cook until golden.",
-    "Add ginger-garlic paste and cook 1 minute.",
-    "Add tomato puree and spices. Cook until thick.",
-    "Add chickpeas and 1 cup water.",
-    "Simmer 15 minutes. Garnish with coriander."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Dhaba Style", text: "Mash a few chickpeas to thicken gravy." },
-    { type: "warn", icon: "⚠️", title: "Cook Well", text: "Raw spice flavour means gravy needs more cooking." },
-    { type: "pair", icon: "🥖", title: "Best With", text: "Bhature or jeera rice." },
-    { type: "leftover", icon: "📦", title: "Better Tomorrow", text: "Flavour improves overnight." }
-  ]
-},
-{
-  id: 33,
-  emoji: "🥗",
-  title: "Kachumber Salad",
-  time: "⏱ 10 min",
-  difficulty: "Easy",
-  servings: "2 servings",
-  category: "Indian",
-  categories: ["indian","healthy","quick"],
-  funny: "Kachumber is that simple salad that quietly balances every spicy curry on your plate. The unsung hero. 🥒",
-  ingredients: [
-    { name: "Cucumber", amount: "1 large", notes: "diced" },
-    { name: "Tomato", amount: "1 medium", notes: "diced" },
-    { name: "Onion", amount: "1 small", notes: "finely chopped" },
-    { name: "Lemon juice", amount: "1 tbsp", notes: "" },
-    { name: "Chaat masala", amount: "½ tsp", notes: "" },
-    { name: "Salt", amount: "to taste", notes: "" }
-  ],
-  steps: [
-    "Mix all chopped vegetables in bowl.",
-    "Add salt, chaat masala and lemon juice.",
-    "Toss gently and serve immediately."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Extra Fresh", text: "Add chopped mint leaves." },
-    { type: "warn", icon: "⚠️", title: "Serve Fresh", text: "Salt draws water if kept too long." },
-    { type: "pair", icon: "🍛", title: "Goes With", text: "Almost any Indian meal." },
-    { type: "leftover", icon: "📦", title: "Not Ideal", text: "Best eaten fresh." }
-  ]
-},
-{
-  id: 34,
-  emoji: "🥥",
-  title: "Coconut Ladoo",
-  time: "⏱ 25 min",
-  difficulty: "Easy",
-  servings: "12 pieces",
-  category: "Indian",
-  categories: ["indian","dessert","festive"],
-  funny: "Three ingredients. Five minutes of rolling. Instant festive vibes. 🥥",
-  ingredients: [
-    { name: "Desiccated coconut", amount: "2 cups", notes: "" },
-    { name: "Condensed milk", amount: "1 cup", notes: "" },
-    { name: "Cardamom powder", amount: "½ tsp", notes: "" }
-  ],
-  steps: [
-    "Heat coconut and condensed milk in pan.",
-    "Cook until mixture thickens.",
-    "Add cardamom and mix.",
-    "Cool slightly and roll into balls.",
-    "Coat in extra coconut if desired."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Luxury Touch", text: "Add chopped pistachios." },
-    { type: "warn", icon: "⚠️", title: "Don't Overcook", text: "Mixture hardens quickly." },
-    { type: "pair", icon: "☕", title: "Serve With", text: "Tea or coffee." },
-    { type: "leftover", icon: "📦", title: "Store", text: "Keep refrigerated up to 5 days." }
-  ]
-},
-{
-  id: 35,
-  emoji: "🍜",
-  title: "Vegetable Upma",
-  time: "⏱ 25 min",
-  difficulty: "Easy",
-  servings: "3 servings",
-  category: "Indian",
-  categories: ["indian","breakfast","quick"],
-  funny: "Upma is comfort food that never tries too hard. Warm, soft and quietly satisfying. 🌾",
-  ingredients: [
-    { name: "Semolina (rava)", amount: "1 cup", notes: "" },
-    { name: "Mixed vegetables", amount: "1 cup", notes: "" },
-    { name: "Mustard seeds", amount: "1 tsp", notes: "" },
-    { name: "Curry leaves", amount: "8–10", notes: "" },
-    { name: "Green chilli", amount: "1", notes: "" },
-    { name: "Water", amount: "2.5 cups", notes: "" }
-  ],
-  steps: [
-    "Dry roast semolina until aromatic.",
-    "Heat oil, add mustard seeds and curry leaves.",
-    "Add vegetables and sauté.",
-    "Add water and salt. Bring to boil.",
-    "Slowly add semolina while stirring.",
-    "Cook until thick and fluffy."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "South Indian Touch", text: "Add grated coconut on top." },
-    { type: "warn", icon: "⚠️", title: "Stir Constantly", text: "Avoid lumps while adding semolina." },
-    { type: "pair", icon: "🥥", title: "Serve With", text: "Coconut chutney." },
-    { type: "leftover", icon: "📦", title: "Reheat", text: "Sprinkle water and steam again." }
-  ]
-},
-{
-  id: 36,
-  emoji: "🍅",
-  title: "Tomato Rasam",
-  time: "⏱ 25 min",
-  difficulty: "Easy",
-  servings: "3 servings",
-  category: "Indian",
-  categories: ["indian","healthy","soupy"],
-  funny: "Rasam is not soup. It is liquid energy with attitude. Spicy, tangy and unapologetic. 🔥",
-  ingredients: [
-    { name: "Tomatoes", amount: "2 large", notes: "crushed" },
-    { name: "Tamarind pulp", amount: "1 tbsp", notes: "" },
-    { name: "Rasam powder", amount: "2 tsp", notes: "" },
-    { name: "Garlic", amount: "3 cloves", notes: "crushed" },
-    { name: "Mustard seeds", amount: "1 tsp", notes: "" },
-    { name: "Curry leaves", amount: "6–8", notes: "" }
-  ],
-  steps: [
-    "Boil tomatoes with tamarind and rasam powder.",
-    "Add salt and simmer 10 minutes.",
-    "Heat oil, add mustard seeds, garlic and curry leaves.",
-    "Pour tempering into rasam.",
-    "Serve hot."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Add Dal Water", text: "Use leftover dal water for depth." },
-    { type: "warn", icon: "⚠️", title: "Do Not Overboil", text: "Rasam loses aroma if boiled too long." },
-    { type: "pair", icon: "🍚", title: "Best With", text: "Steamed rice." },
-    { type: "leftover", icon: "📦", title: "Next Day", text: "Tastes stronger and better." }
-  ]
-},
-{
-  id: 37,
-  emoji: "🧆",
-  title: "Medu Vada",
-  time: "⏱ 45 min",
-  difficulty: "Challenge",
-  servings: "10 pieces",
-  category: "Indian",
-  categories: ["indian","snack","fancy"],
-  funny: "Crispy outside, fluffy inside. The doughnut that chose spice over sugar. 😄",
-  ingredients: [
-    { name: "Urad dal", amount: "1 cup", notes: "soaked 4 hrs" },
-    { name: "Green chilli", amount: "1", notes: "chopped" },
-    { name: "Curry leaves", amount: "6–8", notes: "chopped" },
-    { name: "Salt", amount: "to taste", notes: "" },
-    { name: "Oil", amount: "for frying", notes: "" }
-  ],
-  steps: [
-    "Grind soaked dal into thick fluffy batter.",
-    "Add chilli, curry leaves and salt.",
-    "Shape into rings with wet hands.",
-    "Deep fry until golden and crisp.",
-    "Drain and serve."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Extra Crunch", text: "Add chopped onions to batter." },
-    { type: "warn", icon: "⚠️", title: "Batter Consistency", text: "Too thin batter makes flat vadas." },
-    { type: "pair", icon: "🥥", title: "Serve With", text: "Coconut chutney and sambar." },
-    { type: "leftover", icon: "📦", title: "Reheat", text: "Air fry for crispiness." }
-  ]
-},
-{
-  id: 38,
-  emoji: "🍆",
-  title: "Baingan Bharta",
-  time: "⏱ 40 min",
-  difficulty: "Medium",
-  servings: "3 servings",
-  category: "Indian",
-  categories: ["indian","smoky","vegetarian"],
-  funny: "When eggplant gets fire-roasted and mashed into smoky perfection. Rustic and bold. 🔥",
-  ingredients: [
-    { name: "Large eggplant", amount: "1", notes: "roasted and mashed" },
-    { name: "Onion", amount: "1", notes: "chopped" },
-    { name: "Tomato", amount: "1", notes: "chopped" },
-    { name: "Garlic", amount: "3 cloves", notes: "" },
-    { name: "Green chilli", amount: "1", notes: "" },
-    { name: "Oil", amount: "2 tbsp", notes: "" }
-  ],
-  steps: [
-    "Roast eggplant directly on flame until charred.",
-    "Peel skin and mash pulp.",
-    "Heat oil, sauté onion and garlic.",
-    "Add tomato and cook until soft.",
-    "Add mashed eggplant and salt.",
-    "Cook 8–10 minutes and garnish."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Extra Smoky", text: "Add charcoal smoke for authentic flavour." },
-    { type: "warn", icon: "⚠️", title: "Drain Water", text: "Remove excess water from eggplant." },
-    { type: "pair", icon: "🥖", title: "Serve With", text: "Roti or bajra roti." },
-    { type: "leftover", icon: "📦", title: "Next Day", text: "Use as sandwich filling." }
-  ]
-},
-{
-  id: 39,
-  emoji: "🥛",
-  title: "Mango Lassi",
-  time: "⏱ 5 min",
-  difficulty: "Easy",
-  servings: "2 glasses",
-  category: "Indian",
-  categories: ["indian","drink","summer"],
-  funny: "Summer in a glass. Sweet, creamy and unapologetically mango. 🥭",
-  ingredients: [
-    { name: "Ripe mango", amount: "1 cup", notes: "chopped" },
-    { name: "Yogurt", amount: "1 cup", notes: "" },
-    { name: "Sugar", amount: "1 tbsp", notes: "optional" },
-    { name: "Cardamom", amount: "a pinch", notes: "" },
-    { name: "Ice cubes", amount: "few", notes: "" }
-  ],
-  steps: [
-    "Blend mango, yogurt, sugar and cardamom.",
-    "Add ice and blend again.",
-    "Pour into glasses and serve chilled."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Royal Touch", text: "Add saffron strands." },
-    { type: "warn", icon: "⚠️", title: "Use Sweet Mango", text: "Avoid sour varieties." },
-    { type: "pair", icon: "🍛", title: "Perfect With", text: "Spicy Indian meals." },
-    { type: "leftover", icon: "📦", title: "Fresh Only", text: "Best consumed immediately." }
-  ]
-},
-{
-  id: 40,
-  emoji: "🍢",
-  title: "Paneer Tikka",
-  time: "⏱ 35 min",
-  difficulty: "Medium",
-  servings: "3 servings",
-  category: "Indian",
-  categories: ["indian","snack","fancy"],
-  funny: "Paneer on a stick, marinated and grilled until smoky. Vegetarian barbecue brilliance. 🔥",
-  ingredients: [
-    { name: "Paneer", amount: "250g", notes: "cubed" },
-    { name: "Yogurt", amount: "½ cup", notes: "thick" },
-    { name: "Red chilli powder", amount: "1 tsp", notes: "" },
-    { name: "Turmeric", amount: "½ tsp", notes: "" },
-    { name: "Garam masala", amount: "1 tsp", notes: "" },
-    { name: "Capsicum", amount: "1", notes: "cubed" },
-    { name: "Onion", amount: "1", notes: "cubed" }
-  ],
-  steps: [
-    "Mix yogurt and spices into marinade.",
-    "Add paneer and vegetables. Marinate 20 minutes.",
-    "Thread onto skewers.",
-    "Grill or bake at 200°C for 15 minutes.",
-    "Serve hot with mint chutney."
-  ],
-  tips: [
-    { type: "upgrade", icon: "⬆️", title: "Char Effect", text: "Finish on high heat for slight charring." },
-    { type: "warn", icon: "⚠️", title: "Use Thick Yogurt", text: "Thin marinade will not coat properly." },
-    { type: "pair", icon: "🥗", title: "Serve With", text: "Onion rings and lemon wedges." },
-    { type: "leftover", icon: "📦", title: "Wrap It", text: "Use leftovers in a wrap next day." }
-  ]
-}
+    id: 10,
+    emoji: "🧆",
+    title: "Crispy Falafel with Tahini",
+    time: "⏱ 30 min",
+    difficulty: "Medium",
+    servings: "3–4 servings",
+    category: "Healthy",
+    categories: ["healthy","quick","fancy"],
+    funny: "Falafel is just blended chickpeas fried in a ball. A very, very good ball. A ball that changed civilisations. 🫡",
+    ingredients: [
+      { name: "Dried chickpeas (soaked overnight)", amount: "250g", notes: "NOT canned — this matters!" },
+      { name: "Onion", amount: "½ small", notes: "roughly chopped" },
+      { name: "Garlic", amount: "3 cloves", notes: "" },
+      { name: "Fresh parsley", amount: "big handful", notes: "" },
+      { name: "Cumin", amount: "2 tsp", notes: "" },
+      { name: "Coriander", amount: "1 tsp", notes: "" },
+      { name: "Baking powder", amount: "1 tsp", notes: "for fluffiness inside" },
+      { name: "Sesame seeds", amount: "2 tbsp", notes: "rolled on outside" },
+      { name: "Tahini", amount: "3 tbsp", notes: "for sauce" },
+      { name: "Lemon", amount: "1", notes: "for tahini sauce" },
+      { name: "Oil for frying", amount: "enough to shallow fry", notes: "vegetable or sunflower" }
+    ],
+    steps: [
+      "Drain soaked chickpeas. Blitz in a food processor with onion, garlic, parsley, cumin, coriander, baking powder, salt. Pulse — don't blend smooth.",
+      "Refrigerate mixture 30 minutes to stop them falling apart in the oil.",
+      "Make tahini sauce: whisk tahini, lemon juice, water, salt until smooth and pourable.",
+      "Form mixture into golf-ball sized rounds, roll in sesame seeds.",
+      "Heat oil in a heavy pan to 175°C. Fry falafel in batches 3–4 minutes until deep golden-brown.",
+      "Drain on paper towel. Serve immediately in warm pitta with tahini and pickles."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tiny pinch of cayenne and a tablespoon of flour if mixture is too wet." },
+      { type: "warn", icon: "⚠️", title: "No Canned Chickpeas!", text: "Canned = too wet = falafel that explodes in the oil. Soaked dried only." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold mint lemonade or a light lager." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in oven or air fryer to restore crispiness." }
+    ]
+  },
+  {
+    id: 11,
+    emoji: "🍛",
+    title: "Dal Makhani",
+    time: "⏱ 60 min",
+    difficulty: "Medium",
+    servings: "4 servings",
+    category: "Indian",
+    categories: ["indian","comfort"],
+    funny: "Dal Makhani is the little black dress of Indian cooking. Appropriate for every occasion. Weeknight dinner. Dinner party. Heartbreak. 🖤",
+    ingredients: [
+      { name: "Black lentils (whole urad dal)", amount: "200g", notes: "soaked overnight" },
+      { name: "Kidney beans (canned)", amount: "1 tin", notes: "drained" },
+      { name: "Butter", amount: "3 tbsp", notes: "the makhani in the name" },
+      { name: "Onion", amount: "1 large", notes: "finely diced" },
+      { name: "Garlic", amount: "5 cloves", notes: "minced" },
+      { name: "Ginger", amount: "2cm piece", notes: "grated" },
+      { name: "Crushed tomatoes", amount: "400g tin", notes: "" },
+      { name: "Garam masala", amount: "1.5 tsp", notes: "" },
+      { name: "Heavy cream", amount: "100ml", notes: "stirred in at the end" },
+      { name: "Kasuri methi (dried fenugreek)", amount: "1 tsp", notes: "the secret ingredient" }
+    ],
+    steps: [
+      "Pressure cook or boil soaked lentils until completely soft. Add kidney beans.",
+      "In a separate pan, melt butter. Fry onion 10 minutes until deeply golden-brown.",
+      "Add garlic and ginger, cook 2 minutes. Add garam masala and stir 1 minute. Add crushed tomatoes and simmer 15 minutes.",
+      "Add cooked lentils and beans. Add a cup of water. Simmer 20 minutes.",
+      "Stir in cream and crushed kasuri methi. Simmer 5 more minutes.",
+      "Top with a pat of butter and serve hot with rice or naan."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Slow simmer for 3+ hours on the lowest heat transforms good dal into legendary dal." },
+      { type: "warn", icon: "⚠️", title: "Soak the Lentils!", text: "Whole urad dal takes forever without soaking. 8 hours minimum." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Sweet mango lassi or a cold Kingfisher beer." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Improves overnight. Ultimate batch cook — make double and freeze." }
+    ]
+  },
+  {
+    id: 12,
+    emoji: "🥬",
+    title: "Saag Paneer",
+    time: "⏱ 35 min",
+    difficulty: "Easy",
+    servings: "3–4 servings",
+    category: "Indian",
+    categories: ["indian","healthy","comfort"],
+    funny: "Saag paneer is proof that spinach and cheese should be best friends everywhere. India figured this out first. 🌿🧀",
+    ingredients: [
+      { name: "Paneer", amount: "300g", notes: "cubed" },
+      { name: "Fresh or frozen spinach", amount: "500g", notes: "wilted if fresh" },
+      { name: "Onion", amount: "1 large", notes: "finely diced" },
+      { name: "Garlic", amount: "4 cloves", notes: "minced" },
+      { name: "Ginger", amount: "2cm", notes: "grated" },
+      { name: "Green chillies", amount: "1–2", notes: "adjust to heat preference" },
+      { name: "Cumin seeds", amount: "1 tsp", notes: "bloomed in oil" },
+      { name: "Garam masala", amount: "1 tsp", notes: "" },
+      { name: "Heavy cream or yoghurt", amount: "3 tbsp", notes: "stirred in at end" },
+      { name: "Oil", amount: "2 tbsp", notes: "" }
+    ],
+    steps: [
+      "Pan-fry paneer cubes in a little oil until golden on all sides. Set aside.",
+      "Wilt spinach in the same pan with a splash of water. Blend roughly.",
+      "Heat oil, add cumin seeds and let them sizzle. Add onion and fry 8 minutes until golden.",
+      "Add garlic, ginger, and green chillies. Cook 2 minutes. Add garam masala and stir 1 minute.",
+      "Add blended spinach. Stir to combine and simmer 10 minutes.",
+      "Add golden paneer cubes. Stir in cream or yoghurt. Simmer 5 more minutes. Serve with naan."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Blanch spinach and plunge into ice water before blending to keep it vibrantly green." },
+      { type: "warn", icon: "⚠️", title: "Don't Skip the Fry", text: "Golden pan-fried paneer holds its shape and tastes 10x better." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Mango lassi or a cold lager. Sweetness offsets the earthy spinach." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Excellent next day. Reheat gently with a splash of water." }
+    ]
+  },
+  {
+    id: 13,
+    emoji: "🫔",
+    title: "Halloumi & Roasted Pepper Wraps",
+    time: "⏱ 20 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Comfort",
+    categories: ["comfort","quick","healthy"],
+    funny: "Halloumi squeaks when it's fresh. It is the most fun food to eat and anyone who says otherwise is wrong. 🎵🧀",
+    ingredients: [
+      { name: "Halloumi", amount: "250g", notes: "sliced 1cm thick" },
+      { name: "Roasted red peppers (jar)", amount: "200g", notes: "sliced" },
+      { name: "Large flour tortillas", amount: "2", notes: "warmed" },
+      { name: "Hummus", amount: "4 tbsp", notes: "generous spread" },
+      { name: "Rocket", amount: "big handful", notes: "" },
+      { name: "Avocado", amount: "1", notes: "sliced" },
+      { name: "Lemon", amount: "½", notes: "for squeezing" },
+      { name: "Smoked paprika", amount: "pinch", notes: "for the halloumi" },
+      { name: "Olive oil", amount: "1 tbsp", notes: "" }
+    ],
+    steps: [
+      "Slice halloumi and pat dry. Toss with olive oil and smoked paprika.",
+      "Fry halloumi in a dry non-stick pan over high heat 2 minutes per side until golden.",
+      "Warm tortillas in the same pan or microwave 20 seconds.",
+      "Spread hummus generously. Top with rocket, roasted peppers, avocado, and golden halloumi.",
+      "Squeeze lemon over everything. Fold and wrap tightly. Cut in half on the diagonal.",
+      "Eat immediately while halloumi is still squeaky and crispy."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a drizzle of sweet chilli sauce or harissa for a kick." },
+      { type: "warn", icon: "⚠️", title: "No Oil in the Pan!", text: "Fry halloumi in a DRY pan. It releases its own moisture, then browns beautifully." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Sparkling water with mint and lemon. Fresh and cuts through the richness." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Assembled wraps don't survive well — make to order." }
+    ]
+  },
+  {
+    id: 14,
+    emoji: "🫘",
+    title: "Smoky Chipotle Bean Chilli",
+    time: "⏱ 35 min",
+    difficulty: "Easy",
+    servings: "4 servings",
+    category: "Comfort",
+    categories: ["comfort","healthy","mexican"],
+    funny: "This chilli doesn't need meat because it has SMOKE and HEAT and three types of beans. More than enough character. 🌶️🔥",
+    ingredients: [
+      { name: "Mixed beans (kidney, black, pinto)", amount: "2 × 400g tins", notes: "drained" },
+      { name: "Chipotle in adobo", amount: "2 tbsp", notes: "the smoky magic" },
+      { name: "Crushed tomatoes", amount: "400g tin", notes: "" },
+      { name: "Onion", amount: "1 large", notes: "diced" },
+      { name: "Garlic", amount: "4 cloves", notes: "minced" },
+      { name: "Smoked paprika", amount: "2 tsp", notes: "" },
+      { name: "Cumin", amount: "1 tsp", notes: "" },
+      { name: "Dark chocolate", amount: "20g", notes: "the secret weapon" },
+      { name: "Lime", amount: "1", notes: "" },
+      { name: "Soured cream & cheddar", amount: "to serve", notes: "" }
+    ],
+    steps: [
+      "Fry onion in oil over medium-high heat 8 minutes until golden. Add garlic, cook 1 more minute.",
+      "Add smoked paprika and cumin. Stir 1 minute until fragrant.",
+      "Add chipotle in adobo, crushed tomatoes, and drained beans. Stir to combine.",
+      "Simmer 20 minutes until thick. Stir in dark chocolate until melted.",
+      "Squeeze over lime juice. Taste and season.",
+      "Serve with soured cream, cheddar, and tortilla chips."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Make it the day before. Chilli always tastes better after a night of contemplating itself." },
+      { type: "warn", icon: "⚠️", title: "Chipotle = HOT", text: "Start with 1 tbsp if you're heat-sensitive and taste before adding more." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold lager or a bold Malbec." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Freezes perfectly for 3 months. Perfect batch cook." }
+    ]
+  },
+  {
+    id: 15,
+    emoji: "🥞",
+    title: "Korean Pajeon (Spring Onion Pancakes)",
+    time: "⏱ 20 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Asian",
+    categories: ["asian","quick","comfort"],
+    funny: "Pajeon is the Korean pancake you make when it's raining and you can't be bothered. It is always the right decision. ☔🥞",
+    ingredients: [
+      { name: "Spring onions", amount: "10–12", notes: "cut into 8cm lengths" },
+      { name: "All-purpose flour", amount: "150g", notes: "" },
+      { name: "Rice flour", amount: "50g", notes: "for extra crispiness" },
+      { name: "Cold water", amount: "200ml", notes: "very cold — helps crispy texture" },
+      { name: "Egg", amount: "1", notes: "" },
+      { name: "Soy sauce", amount: "2 tbsp", notes: "for dipping sauce" },
+      { name: "Rice vinegar", amount: "1 tbsp", notes: "for dipping sauce" },
+      { name: "Sesame oil", amount: "1 tsp", notes: "for dipping sauce" },
+      { name: "Vegetable oil", amount: "3 tbsp", notes: "for frying" }
+    ],
+    steps: [
+      "Mix dipping sauce: soy sauce, rice vinegar, sesame oil, chilli flakes. Set aside.",
+      "Whisk flours, cold water, egg, and salt into a smooth batter. Don't overmix.",
+      "Heat oil in a large non-stick pan on medium-high until shimmering.",
+      "Pour batter into pan to make a thin pancake. Arrange spring onion pieces all over the top.",
+      "Cook 3–4 minutes until edges are set and bottom is deeply golden. Flip and cook 2–3 minutes more.",
+      "Cut into squares. Serve immediately with dipping sauce."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add kimchi to the batter for a fermented, spicy Kimchi Jeon." },
+      { type: "warn", icon: "⚠️", title: "Cold Water = Crispy", text: "Ice cold water develops less gluten = crispier pancake." },
+      { type: "wine", icon: "🍶", title: "Pair With", text: "Makgeolli (Korean rice wine) or cold Korean beer." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in a dry pan for 2 minutes each side. Microwave will ruin them." }
+    ]
+  },
+  {
+    id: 16,
+    emoji: "🍲",
+    title: "Chana Masala",
+    time: "⏱ 40 min",
+    difficulty: "Easy",
+    servings: "4 servings",
+    category: "Indian",
+    categories: ["indian","healthy","comfort"],
+    funny: "Chana masala is spicy chickpea excellence. It is also technically a health food. You can eat it four nights in a row and call it a cleanse. ✨",
+    ingredients: [
+      { name: "Chickpeas (canned)", amount: "2 × 400g tins", notes: "drained" },
+      { name: "Onion", amount: "2 medium", notes: "finely diced" },
+      { name: "Garlic", amount: "4 cloves", notes: "minced" },
+      { name: "Ginger", amount: "2cm", notes: "grated" },
+      { name: "Tomatoes", amount: "400g tin", notes: "" },
+      { name: "Chana masala powder", amount: "2 tbsp", notes: "" },
+      { name: "Cumin seeds", amount: "1 tsp", notes: "" },
+      { name: "Lemon", amount: "1", notes: "juice at end" },
+      { name: "Fresh coriander", amount: "handful", notes: "to garnish" }
+    ],
+    steps: [
+      "Heat oil, add cumin seeds and let them pop. Add onion and fry 10 minutes until deep golden.",
+      "Add garlic, ginger, green chillies. Cook 2 minutes. Add chana masala powder, stir 1 minute.",
+      "Add tomatoes, cook down 10 minutes until oil starts to separate.",
+      "Add drained chickpeas and ½ cup water. Stir well.",
+      "Simmer 15 minutes, mashing a few chickpeas to thicken the sauce.",
+      "Finish with lemon juice. Garnish with fresh coriander."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a pinch of amchur (dry mango powder) at the end for tangy restaurant-level depth." },
+      { type: "warn", icon: "⚠️", title: "Cook Down the Tomatoes!", text: "Under-cooked tomatoes make the dish acidic. Cook until oil separates." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Lassi (sweet or salted), chai, or a cold lager." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Freezes perfectly for up to 3 months. Better over 2–3 days." }
+    ]
+  }
 ];
 
 let currentRecipe = null;
 let history = JSON.parse(localStorage.getItem('wtf-history') || '[]');
 let activeCategory = 'all';
-let rollMode = 'random'; // 'random' | 'custom'
+let rollMode = 'random';
 
 // ─── MODE TOGGLE ───────────────────────────────────────────────────
 const modeRandom = document.getElementById('mode-random');
@@ -2316,7 +1798,6 @@ function rollDice() {
   const dice = document.getElementById('dice');
   btn.disabled = true;
 
-  // Animate dice faces
   const faces = ['⚀','⚁','⚂','⚃','⚄','⚅','🎲'];
   dice.classList.add('rolling');
   let i = 0;
@@ -2329,7 +1810,6 @@ function rollDice() {
     dice.classList.remove('rolling');
     dice.textContent = faces[Math.floor(Math.random()*6)];
 
-    // ── CUSTOM MODE ──
     if (rollMode === 'custom') {
       const choices = getCustomChoices();
       if (choices.length > 0) {
@@ -2339,11 +1819,9 @@ function rollDice() {
         launchConfetti();
         return;
       }
-      // Fall through to random if no choices entered
       showToast('No choices entered — going full random! 🎲');
     }
 
-    // ── RANDOM MODE ──
     const filtered = activeCategory === 'all' ? RECIPES : RECIPES.filter(r => r.categories.includes(activeCategory));
     if (!filtered.length) { showToast("No recipes in that category yet! 😅"); btn.disabled=false; return; }
     const pick = filtered[Math.floor(Math.random() * filtered.length)];
@@ -2359,45 +1837,38 @@ function showCustomResult(picked, allChoices) {
   const empty = document.getElementById('empty-state');
   const banner = document.getElementById('custom-banner');
 
-  // Show card properly (use class, not inline display, so CSS opacity transition works)
   empty.style.display = 'none';
   content.style.display = 'none';
   banner.classList.remove('show');
 
-  // Build the custom winner display
   banner.innerHTML = `
     🎲 The dice have spoken! Tonight you're making:<br>
-    <span style="font-size:1.5rem; font-family:'Boogaloo',cursive;">${picked}</span>
+    <span style="font-size:clamp(1.2rem,4vw,1.5rem); font-family:'Boogaloo',cursive;">${picked}</span>
     <br><span style="font-size:0.8rem; font-weight:600; opacity:0.7; margin-top:4px; display:block;">
       Rolled from ${allChoices.length} option${allChoices.length>1?'s':''}: ${allChoices.join(', ')}
     </span>
     <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-      <button onclick="rollDice()" style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;padding:8px 18px;border:2.5px solid var(--dark);border-radius:10px;background:white;cursor:pointer;box-shadow:3px 3px 0 var(--dark);transition:all 0.15s">🔄 Roll Again</button>
-      <button onclick="searchForRecipe('${picked.replace(/'/g,"\\'")}', this)" style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;padding:8px 18px;border:2.5px solid var(--dark);border-radius:10px;background:white;cursor:pointer;box-shadow:3px 3px 0 var(--dark);transition:all 0.15s">🔍 Find a Recipe for This</button>
+      <button onclick="rollDice()">🔄 Roll Again</button>
+      <button onclick="searchForRecipe('${picked.replace(/'/g,"\\'")}', this)">🔍 Find a Recipe</button>
     </div>
   `;
 
-  // Make card visible with proper class + force opacity
   card.classList.add('entering', 'visible');
   card.style.opacity = '1';
   card.style.transform = 'translateY(0)';
   card.style.display = 'block';
 
-  // Trigger banner animation after a tiny delay so remove+add works
   setTimeout(() => { banner.classList.add('show'); }, 30);
-
   card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function searchForRecipe(dish, btn) {
-  // Check if we have a matching recipe in our library (case-insensitive partial match)
   const match = RECIPES.find(r => r.title.toLowerCase().includes(dish.toLowerCase()) || dish.toLowerCase().includes(r.title.toLowerCase().split(' ')[0]));
   if (match) {
     document.getElementById('recipe-content').style.display = 'block';
     showRecipe(match);
     showToast(`🎉 Found "${match.title}" in our library!`);
   } else {
-    // Open YouTube search for the recipe
     window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(dish + ' recipe')}`, '_blank');
   }
 }
@@ -2420,7 +1891,6 @@ function showRecipe(recipe) {
   document.getElementById('r-cat').textContent = recipe.category;
   document.getElementById('r-funny').textContent = recipe.funny;
 
-  // Ingredients table
   const tbody = document.getElementById('r-ingredients');
   tbody.innerHTML = '';
   recipe.ingredients.forEach((ing, idx) => {
@@ -2434,7 +1904,6 @@ function showRecipe(recipe) {
     });
   });
 
-  // Steps
   const stepsList = document.getElementById('r-steps');
   stepsList.innerHTML = '';
   recipe.steps.forEach(step => {
@@ -2444,7 +1913,6 @@ function showRecipe(recipe) {
     stepsList.appendChild(li);
   });
 
-  // Tips
   const tipsGrid = document.getElementById('r-tips');
   tipsGrid.innerHTML = '';
   recipe.tips.forEach(tip => {
@@ -2454,7 +1922,6 @@ function showRecipe(recipe) {
     tipsGrid.appendChild(div);
   });
 
-  // Animate in
   card.classList.remove('visible');
   requestAnimationFrame(() => {
     card.classList.add('entering');
@@ -2466,7 +1933,6 @@ function showRecipe(recipe) {
   card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Save
 document.getElementById('save-btn')?.addEventListener('click', () => {
   if (!currentRecipe) return;
   const existing = history.find(h => h.id === currentRecipe.id);
@@ -2481,7 +1947,6 @@ document.getElementById('save-btn')?.addEventListener('click', () => {
   }
 });
 
-// Share
 document.getElementById('share-btn')?.addEventListener('click', async () => {
   if (!currentRecipe) return;
   const text = `🍴 WhatTheFork says we're cooking: ${currentRecipe.emoji} ${currentRecipe.title}! Roll yours at whatthefork.app`;
@@ -2494,7 +1959,6 @@ document.getElementById('share-btn')?.addEventListener('click', async () => {
   }
 });
 
-// History
 function renderHistory() {
   const sec = document.getElementById('history-section');
   const grid = document.getElementById('history-grid');
@@ -2514,7 +1978,6 @@ function renderHistory() {
 }
 renderHistory();
 
-// Toast
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -2522,7 +1985,6 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// Confetti
 function launchConfetti() {
   const canvas = document.getElementById('confetti-canvas');
   const ctx = canvas.getContext('2d');
@@ -2559,6 +2021,13 @@ function launchConfetti() {
   }
   draw();
 }
+
+// Update confetti canvas size on resize
+window.addEventListener('resize', () => {
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 </script>
 </body>
 </html>
