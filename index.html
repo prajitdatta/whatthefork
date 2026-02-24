@@ -690,6 +690,7 @@
     <div class="filters" id="filters" role="group" aria-label="Filter by cuisine or diet">
       <button class="filter-btn active" data-cat="all">🎲 Anything!</button>
       <button class="filter-btn" data-cat="italian">🍝 Italian</button>
+	  <button class="filter-btn" data-cat="indian">🍛 Indian</button>
       <button class="filter-btn" data-cat="asian">🥢 Asian</button>
       <button class="filter-btn" data-cat="mexican">🌮 Mexican</button>
       <button class="filter-btn" data-cat="comfort">🧀 Comfort Food</button>
@@ -829,40 +830,42 @@ const RECIPES = [
   {
     id: 1,
     emoji: "🍝",
-    title: "Spaghetti Carbonara",
+    title: "Creamy Mushroom Carbonara",
     time: "⏱ 25 min",
     difficulty: "Medium",
     servings: "2 servings",
     category: "Italian",
     categories: ["italian","comfort"],
-    funny: "No cream! Seriously, we'll find you. Real carbonara uses eggs & cheese only. The Roman nonna watching from above demands it. 🙅‍♀️🥛",
+    funny: "No cream! Well, actually — we're using mushrooms instead of meat, so maybe just a tiny bit of cream won't hurt. The Roman nonna can't see us. 🍄🤫",
     ingredients: [
       { name: "Spaghetti", amount: "200g", notes: "or rigatoni" },
-      { name: "Guanciale (or pancetta)", amount: "100g", notes: "cubed, not thin slices" },
+      { name: "Chestnut mushrooms", amount: "200g", notes: "sliced thick — they're the star!" },
       { name: "Eggs", amount: "2 whole + 2 yolks", notes: "room temperature" },
       { name: "Pecorino Romano", amount: "60g", notes: "finely grated" },
       { name: "Black pepper", amount: "generous amount", notes: "freshly cracked, key ingredient!" },
+      { name: "Garlic", amount: "2 cloves", notes: "minced" },
+      { name: "Olive oil", amount: "2 tbsp", notes: "" },
       { name: "Salt", amount: "for pasta water", notes: "very salty like the sea" }
     ],
     steps: [
       "Bring a huge pot of very salty water to a boil. This is not the time to be shy with salt.",
-      "Fry the guanciale cubes in a dry pan over medium heat until crispy and golden. Remove from heat and let cool slightly.",
+      "Sauté mushrooms in olive oil with garlic over high heat until golden-brown and slightly crispy. Remove from heat and let cool slightly.",
       "In a bowl, whisk eggs + yolks with grated pecorino and a LOT of black pepper until smooth. This is your sauce.",
       "Cook pasta 1 minute LESS than package says. Reserve 1 full cup of pasta water — liquid gold!",
-      "Off heat, add hot drained pasta to the guanciale pan. Add egg mixture and toss furiously, adding splashes of pasta water to create a silky, creamy sauce. Work fast!",
-      "Plate immediately, top with more pecorino and a final crack of black pepper. Eat before it gets cold. Don't you dare add cream."
+      "Off heat, add hot drained pasta to the mushroom pan. Add egg mixture and toss furiously, adding splashes of pasta water to create a silky, creamy sauce. Work fast!",
+      "Plate immediately, top with more pecorino and a final crack of black pepper. Eat before it gets cold. Mushrooms > pancetta, fight us."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a splash of white wine when frying the guanciale. Scrape up the browned bits for extra flavour." },
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a splash of white wine when frying the mushrooms and scrape up the browned bits for extra depth." },
       { type: "warn", icon: "⚠️", title: "Don't Scramble!", text: "Make sure the pan is OFF the heat before adding the egg mix. Too hot = sad scrambled pasta." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "A crisp Frascati or Pinot Grigio. Cold, light white wines cut through the richness beautifully." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "A crisp Pinot Grigio or Frascati. Cold, light white wines complement the earthy mushrooms beautifully." },
       { type: "leftover", icon: "📦", title: "Leftovers?", text: "Carbonara doesn't keep well. Be greedy. Eat it all. This is your excuse." }
     ]
   },
   {
     id: 2,
     emoji: "🍜",
-    title: "Thai Green Curry",
+    title: "Thai Green Tofu Curry",
     time: "⏱ 35 min",
     difficulty: "Easy",
     servings: "3–4 servings",
@@ -870,26 +873,26 @@ const RECIPES = [
     categories: ["asian","healthy"],
     funny: "Thai green curry is basically a vegetable bath in coconut milk and it is absolutely acceptable to eat this 3 days in a row. No judgment. 🥥🌿",
     ingredients: [
-      { name: "Thai green curry paste", amount: "3 tbsp", notes: "Mae Ploy brand recommended" },
+      { name: "Thai green curry paste", amount: "3 tbsp", notes: "check label — some are vegan, some aren't" },
       { name: "Coconut milk", amount: "400ml", notes: "full fat, don't even think about lite" },
-      { name: "Chicken thighs (or tofu)", amount: "400g", notes: "boneless, cut into chunks" },
+      { name: "Firm tofu", amount: "400g", notes: "pressed and cubed" },
       { name: "Thai basil", amount: "large handful", notes: "added at the end" },
-      { name: "Fish sauce", amount: "2 tbsp", notes: "skip for vegan, use soy sauce" },
+      { name: "Soy sauce", amount: "2 tbsp", notes: "use instead of fish sauce" },
       { name: "Lime", amount: "1", notes: "juice only" },
       { name: "Sugar", amount: "1 tsp", notes: "palm sugar ideal, white is fine" },
       { name: "Zucchini or eggplant", amount: "1 medium", notes: "chopped" },
       { name: "Jasmine rice", amount: "300g", notes: "to serve" }
     ],
     steps: [
-      "Start your jasmine rice — it takes about 15 min and you'll want it ready. Cook according to packet or use a rice cooker.",
+      "Press tofu between paper towels with something heavy on top for 10 minutes. This step matters — dry tofu fries, wet tofu steams.",
+      "Start your jasmine rice — it takes about 15 min. Cook according to packet or use a rice cooker.",
       "Heat 1 tbsp of the thick top of the coconut milk in a wok over medium-high heat until it sizzles. Add curry paste and fry for 2 minutes until fragrant. Your kitchen will smell incredible.",
-      "Add the chicken (or tofu) and stir to coat in the paste. Cook 3–4 minutes until sealed.",
-      "Pour in the rest of the coconut milk + ½ cup water. Bring to a gentle simmer.",
-      "Add the vegetables and simmer 10 minutes until tender. Season with fish sauce, sugar, and lime juice. Taste and adjust.",
-      "Turn off heat, stir in Thai basil. Serve over jasmine rice. Put your face near the bowl and inhale happiness."
+      "Add tofu cubes and stir to coat in the paste. Cook 3–4 minutes until slightly golden.",
+      "Pour in the rest of the coconut milk + ½ cup water. Bring to a gentle simmer. Add vegetables and simmer 10 minutes until tender.",
+      "Season with soy sauce, sugar, and lime juice. Taste and adjust. Turn off heat, stir in Thai basil. Serve over jasmine rice."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add kaffir lime leaves and lemongrass at step 2 for a truly restaurant-quality depth of flavour." },
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Pan-fry tofu cubes separately until golden and crispy before adding to the curry. Crispy tofu = 10x better texture." },
       { type: "warn", icon: "⚠️", title: "Don't Boil Hard", text: "Coconut milk breaks if you boil it aggressively. Gentle simmer is key to a smooth, rich curry." },
       { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold Thai beer (Singha, Chang) or a slightly sweet Riesling. Refreshing contrast to the heat." },
       { type: "leftover", icon: "📦", title: "Leftovers?", text: "Gets better on day 2! Store separately from rice and it'll last 3 days in the fridge." }
@@ -898,7 +901,7 @@ const RECIPES = [
   {
     id: 3,
     emoji: "🌮",
-    title: "Street Tacos al Pastor",
+    title: "Cauliflower Tacos al Pastor",
     time: "⏱ 40 min",
     difficulty: "Medium",
     servings: "2–3 servings",
@@ -906,7 +909,7 @@ const RECIPES = [
     categories: ["mexican"],
     funny: "These are technically street tacos. You could serve them on fine china and they'd still taste like you're standing on a Mexican street corner at midnight. 🌙🌮",
     ingredients: [
-      { name: "Pork shoulder (thin sliced)", amount: "400g", notes: "ask butcher or slice thin yourself" },
+      { name: "Cauliflower", amount: "1 medium head", notes: "broken into florets" },
       { name: "Achiote paste", amount: "2 tbsp", notes: "the orange magic block" },
       { name: "Pineapple", amount: "½ fresh", notes: "half for marinade, half for topping" },
       { name: "White corn tortillas", amount: "8–10 small", notes: "charred in dry pan" },
@@ -918,59 +921,60 @@ const RECIPES = [
     ],
     steps: [
       "Blend achiote paste, soaked guajillo chiles, garlic, juice of 1 lime, and ¼ of the pineapple into a thick marinade.",
-      "Coat pork slices in marinade. Marinate at least 20 mins (overnight is a game changer).",
-      "Grill or pan-fry pork on high heat in batches, 2–3 minutes per side until charred edges appear. Resist moving it too much — let it sear!",
+      "Toss cauliflower florets in marinade. Marinate at least 20 mins (overnight is a game changer).",
+      "Roast or pan-fry cauliflower on high heat in a single layer until charred edges appear. Resist moving it too much — let it sear!",
       "Char your tortillas directly over a gas flame or in a dry cast-iron pan. 30 seconds each side.",
-      "Chop pork and pile onto tortillas. Top with diced onion, fresh pineapple chunks, cilantro, and a squeeze of lime.",
-      "Eat immediately standing up for full street-food authenticity. Salsa verde on the side highly encouraged."
+      "Pile cauliflower onto tortillas. Top with diced onion, fresh pineapple chunks, cilantro, and a squeeze of lime.",
+      "Eat immediately. Salsa verde on the side highly encouraged. Nobody will miss the meat, we promise."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Marinate overnight and cook on a charcoal grill. The smoke and char edges are what make al pastor special." },
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Marinate overnight and roast on a charcoal grill. The smoke and char edges are what make al pastor style special." },
       { type: "warn", icon: "⚠️", title: "Small Tortillas Only", text: "Corn tortillas should be small (4–5\"). Big flour tortillas = burrito. Totally different vibe." },
-      { type: "wine", icon: "🍹", title: "Pair With", text: "Michelada or a spicy paloma (tequila + grapefruit + chili salt rim). Non-alcoholic: hibiscus agua fresca." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make a taco hash for breakfast: fry leftover pork with eggs. You're welcome." }
+      { type: "wine", icon: "🍹", title: "Pair With", text: "A spicy paloma (grapefruit + chili salt rim). Non-alcoholic: hibiscus agua fresca." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make a breakfast hash: fry leftover cauliflower with scrambled eggs. You're welcome." }
     ]
   },
   {
     id: 4,
     emoji: "🍔",
-    title: "Smash Burgers with Secret Sauce",
+    title: "Crispy Black Bean Smash Burgers",
     time: "⏱ 20 min",
     difficulty: "Easy",
     servings: "2 servings",
     category: "Comfort",
     categories: ["comfort","quick"],
-    funny: "Smash burgers are the reason flat-top griddles were invented. Don't let anyone tell you a thick burger is better. Smash the patriarchy. Smash the beef. 🔨",
+    funny: "These bean smash burgers are so crispy and satisfying, you'll forget they're not beef. Actually, don't tell your friends. Let them find out after. 🔨🫘",
     ingredients: [
-      { name: "80/20 beef mince", amount: "250g", notes: "fat content matters here!" },
-      { name: "American cheese slices", amount: "4 slices", notes: "it has to be American. Science." },
+      { name: "Black beans (drained)", amount: "400g tin", notes: "dry them very well!" },
+      { name: "Panko breadcrumbs", amount: "4 tbsp", notes: "for binding and crunch" },
+      { name: "Cheddar cheese slices", amount: "4 slices", notes: "melted on top" },
       { name: "Brioche burger buns", amount: "2", notes: "toasted in butter" },
       { name: "White onion", amount: "½", notes: "thinly sliced" },
       { name: "Pickles", amount: "good handful", notes: "dill, thinly sliced" },
       { name: "Mayonnaise", amount: "3 tbsp", notes: "for sauce" },
       { name: "Ketchup", amount: "1 tbsp", notes: "for sauce" },
       { name: "Hot sauce", amount: "1 tsp", notes: "for sauce, adjust to taste" },
-      { name: "Garlic powder", amount: "pinch", notes: "for sauce" }
+      { name: "Garlic powder", amount: "1 tsp", notes: "mix into beans" }
     ],
     steps: [
-      "Mix mayo, ketchup, hot sauce, and garlic powder. Refrigerate the secret sauce — it gets better as it sits.",
-      "Divide beef into 2 equal balls. Season with salt and pepper, but only JUST before cooking.",
-      "Heat a cast iron pan or griddle on HIGH until screaming hot (this is key). Add a tiny bit of oil.",
-      "Place beef ball on the griddle and immediately SMASH with a heavy spatula or burger press. Press hard, hold 10 seconds. The patty should be thin and wide.",
-      "Cook 90 seconds until the edges are brown and lacy-crispy. Add onion slices on top, then flip. Immediately add 2 cheese slices per patty. Cook 45 more seconds.",
-      "Toast buns in butter in same pan. Build: sauce on both buns, pickles, double smash patties, sauce again. Eat while crying tears of joy."
+      "Mix mayo, ketchup, and hot sauce. Refrigerate the secret sauce — it gets better as it sits.",
+      "Mash black beans with garlic powder, salt, pepper, and panko until a thick paste forms. Don't over-mash — a few chunks = better texture.",
+      "Divide into 2 balls. Heat a cast iron pan on HIGH with a thin film of oil until screaming hot.",
+      "Place bean balls on the pan and immediately SMASH flat with a spatula. Press hard and hold 10 seconds.",
+      "Cook 2 minutes until bottom is deeply browned and crispy. Flip carefully. Immediately add 2 cheese slices. Cook 90 more seconds.",
+      "Toast buns in butter. Build: sauce on both buns, pickles, smashed patties, onion, more sauce. Eat while questioning your meat-eating past."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Double smash! Make 4 thin patties instead of 2 and stack them. Double-stack smash burgers are elite." },
-      { type: "warn", icon: "⚠️", title: "HOT Pan Only", text: "If the pan isn't screaming hot, you get a steamed burger, not a smash burger. Wait for the smoke." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold lager. This is non-negotiable. A crispy fries + lager combo with a smash burger is peak happiness." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "There are no leftovers. That's not something that happens with smash burgers." }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add smoked paprika and a dash of Worcestershire sauce (veg version) to the bean mix. Massive depth of flavour." },
+      { type: "warn", icon: "⚠️", title: "DRY Those Beans!", text: "Pat beans very dry before mashing. Wet beans = falling-apart patties. Dry beans = crispy smashable heaven." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "An ice cold lager or craft IPA. Burger + cold beer is eternal." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in a dry pan for full crispiness revival. Microwave will make them sad and soggy." }
     ]
   },
   {
     id: 5,
     emoji: "🥗",
-    title: "Niçoise Salad",
+    title: "Roasted Veggie Niçoise Salad",
     time: "⏱ 25 min",
     difficulty: "Easy",
     servings: "2 servings",
@@ -978,12 +982,12 @@ const RECIPES = [
     categories: ["healthy","quick","fancy"],
     funny: "Eating a Niçoise salad makes you feel like you're on the Côte d'Azur in a linen shirt. Even if you're in your pyjamas. The vibes are real. 🇫🇷🌊",
     ingredients: [
-      { name: "Tuna steaks (or canned)", amount: "200g", notes: "fresh seared is ✨, canned in olive oil is great too" },
       { name: "Eggs", amount: "4", notes: "soft-boiled 7 minutes exactly" },
       { name: "Green beans", amount: "150g", notes: "blanched until just tender" },
       { name: "Cherry tomatoes", amount: "200g", notes: "halved" },
       { name: "Black olives", amount: "80g", notes: "Niçoise or Kalamata" },
-      { name: "Anchovies", amount: "8 fillets", notes: "optional but HIGHLY recommended" },
+      { name: "Roasted red peppers", amount: "1 jar", notes: "or roast your own" },
+      { name: "Boiled new potatoes", amount: "200g", notes: "halved, still warm" },
       { name: "Dijon mustard", amount: "1 tsp", notes: "for vinaigrette" },
       { name: "Red wine vinegar", amount: "1 tbsp", notes: "for vinaigrette" },
       { name: "Extra virgin olive oil", amount: "4 tbsp", notes: "good quality!" }
@@ -992,12 +996,11 @@ const RECIPES = [
       "Boil eggs for exactly 7 minutes (soft but not runny). Plunge into cold water to stop cooking. Peel carefully.",
       "Blanch green beans in the same boiling water for 3 minutes. Cold water bath again to keep them vibrantly green.",
       "Make vinaigrette: whisk mustard, vinegar, salt, pepper, then slowly drizzle in olive oil until emulsified.",
-      "If using fresh tuna: season steaks, sear 90 seconds each side in a hot pan. Rest 2 minutes. Slice.",
-      "Arrange everything on a large plate or platter — don't toss it, Niçoise is composed! Tomatoes, beans, eggs halved, olives, anchovies, tuna on top.",
+      "Arrange everything on a large plate or platter — don't toss it, Niçoise is composed! Potatoes, tomatoes, beans, eggs halved, olives, peppers.",
       "Drizzle generously with vinaigrette. Tear some crusty bread to serve alongside. Pretend you're in Nice."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add blanched thin sliced potato and a strip of roasted red pepper. More components = more Niçoise energy." },
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a handful of capers and some blanched artichoke hearts. More components = more Niçoise energy." },
       { type: "warn", icon: "⚠️", title: "Don't Toss It!", text: "A proper Niçoise is composed (arranged). Tossed salads are for peasants, apparently. The French take this seriously." },
       { type: "wine", icon: "🍷", title: "Pair With", text: "Provençal rosé. Cold. In a big glass. This is mandatory. Non-negotiable. The wine IS the recipe." },
       { type: "leftover", icon: "📦", title: "Leftovers?", text: "Keep vinaigrette separate and it'll last 2 days. The composed plate doesn't survive — eat it fresh!" }
@@ -1006,15 +1009,15 @@ const RECIPES = [
   {
     id: 6,
     emoji: "🍛",
-    title: "Chicken Tikka Masala",
-    time: "⏱ 50 min",
+    title: "Paneer Tikka Masala",
+    time: "⏱ 45 min",
     difficulty: "Medium",
     servings: "4 servings",
-    category: "Asian",
-    categories: ["asian","comfort","fancy"],
-    funny: "Technically, tikka masala may have been invented in Glasgow, Scotland, not India. Either way it is the greatest thing humanity has achieved. Sorry, moon landing. 🌙",
+    category: "Indian",
+    categories: ["indian","comfort","fancy"],
+    funny: "Paneer tikka masala is proof that cheese in a spiced tomato bath is humanity's greatest invention. Sorry, smartphones. You tried. 🧀🔥",
     ingredients: [
-      { name: "Chicken thighs", amount: "600g", notes: "boneless, cubed" },
+      { name: "Paneer", amount: "400g", notes: "cubed" },
       { name: "Greek yoghurt", amount: "150ml", notes: "for marinade" },
       { name: "Garam masala", amount: "2 tsp", notes: "divided" },
       { name: "Crushed tomatoes", amount: "400g tin", notes: "passata also works" },
@@ -1022,59 +1025,58 @@ const RECIPES = [
       { name: "Onion", amount: "1 large", notes: "finely diced" },
       { name: "Garlic", amount: "5 cloves", notes: "minced" },
       { name: "Fresh ginger", amount: "2cm piece", notes: "grated" },
-      { name: "Kashmiri chili powder", amount: "1 tsp", notes: "for that red colour!" },
+      { name: "Kashmiri chili powder", amount: "1 tsp", notes: "for that gorgeous red colour!" },
       { name: "Butter", amount: "2 tbsp", notes: "for the sauce base" },
       { name: "Naan or basmati rice", amount: "to serve", notes: "both, ideally" }
     ],
     steps: [
-      "Marinate chicken in yoghurt, 1 tsp garam masala, kashmiri chili, salt for at least 20 minutes (overnight = perfection).",
-      "Grill or pan-fry marinated chicken on high heat until charred in spots. Set aside — it finishes in the sauce.",
+      "Marinate paneer cubes in yoghurt, 1 tsp garam masala, kashmiri chili, salt for at least 20 minutes.",
+      "Grill or pan-fry marinated paneer on high heat until charred in spots. Set aside — it finishes in the sauce.",
       "In a large pan, melt butter. Fry onion 8–10 minutes until golden and soft. Add garlic and ginger, cook 2 more minutes.",
       "Add remaining garam masala and stir into onions for 1 minute. Add crushed tomatoes. Simmer 10 minutes until thick.",
-      "Pour in cream, stir through. Add chicken pieces. Simmer gently 10 more minutes.",
+      "Pour in cream, stir through. Add paneer pieces. Simmer gently 8 more minutes.",
       "Adjust seasoning. Serve with naan (for scooping!) and rice (for soaking up that gorgeous sauce). Sob with happiness."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Char your chicken in a screaming hot pan in batches. The charred bits are key — they're called 'char' for good reason!" },
-      { type: "warn", icon: "⚠️", title: "No Skipping Marinade", text: "The yoghurt marinade tenderizes the chicken and adds flavour. 20 minutes is the minimum. Don't skip this step." },
-      { type: "wine", icon: "🍺", title: "Pair With", text: "IPA beer! The hoppy bitterness contrasts the creamy, spiced sauce beautifully. Or mango lassi for non-alcoholic." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Genuinely better next day. Makes incredible leftover lunch with fresh naan. One of the best meal preps ever." }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Char your paneer in a screaming hot pan. The golden crust holds up in the sauce and adds incredible flavour." },
+      { type: "warn", icon: "⚠️", title: "Don't Skip Marinade", text: "The yoghurt marinade adds flavour and helps the paneer char beautifully. 20 minutes minimum." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Mango lassi or an IPA beer. The hoppy bitterness contrasts the creamy, spiced sauce beautifully." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Genuinely better next day. One of the best meal preps ever. Serve with fresh hot naan." }
     ]
   },
   {
     id: 7,
-    emoji: "🥘",
-    title: "One-Pan Lemon Herb Salmon",
-    time: "⏱ 22 min",
+    emoji: "🥧",
+    title: "Roasted Asparagus & Ricotta Tart",
+    time: "⏱ 35 min",
     difficulty: "Easy",
-    servings: "2 servings",
+    servings: "2–3 servings",
     category: "Healthy",
-    categories: ["healthy","quick","fancy"],
-    funny: "This recipe makes you look like a competent adult human who definitely has their life together. Save this one for when the in-laws visit. 🐟✨",
+    categories: ["healthy","fancy"],
+    funny: "This tart makes you look like a competent adult human who definitely has their life together. Save this one for when the in-laws visit. 🧀✨",
     ingredients: [
-      { name: "Salmon fillets", amount: "2 × 180g", notes: "skin on, room temperature" },
+      { name: "Ready-rolled puff pastry", amount: "1 sheet", notes: "shop-bought, no shame" },
       { name: "Asparagus", amount: "200g", notes: "woody ends snapped off" },
-      { name: "Cherry tomatoes", amount: "150g", notes: "whole or halved" },
-      { name: "Lemon", amount: "1", notes: "zest + slices" },
-      { name: "Garlic", amount: "3 cloves", notes: "smashed" },
-      { name: "Butter", amount: "30g", notes: "cold, cubed" },
+      { name: "Ricotta", amount: "200g", notes: "the creamy base" },
+      { name: "Lemon", amount: "1", notes: "zest + juice" },
+      { name: "Garlic", amount: "2 cloves", notes: "minced" },
+      { name: "Parmesan", amount: "40g", notes: "grated" },
       { name: "Fresh dill or parsley", amount: "small bunch", notes: "chopped" },
-      { name: "Capers", amount: "1 tbsp", notes: "optional but excellent" },
+      { name: "Cherry tomatoes", amount: "100g", notes: "halved" },
       { name: "Olive oil", amount: "2 tbsp", notes: "" }
     ],
     steps: [
-      "Preheat oven to 200°C. Lay asparagus and tomatoes in a roasting pan. Drizzle with olive oil, season well.",
-      "Roast vegetables 8 minutes. Remove from oven.",
-      "Push vegetables to edges. Place salmon skin-side down in centre. Top with lemon slices, garlic, capers.",
-      "Return to oven for 10–12 minutes until salmon flakes easily at the thickest point but is still slightly translucent in the middle.",
-      "Remove from oven. Add cold butter cubes to pan — they'll melt into an instant sauce. Spoon over fish.",
-      "Top with lemon zest and fresh herbs. Serve directly from the pan (fewer dishes = more romance)."
+      "Preheat oven to 200°C. Unroll pastry onto a baking sheet lined with paper. Score a 2cm border around the edge (don't cut all the way through).",
+      "Mix ricotta, parmesan, garlic, lemon zest, and half the herbs. Season well. Spread inside the scored border.",
+      "Arrange asparagus spears and cherry tomatoes on top. Drizzle with olive oil, season with salt and pepper.",
+      "Bake 20–22 minutes until pastry is golden and puffed, asparagus is tender.",
+      "Remove from oven. Squeeze lemon juice over, scatter remaining fresh herbs. Slice and serve warm or at room temperature."
     ],
     tips: [
-      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Sear the salmon skin-side down in a hot oven-safe pan before roasting for a crispy, restaurant-quality skin." },
-      { type: "warn", icon: "⚠️", title: "Don't Overcook!", text: "Salmon should be slightly translucent in the very centre when you remove it. It'll finish cooking from residual heat." },
-      { type: "wine", icon: "🍷", title: "Pair With", text: "Chablis or unoaked Chardonnay. Clean, mineral wines that don't overpower the delicate fish. Heavenly." },
-      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Flake cold leftover salmon over a salad with capers and a lemon vinaigrette. Great cold lunch the next day." }
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a drizzle of honey and some crumbled walnuts after baking. Sweet, savoury, crunchy — restaurant-level finish." },
+      { type: "warn", icon: "⚠️", title: "Score, Don't Cut!", text: "The border score is what makes the edges puff dramatically. Cut all the way through and you lose the magic." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Chablis or unoaked Chardonnay. Clean mineral wines that complement the asparagus and lemon perfectly." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Great cold the next day as a packed lunch. Reheat in oven (not microwave!) to restore pastry crispness." }
     ]
   },
   {
@@ -1113,7 +1115,779 @@ const RECIPES = [
       { type: "wine", icon: "🍷", title: "Pair With", text: "Lambrusco (a lightly sparkling red) or a cold Peroni beer. Both cut through the richness perfectly." },
       { type: "leftover", icon: "📦", title: "Leftovers?", text: "Cold pizza the next morning is a life choice and we respect it. Reheat in a dry pan for crispy base revival." }
     ]
-  }
+  },
+  {
+    id: 9,
+    emoji: "🧆",
+    title: "Crispy Falafel with Tahini",
+    time: "⏱ 30 min",
+    difficulty: "Medium",
+    servings: "3–4 servings",
+    category: "Healthy",
+    categories: ["healthy","quick","fancy"],
+    funny: "Falafel is just blended chickpeas fried in a ball. A very, very good ball. A ball that changed civilisations. A ball that should be respected. 🫡",
+    ingredients: [
+      { name: "Dried chickpeas (soaked overnight)", amount: "250g", notes: "NOT canned — this matters!" },
+      { name: "Onion", amount: "½ small", notes: "roughly chopped" },
+      { name: "Garlic", amount: "3 cloves", notes: "" },
+      { name: "Fresh parsley", amount: "big handful", notes: "" },
+      { name: "Cumin", amount: "2 tsp", notes: "" },
+      { name: "Coriander", amount: "1 tsp", notes: "" },
+      { name: "Baking powder", amount: "1 tsp", notes: "for fluffiness inside" },
+      { name: "Sesame seeds", amount: "2 tbsp", notes: "rolled on outside" },
+      { name: "Tahini", amount: "3 tbsp", notes: "for sauce" },
+      { name: "Lemon", amount: "1", notes: "for tahini sauce" },
+      { name: "Oil for frying", amount: "enough to shallow fry", notes: "vegetable or sunflower" }
+    ],
+    steps: [
+      "Drain soaked chickpeas (don't cook them — raw soaked is the secret). Blitz in a food processor with onion, garlic, parsley, cumin, coriander, baking powder, salt. Pulse — don't blend smooth. Texture = key.",
+      "Refrigerate mixture 30 minutes. This stops them falling apart in the oil.",
+      "Make tahini sauce: whisk tahini, lemon juice, water, salt until smooth and pourable. Taste and adjust.",
+      "Form mixture into golf-ball sized rounds, roll in sesame seeds.",
+      "Heat oil in a heavy pan to 175°C. Fry falafel in batches 3–4 minutes, turning, until deep golden-brown all over.",
+      "Drain on paper towel. Serve immediately in warm pitta with tahini, pickles, and fresh tomato. Don't delay — crispy falafel waits for no one."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tiny pinch of cayenne and a tablespoon of flour if mixture is too wet. Perfect binding without losing flavour." },
+      { type: "warn", icon: "⚠️", title: "No Canned Chickpeas!", text: "Canned = too wet = falafel that explodes in the oil. Soaked dried chickpeas only. You were warned." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold mint lemonade or a light lager. The freshness cuts through the fried richness beautifully." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in oven or air fryer to restore crispiness. Next-day falafel in a lunchbox salad is genuinely great." }
+    ]
+  },
+  {
+    id: 10,
+    emoji: "🍲",
+    title: "Dal Makhani",
+    time: "⏱ 60 min",
+    difficulty: "Medium",
+    servings: "4 servings",
+    category: "Indian",
+    categories: ["indian","comfort"],
+    funny: "Dal Makhani is the little black dress of Indian cooking. Appropriate for every occasion. Weeknight dinner. Dinner party. Heartbreak. All valid. 🖤",
+    ingredients: [
+      { name: "Black lentils (whole urad dal)", amount: "200g", notes: "soaked overnight" },
+      { name: "Kidney beans (canned)", amount: "1 tin", notes: "drained" },
+      { name: "Butter", amount: "3 tbsp", notes: "the makhani in the name" },
+      { name: "Onion", amount: "1 large", notes: "finely diced" },
+      { name: "Garlic", amount: "5 cloves", notes: "minced" },
+      { name: "Ginger", amount: "2cm piece", notes: "grated" },
+      { name: "Crushed tomatoes", amount: "400g tin", notes: "" },
+      { name: "Garam masala", amount: "1.5 tsp", notes: "" },
+      { name: "Heavy cream", amount: "100ml", notes: "stirred in at the end" },
+      { name: "Kasuri methi (dried fenugreek)", amount: "1 tsp", notes: "the secret ingredient" },
+      { name: "Basmati rice or naan", amount: "to serve", notes: "" }
+    ],
+    steps: [
+      "Pressure cook or boil soaked lentils until completely soft (45 mins on stove, 15 in pressure cooker). Add kidney beans.",
+      "In a separate pan, melt butter over medium heat. Fry onion 10 minutes until deeply golden-brown — don't rush this step.",
+      "Add garlic and ginger, cook 2 minutes. Add garam masala and stir 1 minute. Add crushed tomatoes and simmer 15 minutes until thick and dark.",
+      "Add cooked lentils and kidney beans to the tomato base. Add a cup of water. Simmer 20 minutes, stirring often.",
+      "Stir in cream and crushed kasuri methi (rub between palms first to release aroma). Simmer 5 more minutes.",
+      "Taste and season. The dal should be thick, glossy, and deeply flavoured. Top with a pat of butter and serve hot with rice or naan."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "The longer this cooks, the better. Slow simmer for 3+ hours on the lowest heat transforms good dal into legendary dal." },
+      { type: "warn", icon: "⚠️", title: "Soak the Lentils!", text: "Whole urad dal takes forever without soaking. 8 hours minimum. Overnight = best. Don't skip this." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Sweet mango lassi or a cold kingfisher beer. Both complement the rich, buttery dal perfectly." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Genuinely improves overnight as flavours deepen. The ultimate batch cook — make double and freeze." }
+    ]
+  },
+  {
+    id: 11,
+    emoji: "🧀",
+    title: "Spinach & Ricotta Stuffed Shells",
+    time: "⏱ 50 min",
+    difficulty: "Medium",
+    servings: "3–4 servings",
+    category: "Italian",
+    categories: ["italian","comfort","fancy"],
+    funny: "Stuffed pasta shells are basically Italian dumplings for people who can't fold dumplings. The filling to pasta ratio is elite. 🍝",
+    ingredients: [
+      { name: "Jumbo pasta shells (conchiglioni)", amount: "20–24 shells", notes: "" },
+      { name: "Ricotta", amount: "400g", notes: "" },
+      { name: "Frozen spinach (thawed, squeezed dry)", amount: "250g", notes: "squeeze VERY dry" },
+      { name: "Parmesan", amount: "60g", notes: "grated, divided" },
+      { name: "Egg", amount: "1", notes: "for filling" },
+      { name: "Garlic", amount: "2 cloves", notes: "minced" },
+      { name: "Nutmeg", amount: "pinch", notes: "the Italian secret" },
+      { name: "Jarred tomato passata", amount: "700ml", notes: "good quality" },
+      { name: "Mozzarella", amount: "150g", notes: "torn, for topping" }
+    ],
+    steps: [
+      "Cook pasta shells 2 minutes less than packet instructions — they finish in the oven. Drain and cool on a tray.",
+      "Mix ricotta, drained spinach, half the parmesan, egg, garlic, nutmeg, salt, and pepper until smooth.",
+      "Preheat oven to 190°C. Pour half the passata in the bottom of a baking dish.",
+      "Fill each shell with ricotta mixture using a spoon or piping bag. Nestle into the sauce.",
+      "Pour remaining passata over shells. Top with torn mozzarella and remaining parmesan.",
+      "Cover with foil and bake 25 minutes. Remove foil, bake 10 more until bubbly and golden. Rest 5 minutes before serving."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tablespoon of pesto to the ricotta filling. It takes the whole dish to another level with very little effort." },
+      { type: "warn", icon: "⚠️", title: "SQUEEZE the Spinach!", text: "Wet spinach = watery filling = soggy shells. Squeeze the living daylights out of it. Multiple times." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Chianti Classico or a medium-bodied Sangiovese. Italian red with Italian pasta — it's basically the law." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in oven covered with foil. Excellent next day. Can be prepped a day ahead and baked fresh." }
+    ]
+  },
+  {
+    id: 12,
+    emoji: "🥬",
+    title: "Saag Paneer",
+    time: "⏱ 35 min",
+    difficulty: "Easy",
+    servings: "3–4 servings",
+    category: "Indian",
+    categories: ["indian","healthy","comfort"],
+    funny: "Saag paneer is proof that spinach and cheese should be best friends everywhere, not just Italy. India figured this out first and we should all be grateful. 🌿🧀",
+    ingredients: [
+      { name: "Paneer", amount: "300g", notes: "cubed" },
+      { name: "Fresh or frozen spinach", amount: "500g", notes: "wilted if fresh" },
+      { name: "Onion", amount: "1 large", notes: "finely diced" },
+      { name: "Garlic", amount: "4 cloves", notes: "minced" },
+      { name: "Ginger", amount: "2cm", notes: "grated" },
+      { name: "Green chillies", amount: "1–2", notes: "adjust to heat preference" },
+      { name: "Cumin seeds", amount: "1 tsp", notes: "bloomed in oil" },
+      { name: "Garam masala", amount: "1 tsp", notes: "" },
+      { name: "Heavy cream or yoghurt", amount: "3 tbsp", notes: "stirred in at end" },
+      { name: "Oil", amount: "2 tbsp", notes: "" },
+      { name: "Basmati rice or naan", amount: "to serve", notes: "" }
+    ],
+    steps: [
+      "Pan-fry paneer cubes in a little oil until golden on all sides. Set aside — this step gives the paneer great texture.",
+      "Wilt spinach (if fresh) in the same pan with a splash of water. Blend roughly — it doesn't need to be completely smooth.",
+      "Heat oil, add cumin seeds and let them sizzle. Add onion and fry 8 minutes until golden.",
+      "Add garlic, ginger, and green chillies. Cook 2 minutes. Add garam masala and stir 1 minute.",
+      "Add blended spinach. Stir to combine and simmer 10 minutes.",
+      "Add golden paneer cubes. Stir in cream or yoghurt. Simmer 5 more minutes. Serve with hot naan or basmati rice."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Blanch spinach in boiling water and immediately plunge into ice water before blending. Keeps the colour vibrantly green." },
+      { type: "warn", icon: "⚠️", title: "Don't Skip the Fry", text: "Golden pan-fried paneer holds its shape in the curry and tastes 10x better than pale, soft paneer." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Mango lassi or a cold lager. The sweetness of mango offsets the earthy spinach beautifully." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Excellent next day. The spinach absorbs all the spice flavours overnight. Reheat gently with a splash of water." }
+    ]
+  },
+  {
+    id: 13,
+    emoji: "🫔",
+    title: "Halloumi & Roasted Pepper Wraps",
+    time: "⏱ 20 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Comfort",
+    categories: ["comfort","quick","healthy"],
+    funny: "Halloumi squeaks when it's fresh. It is the most fun food to eat and anyone who says otherwise is wrong. Science has not disproved this. 🎵🧀",
+    ingredients: [
+      { name: "Halloumi", amount: "250g", notes: "sliced 1cm thick" },
+      { name: "Roasted red peppers (jar)", amount: "200g", notes: "sliced" },
+      { name: "Large flour tortillas", amount: "2", notes: "warmed" },
+      { name: "Hummus", amount: "4 tbsp", notes: "generous spread" },
+      { name: "Rocket", amount: "big handful", notes: "" },
+      { name: "Avocado", amount: "1", notes: "sliced" },
+      { name: "Lemon", amount: "½", notes: "for squeezing" },
+      { name: "Smoked paprika", amount: "pinch", notes: "for the halloumi" },
+      { name: "Olive oil", amount: "1 tbsp", notes: "" }
+    ],
+    steps: [
+      "Slice halloumi and pat dry. Toss with olive oil and smoked paprika.",
+      "Fry halloumi in a dry non-stick pan over high heat 2 minutes per side until golden brown stripes appear.",
+      "Warm tortillas in the same pan or microwave 20 seconds.",
+      "Spread hummus generously on each tortilla. Top with rocket, roasted peppers, avocado, and golden halloumi.",
+      "Squeeze lemon over everything. Fold and wrap tightly. Cut in half on the diagonal for maximum appeal.",
+      "Eat immediately while halloumi is still squeaky and crispy."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a drizzle of sweet chilli sauce or harissa for a flavour kick that takes this from lunch to event." },
+      { type: "warn", icon: "⚠️", title: "No Oil in the Pan!", text: "Fry halloumi in a DRY pan. It releases its own moisture first, then browns beautifully. Oil makes it greasy." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Sparkling water with mint and lemon. Fresh, light, and cuts through the richness of halloumi and hummus." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Assembled wraps don't survive well — make to order. Leftover halloumi can go cold in a salad the next day." }
+    ]
+  },
+  {
+    id: 14,
+    emoji: "🍚",
+    title: "Vegetable Biryani",
+    time: "⏱ 55 min",
+    difficulty: "Challenge",
+    servings: "4 servings",
+    category: "Indian",
+    categories: ["indian","fancy","comfort"],
+    funny: "Biryani is a two-layer cooking project that rewards patience with one of the most gloriously fragrant dishes on earth. It's not fast food. It's fast art. 🎨",
+    ingredients: [
+      { name: "Basmati rice", amount: "300g", notes: "soaked 30 minutes, parboiled" },
+      { name: "Mixed vegetables (carrot, peas, potato, cauliflower)", amount: "400g", notes: "cut into 2cm pieces" },
+      { name: "Onion", amount: "2 large", notes: "thinly sliced for frying" },
+      { name: "Greek yoghurt", amount: "200ml", notes: "for marinating veg" },
+      { name: "Biryani masala", amount: "2 tbsp", notes: "or garam masala + extra spices" },
+      { name: "Saffron", amount: "pinch", notes: "soaked in 3 tbsp warm milk" },
+      { name: "Fresh mint", amount: "large handful", notes: "" },
+      { name: "Ghee or butter", amount: "3 tbsp", notes: "" },
+      { name: "Fried onions (birista)", amount: "4 tbsp", notes: "buy ready-made or fry slowly yourself" },
+      { name: "Oil", amount: "3 tbsp", notes: "" }
+    ],
+    steps: [
+      "Parboil soaked basmati rice until 70% cooked (it should have a white dot in the centre). Drain immediately and set aside.",
+      "Fry sliced onions in oil until deeply golden (20 mins minimum — this is the key). Set half aside for topping.",
+      "Marinate vegetables in yoghurt, biryani masala, salt, and half the fried onions for 20 minutes.",
+      "Spread marinated veg in a heavy-bottomed pot. Layer cooked rice on top. Drizzle saffron milk over rice for colour streaks.",
+      "Dot with ghee, scatter fresh mint and remaining fried onions. Cover tightly with foil then the lid. Cook on lowest heat 25 minutes (dum method).",
+      "Remove lid at the table for the full dramatic aroma reveal. Gently mix the layers as you serve. Serve with raita."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Use a dough seal around the pot lid to trap steam perfectly. This is the traditional dum cooking method and it makes all the difference." },
+      { type: "warn", icon: "⚠️", title: "70% Cooked Rice Only!", text: "Fully cooked rice will go mushy in the pot. The rice must have a firm white dot when layered. This is non-negotiable." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Cucumber raita on the side is essential — it cools and complements the warm spices. Saffron tea for something special." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Biryani is exceptional the next day as the flavours intensify. Reheat with a tablespoon of water to keep the rice fluffy." }
+    ]
+  },
+  {
+    id: 15,
+    emoji: "🫕",
+    title: "Shakshuka with Feta",
+    time: "⏱ 25 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Healthy",
+    categories: ["healthy","quick","comfort"],
+    funny: "Shakshuka is eggs baked in spiced tomato sauce and it somehow counts as breakfast, lunch, and dinner. Life is beautiful. 🍳🌶️",
+    ingredients: [
+      { name: "Eggs", amount: "4", notes: "" },
+      { name: "Crushed tomatoes", amount: "400g tin", notes: "" },
+      { name: "Red pepper", amount: "1", notes: "diced" },
+      { name: "Onion", amount: "1 medium", notes: "diced" },
+      { name: "Garlic", amount: "3 cloves", notes: "minced" },
+      { name: "Cumin", amount: "1 tsp", notes: "" },
+      { name: "Smoked paprika", amount: "1 tsp", notes: "" },
+      { name: "Chilli flakes", amount: "½ tsp", notes: "or to taste" },
+      { name: "Feta cheese", amount: "80g", notes: "crumbled over top" },
+      { name: "Olive oil", amount: "2 tbsp", notes: "" },
+      { name: "Crusty bread", amount: "to serve", notes: "for scooping — essential" }
+    ],
+    steps: [
+      "Heat olive oil in a wide, oven-safe pan (or ovenproof skillet). Fry onion and pepper 7 minutes until soft.",
+      "Add garlic, cumin, smoked paprika, and chilli. Stir 1 minute until fragrant.",
+      "Add crushed tomatoes, season with salt. Simmer 10 minutes until sauce is thick and rich.",
+      "Make 4 wells in the sauce with a spoon. Crack an egg into each well.",
+      "Cover the pan and cook on low-medium heat 5–7 minutes until whites are set but yolks are still runny.",
+      "Crumble feta over top. Take the pan to the table and let everyone dig in. Serve with plenty of crusty bread."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a dollop of harissa to the sauce for North African heat. Swirl a spoonful of yoghurt over the top to finish." },
+      { type: "warn", icon: "⚠️", title: "Watch Those Yolks!", text: "The eggs cook fast once in the sauce. Check every minute — you want set whites and liquid gold yolks." },
+      { type: "wine", icon: "🧃", title: "Pair With", text: "Strong mint tea or fresh orange juice. Shakshuka is a social, morning-vibes dish that doesn't need wine. Yet." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Make extra sauce (no eggs) and refrigerate. Next day: reheat sauce, crack in fresh eggs. 10-minute luxury." }
+    ]
+  },
+  {
+    id: 16,
+    emoji: "🥘",
+    title: "Chana Masala",
+    time: "⏱ 40 min",
+    difficulty: "Easy",
+    servings: "4 servings",
+    category: "Indian",
+    categories: ["indian","healthy","comfort"],
+    funny: "Chana masala is spicy chickpea excellence in a bowl. It is also technically a health food. You can eat it four nights in a row and call it a cleanse. 🫘✨",
+    ingredients: [
+      { name: "Chickpeas (canned)", amount: "2 × 400g tins", notes: "drained" },
+      { name: "Onion", amount: "2 medium", notes: "finely diced" },
+      { name: "Garlic", amount: "4 cloves", notes: "minced" },
+      { name: "Ginger", amount: "2cm", notes: "grated" },
+      { name: "Tomatoes", amount: "400g tin", notes: "or 3 fresh tomatoes" },
+      { name: "Chana masala powder", amount: "2 tbsp", notes: "or garam masala + amchur" },
+      { name: "Cumin seeds", amount: "1 tsp", notes: "" },
+      { name: "Green chillies", amount: "1–2", notes: "slit" },
+      { name: "Lemon", amount: "1", notes: "juice at end" },
+      { name: "Fresh coriander", amount: "handful", notes: "to garnish" },
+      { name: "Oil", amount: "2 tbsp", notes: "" }
+    ],
+    steps: [
+      "Heat oil, add cumin seeds and let them pop. Add onion and fry 10 minutes until deep golden.",
+      "Add garlic, ginger, green chillies. Cook 2 minutes. Add chana masala powder, stir 1 minute.",
+      "Add tomatoes, cook down 10 minutes until paste-thick and oil starts to separate.",
+      "Add drained chickpeas and ½ cup water. Stir well to coat every chickpea in that gorgeous masala.",
+      "Simmer 15 minutes, mashing a few chickpeas against the pan wall to thicken the sauce naturally.",
+      "Finish with lemon juice. Garnish with fresh coriander. Serve with bhatura, puri, or basmati rice."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a pinch of amchur (dry mango powder) at the end for a tangy depth that makes this taste restaurant-level." },
+      { type: "warn", icon: "⚠️", title: "Cook Down the Tomatoes!", text: "Under-cooked tomatoes make the dish acidic and raw-tasting. Cook until the oil separates — that's your sign." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Lassi (sweet or salted), chai, or a cold lager. All work beautifully." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Excellent batch cook. Freezes perfectly for up to 3 months. The flavour only gets better over 2–3 days." }
+    ]
+  },
+  {
+    id: 17,
+    emoji: "🍱",
+    title: "Aloo Gobi",
+    time: "⏱ 35 min",
+    difficulty: "Easy",
+    servings: "3–4 servings",
+    category: "Indian",
+    categories: ["indian","healthy","comfort"],
+    funny: "Aloo Gobi proves that potatoes and cauliflower — two very modest vegetables — can become something transcendent with the right spices. Humble heroes. 🥔🌟",
+    ingredients: [
+      { name: "Cauliflower", amount: "1 medium", notes: "cut into florets" },
+      { name: "Potatoes", amount: "2 medium", notes: "peeled, cubed" },
+      { name: "Onion", amount: "1 medium", notes: "diced" },
+      { name: "Tomatoes", amount: "2 medium", notes: "chopped" },
+      { name: "Garlic", amount: "3 cloves", notes: "minced" },
+      { name: "Ginger", amount: "1.5cm", notes: "grated" },
+      { name: "Cumin seeds", amount: "1 tsp", notes: "" },
+      { name: "Turmeric", amount: "½ tsp", notes: "" },
+      { name: "Cumin powder", amount: "1 tsp", notes: "" },
+      { name: "Coriander powder", amount: "1 tsp", notes: "" },
+      { name: "Garam masala", amount: "½ tsp", notes: "added at end" },
+      { name: "Oil", amount: "3 tbsp", notes: "" }
+    ],
+    steps: [
+      "Heat oil over medium-high. Add cumin seeds — when they sizzle, add diced onion and fry 8 minutes until golden.",
+      "Add garlic and ginger, cook 2 minutes. Add turmeric, cumin powder, coriander powder. Stir 1 minute.",
+      "Add chopped tomatoes and cook 5 minutes until they break down into the oil.",
+      "Add potato cubes first (they take longer). Stir to coat in masala. Add ¼ cup water, cover and cook 8 minutes.",
+      "Add cauliflower florets, stir well. Cover and cook another 10 minutes until both vegetables are tender.",
+      "Sprinkle garam masala, stir through. Garnish with fresh coriander. Serve with chapati or basmati rice."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Roast the cauliflower and potatoes in the oven first at 200°C until golden before adding to the masala. Incredible caramelised depth." },
+      { type: "warn", icon: "⚠️", title: "Add Water Gradually", text: "Too much water makes it a watery curry, not a dry sabzi. Add just enough to prevent sticking — 2 tbsp at a time." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Hot chai masala or a classic cucumber lassi. The dal or raita on the side is strongly recommended." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Excellent as a stuffing for parathas the next morning. Press into buttered flatbread dough and pan-fry for aloo paratha." }
+    ]
+  },
+  {
+    id: 18,
+    emoji: "🥣",
+    title: "Matar Paneer",
+    time: "⏱ 35 min",
+    difficulty: "Easy",
+    servings: "3–4 servings",
+    category: "Indian",
+    categories: ["indian","comfort"],
+    funny: "Peas and paneer in a tomato-onion gravy is the kind of dish that makes you want to live life fully and eat seconds. Both at the same time. 🫛🧀",
+    ingredients: [
+      { name: "Paneer", amount: "300g", notes: "cubed" },
+      { name: "Frozen peas", amount: "200g", notes: "or fresh" },
+      { name: "Onion", amount: "2 medium", notes: "blended or finely diced" },
+      { name: "Tomatoes", amount: "3 medium", notes: "blended" },
+      { name: "Garlic", amount: "4 cloves", notes: "minced" },
+      { name: "Ginger", amount: "2cm", notes: "grated" },
+      { name: "Garam masala", amount: "1 tsp", notes: "" },
+      { name: "Coriander powder", amount: "1 tsp", notes: "" },
+      { name: "Kashmiri chilli powder", amount: "½ tsp", notes: "for colour" },
+      { name: "Cream or yoghurt", amount: "3 tbsp", notes: "at the end" },
+      { name: "Oil", amount: "2 tbsp", notes: "" }
+    ],
+    steps: [
+      "Pan-fry paneer cubes in oil until golden. Remove and set aside.",
+      "In same pan, fry onion (or blended onion paste) until golden. Add garlic and ginger.",
+      "Add dry spices and stir 1 minute. Add blended tomatoes and cook 10–12 minutes until oil separates from the masala.",
+      "Add frozen peas and ½ cup water. Simmer 5 minutes.",
+      "Return fried paneer to the pan. Simmer together 5 minutes, letting paneer absorb the curry.",
+      "Stir in cream or yoghurt. Check seasoning. Garnish with fresh coriander. Serve with chapati or naan."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Blend the onion to a paste before frying for a restaurant-smooth, glossy gravy. Worth the extra blender step." },
+      { type: "warn", icon: "⚠️", title: "Don't Add Cold Cream!", text: "Temper the cream by mixing a little hot curry into it first, then add to the pan. Prevents curdling." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Mango lassi or sweet chai. The gentle sweetness balances the warm spiced tomato gravy perfectly." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Tastes even better next day. The paneer soaks up all the masala overnight. Reheat with a splash of water." }
+    ]
+  },
+  {
+    id: 19,
+    emoji: "🫓",
+    title: "Masala Dosa with Coconut Chutney",
+    time: "⏱ 45 min",
+    difficulty: "Challenge",
+    servings: "2–3 servings",
+    category: "Indian",
+    categories: ["indian","healthy","fancy"],
+    funny: "Masala dosa is a crispy crepe the size of your torso, stuffed with spiced potato. South India gave the world this masterpiece and it deserves a Nobel prize. 🏆",
+    ingredients: [
+      { name: "Ready dosa batter (from Indian grocery)", amount: "400ml", notes: "or make from scratch the day before" },
+      { name: "Potatoes", amount: "3 large", notes: "boiled and roughly mashed" },
+      { name: "Onion", amount: "1 large", notes: "sliced" },
+      { name: "Green chillies", amount: "2", notes: "sliced" },
+      { name: "Mustard seeds", amount: "1 tsp", notes: "" },
+      { name: "Curry leaves", amount: "10–12", notes: "fresh or dried" },
+      { name: "Turmeric", amount: "½ tsp", notes: "" },
+      { name: "Fresh coconut", amount: "100g grated", notes: "for chutney" },
+      { name: "Coriander seeds", amount: "1 tsp", notes: "roasted, for chutney" },
+      { name: "Oil", amount: "3 tbsp", notes: "" }
+    ],
+    steps: [
+      "Make the potato filling: heat oil, add mustard seeds (let them pop), curry leaves, green chillies. Add onion and fry 8 minutes. Add turmeric and mashed potato. Stir well. Season with salt.",
+      "Make coconut chutney: blend grated coconut, roasted coriander seeds, a green chilli, salt, and water to a smooth paste. Set aside.",
+      "Heat a non-stick or cast iron pan on high. Sprinkle with a little water — it should evaporate instantly.",
+      "Pour a ladleful of dosa batter and spread immediately in a thin, wide circle. Drizzle oil around the edges.",
+      "Cook until the edges start lifting and the underside is golden-crispy, about 2–3 minutes. Place potato filling in the centre.",
+      "Fold the dosa around the filling or roll. Serve with coconut chutney and sambar."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "The first dosa is almost always a test run. The pan needs calibrating. Don't be disheartened — dosa 2 will be glorious." },
+      { type: "warn", icon: "⚠️", title: "HOT Pan Required", text: "The pan must be very hot before adding batter. Not warm. Not medium. HOT. This is what gives the crispy edges." },
+      { type: "wine", icon: "🥤", title: "Pair With", text: "Filter coffee (South Indian style) or fresh coconut water. This is non-negotiable breakfast culture." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Extra potato filling makes great stuffed parathas the next morning. Dosas don't store well — make to order." }
+    ]
+  },
+  {
+    id: 20,
+    emoji: "🍜",
+    title: "Miso Ramen with Soft-Boiled Egg",
+    time: "⏱ 35 min",
+    difficulty: "Medium",
+    servings: "2 servings",
+    category: "Asian",
+    categories: ["asian","comfort"],
+    funny: "Homemade ramen sounds terrifying. It is not. This version takes 35 minutes and will make you question why you ever ordered takeout. 🥢",
+    ingredients: [
+      { name: "Ramen noodles", amount: "2 portions", notes: "fresh or dried" },
+      { name: "White miso paste", amount: "3 tbsp", notes: "" },
+      { name: "Vegetable stock", amount: "1 litre", notes: "good quality" },
+      { name: "Eggs", amount: "2", notes: "soft-boiled 6.5 minutes" },
+      { name: "Corn kernels", amount: "100g", notes: "tinned or fresh" },
+      { name: "Nori sheets", amount: "2", notes: "cut in half" },
+      { name: "Spring onions", amount: "3", notes: "sliced" },
+      { name: "Bean sprouts", amount: "handful", notes: "" },
+      { name: "Sesame oil", amount: "1 tbsp", notes: "" },
+      { name: "Soy sauce", amount: "1 tbsp", notes: "" },
+      { name: "Garlic", amount: "2 cloves", notes: "minced" }
+    ],
+    steps: [
+      "Soft boil eggs: 6.5 minutes in boiling water, immediately into ice water. Peel and halve before serving.",
+      "In a pot, fry garlic in sesame oil 1 minute. Add vegetable stock and bring to a simmer.",
+      "Whisk miso paste with a ladle of hot stock until smooth, then stir into the pot. Add soy sauce. Don't boil after adding miso — it kills the probiotic magic.",
+      "Cook ramen noodles separately according to packet. Drain and divide between bowls.",
+      "Ladle hot miso broth over noodles. Arrange toppings: corn, bean sprouts, spring onions, halved soft-boiled egg, nori.",
+      "Drizzle extra sesame oil over top. Eat with chopsticks and make appreciative noises."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add a tablespoon of butter to the broth at the end. Rich, glossy, Sapporo-style miso ramen that makes everything better." },
+      { type: "warn", icon: "⚠️", title: "Don't Boil the Miso!", text: "Once miso is added, keep heat low. Boiling destroys the complex flavour compounds and beneficial enzymes." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold Japanese beer (Sapporo, Asahi) or barley tea (mugicha). Both are traditional ramen companions." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Store broth and noodles separately. Noodles in broth overnight = soggy disaster. Reheat broth, add fresh noodles." }
+    ]
+  },
+  {
+    id: 21,
+    emoji: "🥞",
+    title: "Korean Pajeon (Spring Onion Pancakes)",
+    time: "⏱ 20 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Asian",
+    categories: ["asian","quick","comfort"],
+    funny: "Pajeon is the Korean pancake you make when it's raining and you can't be bothered to cook anything 'proper'. It is always the right decision. ☔🥞",
+    ingredients: [
+      { name: "Spring onions", amount: "10–12", notes: "cut into 8cm lengths" },
+      { name: "All-purpose flour", amount: "150g", notes: "" },
+      { name: "Rice flour", amount: "50g", notes: "for extra crispiness" },
+      { name: "Cold water", amount: "200ml", notes: "very cold — helps crispy texture" },
+      { name: "Egg", amount: "1", notes: "" },
+      { name: "Salt", amount: "½ tsp", notes: "" },
+      { name: "Soy sauce", amount: "2 tbsp", notes: "for dipping sauce" },
+      { name: "Rice vinegar", amount: "1 tbsp", notes: "for dipping sauce" },
+      { name: "Sesame oil", amount: "1 tsp", notes: "for dipping sauce" },
+      { name: "Chilli flakes", amount: "pinch", notes: "for dipping sauce" },
+      { name: "Vegetable oil", amount: "3 tbsp", notes: "for frying" }
+    ],
+    steps: [
+      "Mix dipping sauce: soy sauce, rice vinegar, sesame oil, chilli flakes. Set aside.",
+      "Whisk flours, cold water, egg, and salt into a smooth batter. Don't overmix.",
+      "Heat oil in a large non-stick pan on medium-high until shimmering.",
+      "Pour batter into pan to make a thin pancake. Arrange spring onion pieces all over the top, pressing gently.",
+      "Cook 3–4 minutes until edges are set and bottom is deeply golden-brown and crispy. Flip and cook another 2–3 minutes.",
+      "Cut into squares. Serve immediately with dipping sauce. Best eaten while still crackling crispy."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Add kimchi to the batter for a fermented, spicy Kimchi Jeon. Even more spectacular and uses up aging kimchi." },
+      { type: "warn", icon: "⚠️", title: "Cold Water = Crispy", text: "Ice cold water develops less gluten = crispier pancake. Some people add ice cubes to the batter. Worth it." },
+      { type: "wine", icon: "🍶", title: "Pair With", text: "Makgeolli (Korean rice wine) if you can find it. Otherwise, cold Korean beer. Pajeon and booze is centuries-old tradition." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Reheat in a dry pan for 2 minutes each side to restore crispiness. Microwave will ruin them completely." }
+    ]
+  },
+  {
+    id: 22,
+    emoji: "🫙",
+    title: "Beet & Lentil Salad with Goat Cheese",
+    time: "⏱ 20 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Healthy",
+    categories: ["healthy","quick","fancy"],
+    funny: "This salad is what happens when you decide to be virtuous but refuse to be boring. It's purple. It's earthy. It's dressed in balsamic glamour. 💜",
+    ingredients: [
+      { name: "Ready-cooked beetroot", amount: "300g", notes: "sliced or cubed" },
+      { name: "Puy lentils (canned)", amount: "400g", notes: "drained" },
+      { name: "Goat cheese", amount: "100g", notes: "crumbled" },
+      { name: "Rocket", amount: "big handful", notes: "" },
+      { name: "Walnuts", amount: "40g", notes: "toasted" },
+      { name: "Red onion", amount: "¼", notes: "very thinly sliced" },
+      { name: "Balsamic vinegar", amount: "2 tbsp", notes: "for dressing" },
+      { name: "Honey", amount: "1 tsp", notes: "for dressing" },
+      { name: "Dijon mustard", amount: "½ tsp", notes: "for dressing" },
+      { name: "Olive oil", amount: "3 tbsp", notes: "for dressing" }
+    ],
+    steps: [
+      "Toast walnuts in a dry pan for 3 minutes until fragrant. Let cool.",
+      "Make dressing: whisk balsamic vinegar, honey, mustard, olive oil, salt, and pepper until emulsified.",
+      "Toss lentils in half the dressing — warm lentils absorb dressing beautifully.",
+      "Arrange rocket on a platter. Pile dressed lentils on top.",
+      "Add beetroot, red onion slices, and toasted walnuts. Crumble goat cheese over everything.",
+      "Drizzle remaining dressing. Serve immediately at room temperature."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Roast the beetroot yourself from raw with thyme and balsamic. It takes an hour but the flavour is extraordinary." },
+      { type: "warn", icon: "⚠️", title: "Wear an Apron!", text: "Beetroot will stain everything it touches. Your shirt, your cutting board, your fingernails. You have been warned." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Earthy Pinot Noir or a light Gamay. Red wine with beetroot is an underrated pairing." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Store undressed. Assembled salad with dressing gets sad quickly. Individually stored, all elements keep 3 days." }
+    ]
+  },
+  {
+    id: 23,
+    emoji: "🫘",
+    title: "Smoky Chipotle Bean Chilli",
+    time: "⏱ 35 min",
+    difficulty: "Easy",
+    servings: "4 servings",
+    category: "Comfort",
+    categories: ["comfort","healthy","mexican"],
+    funny: "This chilli doesn't need meat because it has SMOKE and HEAT and three types of beans. That's more than enough character for any dish. 🌶️🔥",
+    ingredients: [
+      { name: "Mixed beans (kidney, black, pinto)", amount: "2 × 400g tins", notes: "drained" },
+      { name: "Chipotle in adobo", amount: "2 tbsp", notes: "the smoky magic" },
+      { name: "Crushed tomatoes", amount: "400g tin", notes: "" },
+      { name: "Onion", amount: "1 large", notes: "diced" },
+      { name: "Garlic", amount: "4 cloves", notes: "minced" },
+      { name: "Smoked paprika", amount: "2 tsp", notes: "" },
+      { name: "Cumin", amount: "1 tsp", notes: "" },
+      { name: "Coriander powder", amount: "1 tsp", notes: "" },
+      { name: "Dark chocolate", amount: "20g", notes: "the secret weapon" },
+      { name: "Lime", amount: "1", notes: "" },
+      { name: "Soured cream & cheddar", amount: "to serve", notes: "" }
+    ],
+    steps: [
+      "Fry onion in oil over medium-high heat 8 minutes until golden. Add garlic, cook 1 more minute.",
+      "Add smoked paprika, cumin, and coriander powder. Stir 1 minute until fragrant.",
+      "Add chipotle in adobo, crushed tomatoes, and drained beans. Stir to combine.",
+      "Simmer 20 minutes until thick. Stir in dark chocolate until melted — it adds richness without sweetness.",
+      "Taste, season, squeeze over lime juice. It should be smoky, thick, and deeply flavoured.",
+      "Serve with soured cream, cheddar, and tortilla chips. Or on rice. Or in tacos. Or just eat it with a spoon. No rules."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Make it the day before. Chilli always tastes better after a night of contemplating itself in the fridge." },
+      { type: "warn", icon: "⚠️", title: "Chipotle = HOT", text: "Chipotle in adobo is smoky but also VERY hot. Start with 1 tbsp if you're heat-sensitive and taste before adding more." },
+      { type: "wine", icon: "🍺", title: "Pair With", text: "Cold lager or a bold Malbec. Both stand up to the smokiness and heat beautifully." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Freezes perfectly for 3 months. Batch cook this on a Sunday and you have easy weekday lunches sorted." }
+    ]
+  },
+  {
+    id: 24,
+    emoji: "🍃",
+    title: "Pesto Gnocchi with Crispy Sage",
+    time: "⏱ 15 min",
+    difficulty: "Easy",
+    servings: "2 servings",
+    category: "Italian",
+    categories: ["italian","comfort","quick"],
+    funny: "Pan-fried gnocchi is the trick nobody tells you about. You've been boiling them your whole life. Stop that immediately. 🥔✨",
+    ingredients: [
+      { name: "Potato gnocchi", amount: "400g", notes: "shop-bought, fresh or vacuum-packed" },
+      { name: "Fresh basil pesto", amount: "4 tbsp", notes: "jarred is fine" },
+      { name: "Butter", amount: "30g", notes: "" },
+      { name: "Fresh sage leaves", amount: "12–15", notes: "" },
+      { name: "Cherry tomatoes", amount: "150g", notes: "halved" },
+      { name: "Pine nuts", amount: "2 tbsp", notes: "toasted" },
+      { name: "Parmesan", amount: "30g", notes: "grated" },
+      { name: "Garlic", amount: "1 clove", notes: "smashed" },
+      { name: "Olive oil", amount: "1 tbsp", notes: "" }
+    ],
+    steps: [
+      "Toast pine nuts in a dry pan 2 minutes until golden. Set aside.",
+      "Heat butter and olive oil in a wide pan over medium-high heat. Add smashed garlic and let sizzle 1 minute.",
+      "Add gnocchi in a single layer — don't overcrowd! Cook without moving 3–4 minutes until golden-crispy on the bottom.",
+      "Flip gnocchi, add sage leaves. Cook 2 more minutes until gnocchi is golden all over and sage is crispy.",
+      "Remove from heat. Add halved cherry tomatoes and toss gently. They soften in the residual heat.",
+      "Add pesto and toss to coat. Plate up. Top with toasted pine nuts and grated parmesan. Serve immediately."
+    ],
+    tips: [
+      { type: "upgrade", icon: "⬆️", title: "Level Up", text: "Make fresh gnocchi — it only takes 20 minutes and the pillowy texture is incomparably better than shop-bought." },
+      { type: "warn", icon: "⚠️", title: "Single Layer Only!", text: "Overcrowded gnocchi steams instead of crisps. Work in batches if needed. The golden crust is the whole point." },
+      { type: "wine", icon: "🍷", title: "Pair With", text: "Soave or a light Pinot Grigio. The grassy freshness of pesto needs a wine that doesn't compete." },
+      { type: "leftover", icon: "📦", title: "Leftovers?", text: "Re-fry in a dry pan to restore crispiness. Leftover pesto gnocchi straight from the fridge is actually excellent cold." }
+    ]
+  },
+  {
+  id: 25,
+  emoji: "🍛",
+  title: "Paneer Butter Masala",
+  time: "⏱ 40 min",
+  difficulty: "Medium",
+  servings: "3–4 servings",
+  category: "Indian",
+  categories: ["indian","vegetarian","fancy"],
+  funny: "Paneer butter masala is what happens when tomatoes, butter and cream decide to live their best life together. Restaurant royalty in a bowl. 👑",
+  ingredients: [
+    { name: "Paneer", amount: "250g", notes: "cubed" },
+    { name: "Tomatoes", amount: "4 large", notes: "pureed" },
+    { name: "Onion", amount: "1 large", notes: "finely chopped" },
+    { name: "Ginger-garlic paste", amount: "1 tbsp", notes: "" },
+    { name: "Butter", amount: "2 tbsp", notes: "" },
+    { name: "Fresh cream", amount: "3 tbsp", notes: "" },
+    { name: "Red chilli powder", amount: "1 tsp", notes: "" },
+    { name: "Garam masala", amount: "1 tsp", notes: "" },
+    { name: "Kasuri methi", amount: "1 tsp", notes: "crushed" }
+  ],
+  steps: [
+    "Heat butter in a pan. Add onions and cook until soft and lightly golden.",
+    "Add ginger-garlic paste and cook 1 minute.",
+    "Add tomato puree, chilli powder and salt. Simmer until oil separates.",
+    "Add garam masala and crushed kasuri methi.",
+    "Add paneer cubes and simmer 5–7 minutes.",
+    "Stir in cream, cook 2 minutes more. Serve hot."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Restaurant Trick", text: "Add 1 tsp sugar if tomatoes are too tangy. It balances the sauce beautifully." },
+    { type: "warn", icon: "⚠️", title: "Don't Overcook", text: "Paneer becomes rubbery if cooked too long. Add it near the end." },
+    { type: "pair", icon: "🥖", title: "Best With", text: "Butter naan, jeera rice or soft tandoori roti." },
+    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Tastes even better the next day as flavours deepen overnight." }
+  ]
+},
+{
+  id: 26,
+  emoji: "🥘",
+  title: "Vegetable Pulao",
+  time: "⏱ 30 min",
+  difficulty: "Easy",
+  servings: "3 servings",
+  category: "Indian",
+  categories: ["indian","healthy","onepot"],
+  funny: "Vegetable pulao is the ‘I want something nice but not complicated’ answer to life. One pot. Zero drama. Maximum aroma. 🌿",
+  ingredients: [
+    { name: "Basmati rice", amount: "1 cup", notes: "soaked 20 min" },
+    { name: "Mixed vegetables", amount: "1.5 cups", notes: "carrot, beans, peas" },
+    { name: "Onion", amount: "1 medium", notes: "sliced" },
+    { name: "Green chilli", amount: "1", notes: "slit" },
+    { name: "Cumin seeds", amount: "1 tsp", notes: "" },
+    { name: "Bay leaf", amount: "1", notes: "" },
+    { name: "Cloves", amount: "3", notes: "" },
+    { name: "Oil or ghee", amount: "2 tbsp", notes: "" }
+  ],
+  steps: [
+    "Heat oil or ghee. Add cumin, bay leaf and cloves.",
+    "Add onions and sauté until soft.",
+    "Add vegetables and cook 3–4 minutes.",
+    "Drain rice and add to pot. Stir gently.",
+    "Add 2 cups water and salt. Bring to boil.",
+    "Cover and cook on low 12–15 minutes until rice is fluffy."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Extra Aroma", text: "Add a few drops of rose water or saffron soaked in warm milk." },
+    { type: "warn", icon: "⚠️", title: "No Stirring", text: "Avoid stirring after adding water. It can break the rice." },
+    { type: "pair", icon: "🥒", title: "Serve With", text: "Cool cucumber raita and pickle." },
+    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Makes great fried rice the next day." }
+  ]
+},
+{
+  id: 27,
+  emoji: "🥞",
+  title: "Besan Chilla",
+  time: "⏱ 20 min",
+  difficulty: "Easy",
+  servings: "2 servings",
+  category: "Indian",
+  categories: ["indian","healthy","quick"],
+  funny: "Besan chilla is the protein-packed cousin of pancakes. Except it wakes you up with spices instead of syrup. 💪",
+  ingredients: [
+    { name: "Besan (gram flour)", amount: "1 cup", notes: "" },
+    { name: "Onion", amount: "1 small", notes: "finely chopped" },
+    { name: "Tomato", amount: "1 small", notes: "finely chopped" },
+    { name: "Green chilli", amount: "1", notes: "chopped" },
+    { name: "Turmeric", amount: "¼ tsp", notes: "" },
+    { name: "Cumin powder", amount: "½ tsp", notes: "" },
+    { name: "Water", amount: "as needed", notes: "to make batter" },
+    { name: "Oil", amount: "2 tbsp", notes: "" }
+  ],
+  steps: [
+    "Mix besan, spices and salt in a bowl.",
+    "Add water gradually to form smooth batter.",
+    "Stir in onion, tomato and chilli.",
+    "Heat pan and grease lightly.",
+    "Pour ladle of batter and spread like pancake.",
+    "Cook both sides until golden."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Cheesy Twist", text: "Add grated paneer or cheese on top before flipping." },
+    { type: "warn", icon: "⚠️", title: "No Lumps", text: "Whisk well to avoid dry besan lumps." },
+    { type: "pair", icon: "🍵", title: "Perfect With", text: "Green chutney and masala chai." },
+    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Wrap in foil and carry as breakfast on the go." }
+  ]
+},
+{
+  id: 28,
+  emoji: "🍲",
+  title: "Dal Tadka",
+  time: "⏱ 35 min",
+  difficulty: "Medium",
+  servings: "4 servings",
+  category: "Indian",
+  categories: ["indian","comfort","healthy"],
+  funny: "Dal tadka is Indian comfort in liquid form. Simple lentils until the sizzling ghee tempering enters like a hero in slow motion. 🎬",
+  ingredients: [
+    { name: "Toor dal", amount: "1 cup", notes: "washed" },
+    { name: "Tomato", amount: "1 medium", notes: "chopped" },
+    { name: "Onion", amount: "1 small", notes: "chopped" },
+    { name: "Turmeric", amount: "½ tsp", notes: "" },
+    { name: "Garlic", amount: "3 cloves", notes: "sliced" },
+    { name: "Cumin seeds", amount: "1 tsp", notes: "" },
+    { name: "Dry red chillies", amount: "2", notes: "" },
+    { name: "Ghee", amount: "2 tbsp", notes: "" }
+  ],
+  steps: [
+    "Pressure cook dal with turmeric and water until soft.",
+    "Mash lightly and simmer with tomato and salt.",
+    "Heat ghee in small pan.",
+    "Add cumin, garlic and red chillies. Let garlic turn golden.",
+    "Pour hot tempering over dal. Mix and serve."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Smoky Touch", text: "Add a tiny piece of charcoal smoke for dhaba-style flavour." },
+    { type: "warn", icon: "⚠️", title: "Watch the Garlic", text: "Burnt garlic turns bitter quickly." },
+    { type: "pair", icon: "🍚", title: "Best Combo", text: "Steamed rice and a squeeze of lemon." },
+    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Thicken next day and use as filling for parathas." }
+  ]
+},
+{
+  id: 29,
+  emoji: "🍮",
+  title: "Gajar Ka Halwa",
+  time: "⏱ 60 min",
+  difficulty: "Medium",
+  servings: "4 servings",
+  category: "Indian",
+  categories: ["indian","dessert","festive"],
+  funny: "Carrots never imagined this destiny. Slow-cooked in milk and ghee until they become winter festival magic. 🧡",
+  ingredients: [
+    { name: "Carrots", amount: "500g", notes: "grated" },
+    { name: "Full fat milk", amount: "500ml", notes: "" },
+    { name: "Sugar", amount: "½ cup", notes: "adjust to taste" },
+    { name: "Ghee", amount: "3 tbsp", notes: "" },
+    { name: "Cardamom powder", amount: "½ tsp", notes: "" },
+    { name: "Cashews & raisins", amount: "2 tbsp", notes: "optional" }
+  ],
+  steps: [
+    "Heat ghee in heavy pan. Add grated carrots and sauté 5 minutes.",
+    "Add milk and cook on medium, stirring often.",
+    "Cook until milk reduces and thickens.",
+    "Add sugar and cardamom. Cook until glossy.",
+    "Add nuts and serve warm."
+  ],
+  tips: [
+    { type: "upgrade", icon: "⬆️", title: "Luxury Version", text: "Replace some milk with condensed milk for richer texture." },
+    { type: "warn", icon: "⚠️", title: "Stir Often", text: "Milk can stick at the bottom if ignored." },
+    { type: "pair", icon: "🍨", title: "Serve With", text: "A scoop of vanilla ice cream." },
+    { type: "leftover", icon: "📦", title: "Leftovers?", text: "Roll into laddoo shapes and refrigerate." }
+  ]
+}
 ];
 
 let currentRecipe = null;
@@ -1227,16 +2001,14 @@ function rollDice() {
 }
 
 function showCustomResult(picked, allChoices) {
-  // Hide the preset recipe card content, show a custom result card
   const card = document.getElementById('recipe-card');
   const content = document.getElementById('recipe-content');
   const empty = document.getElementById('empty-state');
   const banner = document.getElementById('custom-banner');
 
-  // Clear any previous custom styling
-  card.style.display = 'block';
+  // Show card properly (use class, not inline display, so CSS opacity transition works)
   empty.style.display = 'none';
-  content.style.display = 'none'; // hide the recipe detail
+  content.style.display = 'none';
   banner.classList.remove('show');
 
   // Build the custom winner display
@@ -1252,7 +2024,15 @@ function showCustomResult(picked, allChoices) {
     </div>
   `;
 
-  requestAnimationFrame(() => { banner.classList.add('show'); });
+  // Make card visible with proper class + force opacity
+  card.classList.add('entering', 'visible');
+  card.style.opacity = '1';
+  card.style.transform = 'translateY(0)';
+  card.style.display = 'block';
+
+  // Trigger banner animation after a tiny delay so remove+add works
+  setTimeout(() => { banner.classList.add('show'); }, 30);
+
   card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
