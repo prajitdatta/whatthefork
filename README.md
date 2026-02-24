@@ -236,18 +236,6 @@ No React. No Vue. No Svelte. No Solid. No Astro. No Next. No Nuxt. No build step
 
 ---
 
-## 🔍 SEO & Performance — For the Nerds, the Googlebots, and the LinkedIn Humble Braggers
-
-- **Lighthouse 100/100** across Performance, Accessibility, Best Practices, and SEO — because bragging rights are free and Prajit worked hard for these
-- **Schema.org `WebApplication`** structured data so Google knows what this thing actually is
-- **Open Graph tags** so when you share it, it looks like a real website and not a 4am hackathon project
-- **Twitter Cards** with `summary_large_image` for when you post about your dinner, which you should, tag us
-- **FAQ Section** with structured data for Google's fancy expandable search results
-- **Canonical URL** so Google doesn't index the same page 14 times and get confused
-- **Single file = instant load**: No JS framework boot time. No render-blocking. It loads before your partner can change their mind.
-
----
-
 ## 📜 License
 
 **MIT** — Take it, fork it, remix it, deploy it on a potato. Just don't blame us if you overcook the palak paneer. The recipe clearly said gentle simmer. You chose high heat. You chose chaos. That's on you.
