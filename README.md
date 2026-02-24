@@ -47,10 +47,11 @@ Click the big satisfying dice (or the even bigger "Roll the Fork!" button) and w
 ### 🏷️ Category Filters — For People Who Have *Some* Standards
 Before rolling, narrow it down by mood:
 - **🎲 Anything!** — Full chaos mode. Absolute culinary roulette. May the odds be ever in your stomach's favour.
+- **🍛 Indian** — Curries, dals, biryanis, and the kind of food that makes your whole kitchen smell incredible for hours.
+- **🥢 Asian** — Stir-fries, ramen, and dishes that will make you question why you ever ordered takeaway.
 - **🍝 Italian** — Pasta, pizza, and the constant looming threat of a Roman nonna judging your technique from beyond.
-- **🥢 Asian** — Curries, stir-fries, and dishes that will make you question why you ever ordered takeaway.
 - **🌮 Mexican** — Tacos and more tacos. The correct answer was tacos all along. Kevin was right.
-- **🧀 Comfort Food** — Burgers, cheese, and zero regret. Maximum regret tomorrow. Worth it.
+- **🧀 Comfort Food** — Halloumi burgers, quesadillas, and shakshuka at any hour. Zero regret. Maximum satisfaction.
 - **🥗 Healthy** — For when you've eaten four smash burgers this week and your body is filing a formal complaint.
 - **⚡ Quick (<30 min)** — Because it's already 8pm and someone *forgot* to defrost anything. Again.
 - **✨ Impress Me** — For date nights, dinner parties, or when you need to prove you're a functioning adult with sophisticated taste.
@@ -61,12 +62,12 @@ Switch to **"My Choices"** mode and type in the meals you're actually debating. 
 Type your options → Click Roll → Dice decides → You cook it → Nobody can complain because it was **fate** and fate doesn't take criticism.
 
 ### 🔍 Find a Recipe for This — The YouTube Lifeline
-When you roll a custom choice that isn't in our library (e.g. "That thing Grandma used to make," "idk some chicken thing," or "beef wellington because I've lost my mind"), the **"🔍 Find a Recipe for This"** button appears. One click and it fires a YouTube search for your exact dish so you can watch a professional make it while you nod along confidently, say "yeah yeah I got it" at the 2-minute mark, and then freestyle the whole thing anyway.
+When you roll a custom choice that isn't in our library (e.g. "That thing Grandma used to make," "idk some veggie thing," or "mushroom wellington because I've lost my mind"), the **"🔍 Find a Recipe for This"** button appears. One click and it fires a YouTube search for your exact dish so you can watch a professional make it while you nod along confidently, say "yeah yeah I got it" at the 2-minute mark, and then freestyle the whole thing anyway.
 
 It works like this:
 ```
-Your input:        "Beef Wellington"
-YouTube search:    "Beef Wellington recipe"
+Your input:        "Mushroom Wellington"
+YouTube search:    "Mushroom Wellington recipe"
 Your confidence:   📈 Dangerously High
 Actual result:     Edible (probably) (maybe) (fingers crossed)
 ```
@@ -82,8 +83,8 @@ Every recipe comes with:
 Each recipe includes four tip cards because we care:
 - **⬆️ Level Up** — The one extra step that turns "pretty good" into "wait, did you go to culinary school??"
 - **⚠️ Don't Do This** — The specific terrible mistake that will ruin everything. We're saving you from yourself. You're welcome.
-- **🍷 Pair With** — Wine, beer, or other beverage suggestions. Because food tastes better with a drink and you've earned it.
-- **📦 Leftovers?** — What to do with the rest tomorrow morning. (Spoiler: carbonara leftovers are a war crime. Eat it all. Tonight. Now.)
+- **🍷 Pair With** — Wine, beer, lassi, or other beverage suggestions. Because food tastes better with a drink and you've earned it.
+- **📦 Leftovers?** — What to do with the rest tomorrow morning. (Spoiler: cacio e pepe leftovers survive — add a splash of water when reheating. You're welcome.)
 
 ### 📖 Roll History — For the Indecisive Nostalgic
 Hit **"❤️ Save to History"** and the recipe gets stored in your browser's local storage forever (or until you clear your cache, in which case: your loss). Your past rolls appear in a grid below. Click any of them to reload that recipe instantly. Perfect for remembering "wait, what was that curry we made that one time that was *incredible*?" without endlessly re-rolling for 40 minutes. Not that anyone has done that.
@@ -103,18 +104,36 @@ Not feeling the dice's divine selection? Hit **"🔄 Nope, Roll Again"** and tem
 
 ## 🍽️ Current Recipe Library — The Hall of Fame
 
+All recipes are **100% vegetarian**. No meat, no fish, no excuses — just incredible food.
+
 | # | Dish | Category | Time | Difficulty | Lore |
 |---|------|----------|------|------------|------|
-| 1 | 🍝 Spaghetti Carbonara | Italian | 25 min | Medium | No cream. Not ever. The Romans will find you. |
-| 2 | 🍜 Thai Green Curry | Asian | 35 min | Easy | Clinically proven acceptable to eat 3 days in a row. |
-| 3 | 🌮 Tacos al Pastor | Mexican | 40 min | Medium | Kevin was right the whole time. Owe him an apology. |
-| 4 | 🍔 Smash Burgers | Comfort | 20 min | Easy | Your smoke alarm is about to become a dinner bell. |
-| 5 | 🥗 Niçoise Salad | Healthy | 25 min | Easy | Fancy enough to cancel your gym guilt for one full week. |
-| 6 | 🍛 Chicken Tikka Masala | Asian | 50 min | Medium | Your kitchen will smell incredible for 3 business days. |
-| 7 | 🥘 Lemon Herb Salmon | Healthy | 22 min | Easy | So fast it's almost suspicious. What is it hiding? |
-| 8 | 🍕 Pizza Bianca | Italian | 25min + dough | Challenge | Cold ferment 48hrs or you didn't really make pizza. |
+| 1 | 🍝 Spaghetti Cacio e Pepe | Italian | 20 min | Medium | Three ingredients. Infinite ways to ruin it. You will ascend on the second attempt. |
+| 2 | 🍜 Thai Green Vegetable Curry | Asian | 35 min | Easy | Clinically proven acceptable to eat 3 days in a row. The tofu knows what it's doing. |
+| 3 | 🌮 Black Bean Tacos with Mango Salsa | Mexican | 30 min | Easy | Kevin was right. The answer was tacos. It's always tacos. |
+| 4 | 🧀 Halloumi Smash Burger | Comfort | 20 min | Easy | The cheese that doesn't melt. The burger that doesn't need meat. An icon. |
+| 5 | 🥗 Caprese Panzanella | Italian | 25 min | Easy | Technically a bread salad. The bread is not a technicality. The bread is the point. |
+| 6 | 🍛 Paneer Tikka Masala | Indian | 50 min | Medium | Cheese in a spiced tomato jacuzzi. Humanity's finest achievement. Sorry, moon landing. |
+| 7 | 🥘 Roasted Veggie Sheet Pan Dinner | Healthy | 40 min | Easy | You put things on a pan. You shoved it in the oven. You look like a competent adult. |
+| 8 | 🍕 Neapolitan Pizza Bianca | Italian | 25 min + dough | Challenge | Cold ferment 48hrs or you didn't really make pizza. The stone must be scorching. |
+| 9 | 🧆 Crispy Falafel with Tahini | Healthy | 40 min | Medium | No canned chickpeas. I cannot stress this enough. Soaked dried only. You were warned. |
+| 10 | 🍲 Palak Paneer | Indian | 40 min | Medium | It looks like a green pond. It tastes like heaven. Trust the smoky spinach embrace. |
+| 11 | 🫘 Chana Masala | Indian | 45 min | Easy | Chickpeas are the overachievers of the legume world and this is their moment. |
+| 12 | 🍚 Vegetable Biryani | Indian | 60 min | Challenge | Not fast food. Fast art. The layering is sacred. Do not stir. Ever. |
+| 13 | 🥬 Saag Aloo | Indian | 35 min | Easy | The humble sidekick that steals the show at every curry night. The potato knew. |
+| 14 | 🍵 Dal Makhani | Indian | 90 min | Medium | Mostly butter. Significantly butter. A rewarding amount of butter. Give it time. |
+| 15 | 🫓 Aloo Paratha with Raita | Indian | 50 min | Medium | A warm edible hug stuffed with spiced potatoes. North India approves. |
+| 16 | 🧅 Onion Bhaji with Mint Chutney | Indian | 25 min | Easy | Simplicity is genius. Genius is onions in batter. Batter is delicious. QED. |
+| 17 | 🫙 Baingan Bharta | Indian | 40 min | Easy | Fire-roasted eggplant mashed with spices. Chaotic looking. Transcendent tasting. |
+| 18 | 🍜 Miso Ramen with Soft Egg | Asian | 45 min | Medium | A hot umami hug in a bowl. Slurp loudly. It is a sign of respect. |
+| 19 | 🧀 Caramelized Onion Quesadillas | Mexican | 30 min | Easy | The onion went through 25 minutes of therapy and came out completely transformed. |
+| 20 | 🥗 Warm Roasted Beetroot & Feta Salad | Healthy | 55 min | Easy | Everything will be pink tomorrow. This is not a warning. It's a promise. |
+| 21 | 🫔 Mushroom & Spinach Enchiladas | Mexican | 50 min | Medium | A hug wrapped in a tortilla, drowned in sauce. Dinner can absolutely be this dramatic. |
+| 22 | 🍳 Shakshuka | Comfort | 25 min | Easy | Eggs in spiced tomato sauce. Valid for breakfast, lunch, dinner, and 11pm decisions. |
+| 23 | 🥬 Pad Thai with Tofu | Asian | 30 min | Medium | Your wok isn't at 1000°C. Embrace your inferior but still utterly delicious version. |
+| 24 | 🥙 Halloumi Wrap with Tzatziki | Healthy | 20 min | Easy | What a Greek taverna would make if it had 20 minutes and believed in you. It does. |
 
-*More recipes incoming. Contributions extremely welcome. See below. We desperately need more tacos.*
+*More recipes always welcome. Contribute yours below. We especially need more Indian recipes for the glory of dal.*
 
 ---
 
@@ -149,26 +168,15 @@ whatthefork/
 └── README.md      ← You're reading this right now. Hello. 👋
 ```
 
-That's the whole project. Two files. One does everything. One explains everything. We don't talk about the rogue puppeteer cache that snuck into the zip file. It doesn't spark joy. We're letting it go. 🫣
-
----
-
-## 🔗 All the Links — Everything That Actually Opens Something
-
-| What | Link | What Happens When You Click It |
-|------|------|-------------------------------|
-| 🌐 **Live App** | [prajitdatta.github.io/whatthefork](https://prajitdatta.github.io/whatthefork/) | The actual app, live, working, ready to solve your dinner problem right now |
-| 👨‍💻 **Creator's Site** | [prajitdatta.github.io](https://prajitdatta.github.io/) | Prajit Datta — the genius/maniac responsible for all of this |
-| 🐙 **GitHub Profile** | [github.com/prajitdatta](https://github.com/prajitdatta) | Stars appreciated. Forks encouraged. Knives: not applicable. |
-| 🔍 **Find a Recipe** | `youtube.com/results?search_query=[your dish] recipe` | Auto-generated YouTube search for whatever custom meal you rolled — no library match required |
-| 📤 **Share Button** | Your device's native share / clipboard | Fires off the recipe title + app link to whoever else is refusing to make a decision tonight |
-| 🖨️ **Print Button** | Your local printer | A clean, formatted, ink-friendly printout of whatever you're making |
+That's the whole project. Two files. One does everything. One explains everything.
 
 ---
 
 ## 🤝 Contributing — We Need Your Recipes, Your Bug Reports, and Your Best Food Puns
 
-Spotted a bug? Have a recipe that deserves to be in here? Written a funny tip that made you laugh out loud while standing alone in your kitchen? **We want all of it.**
+Spotted a bug? Have a vegetarian recipe that deserves to be in here? Written a funny tip that made you laugh out loud while standing alone in your kitchen? **We want all of it.**
+
+> ⚠️ **Important:** WhatTheFork is a 100% vegetarian recipe app. All recipe contributions must be meat-free and fish-free. Eggs, dairy, paneer, halloumi, and tofu are all very welcome. Chicken is not.
 
 ### How to Add a Recipe
 
@@ -176,18 +184,18 @@ Find the `RECIPES` array in `index.html` and drop your object at the end. Here's
 
 ```javascript
 {
-  id: 9,                              // Next number in sequence. Don't skip. Don't duplicate. This isn't anarchy.
-  emoji: "🥩",                        // One emoji. ONE. We are not an emoji buffet.
-  title: "Pan-Seared Ribeye",         // Recipe name. Be specific. "Steak" is not a name. "Steak" is a vibe.
-  time: "⏱ 15 min",                  // Be honest. If it takes 45 min, say 45 min. We've been burned before.
+  id: 25,                             // Next number in sequence. Don't skip. Don't duplicate. This isn't anarchy.
+  emoji: "🥬",                        // One emoji. ONE. We are not an emoji buffet.
+  title: "Saag Paneer",               // Recipe name. Be specific. "Curry" is not a name. "Curry" is a category.
+  time: "⏱ 35 min",                  // Be honest. If it takes 45 min, say 45 min. We've been burned before.
   difficulty: "Easy",                 // Easy / Medium / Challenge — no "Gordon Ramsay" tier, we checked.
-  servings: "2 servings",             // How many real humans this actually feeds
-  category: "Comfort",                // Display label shown in the badge on the recipe card
-  categories: ["comfort", "quick"],   // Filter tags — use any of: italian | asian | mexican | comfort | healthy | quick | fancy
-  funny: "A hilarious one-liner about this dish. Make it good. Make us snort. This is your moment. 🥩",
+  servings: "3–4 servings",           // How many real humans this actually feeds
+  category: "Indian",                 // Display label shown in the badge on the recipe card
+  categories: ["indian", "healthy"],  // Filter tags — use any of: indian | italian | asian | mexican | comfort | healthy | quick | fancy
+  funny: "A hilarious one-liner about this dish. Make it good. Make us snort. This is your moment. 🌿",
   ingredients: [
-    { name: "Ribeye steak", amount: "2 × 250g", notes: "room temperature — take it out an hour early or don't bother" },
-    { name: "Butter", amount: "2 tbsp", notes: "real butter. Not that yellow imposter in a tub. Real butter." },
+    { name: "Paneer", amount: "300g", notes: "cubed — pan-fry first for golden edges" },
+    { name: "Fresh spinach", amount: "500g", notes: "or frozen, thawed and squeezed dry" },
     // continue until the dish is complete...
   ],
   steps: [
@@ -199,16 +207,16 @@ Find the `RECIPES` array in `index.html` and drop your object at the end. Here's
   tips: [
     { type: "upgrade",  icon: "⬆️", title: "Level Up",        text: "The one small thing that transforms it from good to unforgettable." },
     { type: "warn",     icon: "⚠️", title: "Don't Do This",   text: "The specific mistake that will ruin everything. Name it clearly." },
-    { type: "wine",     icon: "🍷", title: "Pair With",        text: "A drink recommendation. 'Wine' is not a recommendation. Be specific." },
+    { type: "wine",     icon: "🍷", title: "Pair With",        text: "A drink recommendation. 'Lassi' is a full sentence. Be specific." },
     { type: "leftover", icon: "📦", title: "Leftovers?",       text: "What to do with the rest tomorrow. Or tonight at 2am. No judgment." }
   ]
 }
 ```
 
 **Available filter tag categories:**
-`italian` · `asian` · `mexican` · `comfort` · `healthy` · `quick` · `fancy`
+`indian` · `italian` · `asian` · `mexican` · `comfort` · `healthy` · `quick` · `fancy`
 
-A recipe can have multiple tags! A quick Thai curry can be both `asian` AND `quick`. It contains multitudes. Respect that.
+A recipe can have multiple tags! A quick paneer dish can be both `indian` AND `quick`. It contains multitudes. Respect that.
 
 ---
 
@@ -242,7 +250,7 @@ No React. No Vue. No Svelte. No Solid. No Astro. No Next. No Nuxt. No build step
 
 ## 📜 License
 
-**MIT** — Take it, fork it, remix it, deploy it on a potato. Just don't blame us if you overcook the salmon. The recipe clearly said medium heat. You chose high. You chose chaos. That's on you.
+**MIT** — Take it, fork it, remix it, deploy it on a potato. Just don't blame us if you overcook the palak paneer. The recipe clearly said gentle simmer. You chose high heat. You chose chaos. That's on you.
 
 ---
 
@@ -253,7 +261,7 @@ No React. No Vue. No Svelte. No Solid. No Astro. No Next. No Nuxt. No build step
   <a href="https://prajitdatta.github.io/">🌐 prajitdatta.github.io</a> · <a href="https://github.com/prajitdatta">🐙 github.com/prajitdatta</a>
 </p>
 
-The person responsible for this. Someone who has clearly had one too many "what do you want for dinner?" conversations and decided to solve the problem with code instead of just cooking something. Respect the commitment. Star the repo. Cook more tacos.
+The person responsible for this. Someone who has clearly had one too many "what do you want for dinner?" conversations and decided to solve the problem with code instead of just cooking something. Respect the commitment. Star the repo. Cook more dal.
 
 ---
 
@@ -263,8 +271,9 @@ This project is lovingly dedicated to:
 
 - 🥺 Every couple who has spent more time deciding what to eat than actually eating it
 - 🙃 Everyone who has ever said "I'm fine with anything" and then vetoed six perfectly good suggestions
-- 👵 The Roman nonna who loses sleep every time someone adds cream to carbonara
+- 👵 The Roman nonna who loses sleep every time someone adds cream to cacio e pepe
 - 🌮 Kevin, who was right about tacos from the very beginning and deserves a formal apology
+- 🫘 The humble chickpea, overachiever, unsung hero, backbone of civilisation
 - 🎲 The dice, who asks for nothing and gives everything
 
 ---
@@ -277,7 +286,7 @@ This project is lovingly dedicated to:
   <a href="https://prajitdatta.github.io/whatthefork/">Live App</a>
 </p>
 
-<p align="center"><em>Too many dinner arguments. Not enough tacos. One beautiful HTML file.</em></p>
+<p align="center"><em>Too many dinner arguments. Not enough paneer. One beautiful HTML file.</em></p>
 
 <p align="center">🍴 No forks were harmed in the making of this website 🍴</p>
 
