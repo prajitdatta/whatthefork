@@ -4,10 +4,18 @@
 > *(And no, "I'm fine with anything" is NOT a valid answer anymore.)*
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-whatthefork.app-FF6B6B?style=for-the-badge)](https://prajitdatta.github.io/whatthefork/)
+[![Made by Prajit Datta](https://img.shields.io/badge/Made_by-Prajit_Datta-4D96FF?style=for-the-badge)](https://prajitdatta.github.io/)
+[![GitHub](https://img.shields.io/badge/GitHub-prajitdatta-181717?style=for-the-badge&logo=github)](https://github.com/prajitdatta)
 [![License: MIT](https://img.shields.io/badge/License-MIT-FFD93D?style=for-the-badge)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-6BCB77?style=for-the-badge)](CONTRIBUTING.md)
 [![Zero Node Modules](https://img.shields.io/badge/node__modules-0_files-4D96FF?style=for-the-badge)](.)
 [![Dinner Arguments Solved](https://img.shields.io/badge/Dinner_Arguments-SOLVED_FOREVER-6BCB77?style=for-the-badge)](.)
+
+<p align="center">
+  <strong>Built by <a href="https://prajitdatta.github.io/">Prajit Datta</a></strong> · 
+  <a href="https://github.com/prajitdatta">GitHub</a> · 
+  <a href="https://prajitdatta.github.io/whatthefork/">Live App</a>
+</p>
 
 ---
 
@@ -238,6 +246,17 @@ No React. No Vue. No Svelte. No Solid. No Astro. No Next. No Nuxt. No build step
 
 ---
 
+## 👨‍💻 About the Creator
+
+<p align="center">
+  <strong>Prajit Datta</strong><br/>
+  <a href="https://prajitdatta.github.io/">🌐 prajitdatta.github.io</a> · <a href="https://github.com/prajitdatta">🐙 github.com/prajitdatta</a>
+</p>
+
+The person responsible for this. Someone who has clearly had one too many "what do you want for dinner?" conversations and decided to solve the problem with code instead of just cooking something. Respect the commitment. Star the repo. Cook more tacos.
+
+---
+
 ## 🙏 Acknowledgements
 
 This project is lovingly dedicated to:
@@ -250,7 +269,15 @@ This project is lovingly dedicated to:
 
 ---
 
-<p align="center">Made with ❤️, too many dinner arguments, and a deep personal grudge against the phrase "I'm fine with anything"</p>
+<p align="center">Made with ❤️ by <a href="https://prajitdatta.github.io/"><strong>Prajit Datta</strong></a></p>
+
+<p align="center">
+  <a href="https://github.com/prajitdatta">GitHub</a> · 
+  <a href="https://prajitdatta.github.io/">Portfolio</a> · 
+  <a href="https://prajitdatta.github.io/whatthefork/">Live App</a>
+</p>
+
+<p align="center"><em>Too many dinner arguments. Not enough tacos. One beautiful HTML file.</em></p>
 
 <p align="center">🍴 No forks were harmed in the making of this website 🍴</p>
 
